@@ -1171,7 +1171,6 @@ ul {
 }
 
 /* Left — heading + contact info */
-.contact-left {}
 
 .contact-heading {
   font-size: clamp(2.2rem, 7vw, 4.5rem);
@@ -1241,7 +1240,6 @@ ul {
 }
 
 /* Right — form */
-.contact-form-wrap {}
 
 .contact-form {
   display: flex;
@@ -1282,7 +1280,7 @@ ul {
   outline: none;
   width: 100%;
   resize: none;
-  -webkit-appearance: none;
+  appearance: none;
 }
 
 .form-field input::placeholder,
