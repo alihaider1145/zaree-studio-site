@@ -117,6 +117,45 @@
     goTo(0);
   };
 
+  /* ===== CONTACT FORM ===== */
+  const initContactForm = () => {
+    const form = document.querySelector('.contact-form');
+    if (!form) return;
+
+    const statusEl = form.querySelector('.form-status');
+    const submitBtn = form.querySelector('.btn-submit');
+
+    const setStatus = (msg, type) => {
+      statusEl.textContent = msg;
+      statusEl.className = `form-status ${type}`;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      setStatus('Sending…', '');
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          setStatus("Message sent! I'll be in touch soon.", 'success');
+          form.reset();
+        } else {
+          setStatus('Something went wrong — please try again.', 'error');
+        }
+      } catch {
+        setStatus('Network error — please try again.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  };
+
   /* ===== INIT ===== */
   document.addEventListener('DOMContentLoaded', () => {
     initScrollProgress();
@@ -124,6 +163,7 @@
     initMobileNav();
     initAccordion();
     initCarousel();
+    initContactForm();
   });
 
 })();
