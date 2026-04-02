@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krevio Studios — Web Design & Development</title>
+  <meta name="description" content="Krevio Studios by Ali Haider — crafting beautiful websites for independent artists and café businesses." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- Scroll Progress Line -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ===== NAV ===== -->
+  <header>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo">
+        <span>Krevio</span> Studios
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="nav-links" role="list">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <!-- Mobile hamburger -->
+      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile menu -->
+    <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-wordmark">
+        <span class="hero-wordmark-krevio" id="hero-heading">Krevio</span>
+        <span class="hero-wordmark-studios">Studios</span>
+      </div>
+
+      <p class="hero-tagline">Websites for artists and cafés that feel as good as they look.</p>
+
+      <div class="hero-ctas">
+        <a href="projects.html" class="btn-text accent">
+          Browse Projects
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </a>
+        <a href="contact.html" class="btn-text muted">
+          Get in Touch
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT SNIPPET ===== -->
+    <section class="about-snippet" aria-labelledby="about-heading">
+      <div class="about-inner">
+        <div>
+          <p class="section-label">About</p>
+          <h2 id="about-heading" class="section-title" style="margin-bottom: 1.2rem;">
+            Crafted with <em>care</em>
+          </h2>
+          <p class="about-text">
+            I'm Ali Haider, founder of Krevio Studios. I design and build <em>custom websites</em> for independent artists and café owners — people who deserve a site as unique as what they create. Clean code, warm design, and no unnecessary fluff.
+          </p>
+        </div>
+        <div>
+          <a href="contact.html" class="btn-text">
+            Get in Touch
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS PREVIEW ===== -->
+    <section class="projects-preview" aria-labelledby="projects-heading">
+      <div class="projects-preview-header section-header">
+        <div>
+          <p class="section-label">Selected Work</p>
+          <h2 id="projects-heading" class="section-title">Projects</h2>
+        </div>
+        <a href="projects.html" class="btn-circle" aria-label="See all projects">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4 12L12 4M12 4H6M12 4v6"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="projects-stack">
+
+        <!-- Card 1 -->
+        <article class="project-card" aria-label="Café Bloom Website project">
+          <div class="project-card-image" role="img" aria-label="Café Bloom Website preview"></div>
+          <div class="project-card-body">
+            <div class="project-card-top">
+              <span class="project-card-tag">Café Website</span>
+              <a href="projects.html" class="btn-circle" aria-label="View Café Bloom project">
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M4 12L12 4M12 4H6M12 4v6"/>
+                </svg>
+              </a>
+            </div>
+            <h3>Café Bloom Website</h3>
+            <p>A warm, inviting site for a neighbourhood café — showcasing menu, ambiance, and story.</p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="project-card" aria-label="Menu & Order System project">
+          <div class="project-card-image" role="img" aria-label="Menu & Order System preview"></div>
+          <div class="project-card-body">
+            <div class="project-card-top">
+              <span class="project-card-tag">Café Website</span>
+              <a href="projects.html" class="btn-circle" aria-label="View Menu & Order System project">
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M4 12L12 4M12 4H6M12 4v6"/>
+                </svg>
+              </a>
+            </div>
+            <h3>Menu &amp; Order System</h3>
+            <p>Digital menu and simple order flow, helping a café ditch the paper and streamline service.</p>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="project-card" aria-label="Painting Store project">
+          <div class="project-card-image" role="img" aria-label="Painting Store preview"></div>
+          <div class="project-card-body">
+            <div class="project-card-top">
+              <span class="project-card-tag">Artist Portfolio</span>
+              <a href="projects.html" class="btn-circle" aria-label="View Painting Store project">
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M4 12L12 4M12 4H6M12 4v6"/>
+                </svg>
+              </a>
+            </div>
+            <h3>Painting Store</h3>
+            <p>A no-code-managed online store for an independent painter to sell and update their work independently.</p>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="project-card" aria-label="Artist Portfolio project">
+          <div class="project-card-image" role="img" aria-label="Artist Portfolio preview"></div>
+          <div class="project-card-body">
+            <div class="project-card-top">
+              <span class="project-card-tag">Artist Portfolio</span>
+              <a href="projects.html" class="btn-circle" aria-label="View Artist Portfolio project">
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M4 12L12 4M12 4H6M12 4v6"/>
+                </svg>
+              </a>
+            </div>
+            <h3>Artist Portfolio</h3>
+            <p>A curated, gallery-style portfolio for a visual artist — all the work, none of the noise.</p>
+          </div>
+        </article>
+
+      </div>
+      <div class="projects-stack-spacer" aria-hidden="true"></div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="services" aria-labelledby="services-heading">
+      <div class="section-header">
+        <div>
+          <p class="section-label">What I Offer</p>
+          <h2 id="services-heading" class="section-title">My <em>Services</em></h2>
+        </div>
+      </div>
+
+      <ul class="accordion-list" role="list">
+
+        <!-- Web Design -->
+        <li class="accordion-item open">
+          <button class="accordion-trigger" aria-expanded="true" aria-controls="service-design-body">
+            <span class="accordion-title">Web Design</span>
+            <span class="btn-circle accordion-icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16">
+                <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+          </button>
+          <div class="accordion-body" id="service-design-body">
+            <p class="accordion-desc">Wireframes, visual layouts, and brand-aligned design — built around how your audience thinks and feels.</p>
+            <ul class="accordion-includes" aria-label="What's included">
+              <li>Wireframing and layout planning</li>
+              <li>Canva / Figma mockups</li>
+              <li>Responsive layout design</li>
+              <li>Brand color and font application</li>
+            </ul>
+            <div class="accordion-image-placeholder" role="img" aria-label="Web design service illustration"></div>
+          </div>
+        </li>
+
+        <!-- Web Development -->
+        <li class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="service-dev-body">
+            <span class="accordion-title">Web Development</span>
+            <span class="btn-circle accordion-icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16">
+                <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+          </button>
+          <div class="accordion-body" id="service-dev-body">
+            <p class="accordion-desc">Clean, fast, mobile-friendly websites — coded by hand for performance and reliability.</p>
+            <ul class="accordion-includes" aria-label="What's included">
+              <li>HTML / CSS / JS development</li>
+              <li>Mobile-first responsive build</li>
+              <li>Cross-browser testing</li>
+              <li>Performance optimisation</li>
+            </ul>
+            <div class="accordion-image-placeholder" role="img" aria-label="Web development service illustration"></div>
+          </div>
+        </li>
+
+        <!-- Maintenance -->
+        <li class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="service-maintenance-body">
+            <span class="accordion-title">Maintenance &amp; Updates</span>
+            <span class="btn-circle accordion-icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16">
+                <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+          </button>
+          <div class="accordion-body" id="service-maintenance-body">
+            <p class="accordion-desc">Keep your site fresh and working long after launch — without the stress of doing it yourself.</p>
+            <ul class="accordion-includes" aria-label="What's included">
+              <li>Content updates</li>
+              <li>Bug fixes</li>
+              <li>Minor feature additions</li>
+              <li>Monthly support retainer</li>
+            </ul>
+            <div class="accordion-image-placeholder" role="img" aria-label="Maintenance service illustration"></div>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ===== COLLABORATORS ===== -->
+    <section class="collaborators" aria-labelledby="collab-heading">
+      <div class="section-header">
+        <div>
+          <p class="section-label">Kind Words</p>
+          <h2 id="collab-heading" class="section-title">What <em>Collaborators</em> Say</h2>
+        </div>
+      </div>
+
+      <div class="testimonial-carousel" role="region" aria-roledescription="carousel" aria-label="Testimonials">
+        <div class="testimonial-track" aria-live="polite">
+
+          <article class="testimonial-card">
+            <p class="testimonial-quote">Ali's work completely transformed how people see our café online. The site feels warm, professional, and exactly like us.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" role="img" aria-label="Sara's avatar"></div>
+              <div>
+                <p class="testimonial-name">Sara K.</p>
+                <p class="testimonial-role">Classmate</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="testimonial-quote">He listened carefully to what I needed and delivered something even better. My portfolio finally represents my art properly.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" role="img" aria-label="Hamza's avatar"></div>
+              <div>
+                <p class="testimonial-name">Hamza R.</p>
+                <p class="testimonial-role">Colleague</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="testimonial-quote">Working with Krevio Studios was smooth from start to finish. Great communication, great results, and a site I'm proud to share.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" role="img" aria-label="Nadia's avatar"></div>
+              <div>
+                <p class="testimonial-name">Nadia A.</p>
+                <p class="testimonial-role">Friend</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="btn-circle carousel-prev" aria-label="Previous testimonial">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M10 4L6 8l4 4"/>
+          </svg>
+        </button>
+        <button class="btn-circle carousel-next" aria-label="Next testimonial">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M6 4l4 4-4 4"/>
+          </svg>
+        </button>
+        <div class="carousel-dots" role="tablist" aria-label="Testimonial navigation">
+          <button class="carousel-dot active" role="tab" aria-label="Testimonial 1" aria-selected="true"></button>
+          <button class="carousel-dot" role="tab" aria-label="Testimonial 2" aria-selected="false"></button>
+          <button class="carousel-dot" role="tab" aria-label="Testimonial 3" aria-selected="false"></button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <p class="footer-cta-line">I'm excited to<br>hear from <em>you!</em></p>
+        <p class="footer-cta-sub">Let's build something worth showing off.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <p class="footer-nav-label">Navigate</p>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-socials">
+        <!-- Instagram -->
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <!-- GitHub -->
+        <a href="#" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+        </a>
+      </div>
+
+      <p class="footer-copy">© 2025 Krevio Studios</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
