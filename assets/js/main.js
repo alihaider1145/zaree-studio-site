@@ -1,20 +1,31 @@
 (function () {
   'use strict';
-
-  /* ===== SCROLL PROGRESS LINE ===== */
+ /* ===== SCROLL PROGRESS INDICATOR ===== */
   const initScrollProgress = () => {
-    const bar = document.querySelector('#scroll-progress');
-    if (!bar) return;
+  const bar = document.querySelector('#scroll-progress');
+  const projects = document.querySelector('.projects-preview');
+  if (!bar || !projects) return;
 
-    const updateProgress = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  const updateProgress = () => {
+    const sectionTop = projects.offsetTop;
+    const sectionHeight = projects.offsetHeight;
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+
+    const scrolledIntoSection = scrollTop - sectionTop;
+    const scrollableDistance = sectionHeight - windowHeight;
+    const pct = Math.min(Math.max((scrolledIntoSection / scrollableDistance) * 100, 0), 100);
+
+    if (scrollTop < sectionTop || scrollTop > sectionTop + sectionHeight) {
+      bar.style.height = '0%';
+    } else {
       bar.style.height = pct + '%';
-    };
-
-    window.addEventListener('scroll', updateProgress, { passive: true });
+    }
   };
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+};
 
   /* ===== STICKY NAV ===== */
   const initStickyNav = () => {
