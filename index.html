@@ -3,380 +3,329 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zaree Studios — Web Design & Development</title>
-  <meta name="description" content="Zaree Studios by Ali Haider — crafting beautiful websites for independent artists and café businesses." />
-
-  <!-- Fonts -->
+  <title>Zaree Studio — Web Design & Development, Quetta</title>
+  <meta name="description" content="Zaree Studio builds hand-coded, fast, conversion-focused websites for small businesses and independent creators. Based in Quetta, Pakistan." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Petit+Formal+Script:ital,wght@1,600&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-
+  <link href="https://googleapis.com" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-  <!-- ===== NAV ===== -->
-  <header>
-    <nav class="nav" role="navigation" aria-label="Main navigation">
-      <a href="index.html" class="nav-logo">
-        <span>Zaree</span> Studios
+  <!-- ===================== NAV ===================== -->
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="nav-brand" aria-label="Zaree Studio — home">
+        <img src="assets/images/zaree-studio-logo.png" alt="Zaree Studio" class="nav-wordmark" />
       </a>
-
-      <!-- Desktop links -->
       <ul class="nav-links" role="list">
-        <li><a href="index.html" aria-current="page">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="projects.html" class="nav-link">Work</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-
-      <!-- Mobile hamburger -->
-      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span>
-        <span></span>
-        <span></span>
+      <a href="contact.html" class="btn btn-primary nav-cta">Start a project →</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
       </button>
-    </nav>
-
-    <!-- Mobile menu -->
-    <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation">
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">✕</button>
+    <ul class="mobile-nav-links" role="list">
+      <li><a href="projects.html" class="mobile-nav-link">Work</a></li>
+      <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
+      <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+      <li><a href="contact.html" class="mobile-nav-link mobile-nav-cta">Start a project →</a></li>
+    </ul>
+  </div>
+
   <main>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="hero-wordmark">
-        <span class="hero-wordmark-zaree" id="hero-heading">Zaree</span>
-        <span class="hero-wordmark-studios">Studios</span>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-left">
+        <p class="eyebrow">Web design &amp; development · Quetta</p>
+        <h1 class="hero-heading">We build <em>websites</em> that <em>earn more</em> for your business</h1>
+        <p class="hero-sub">Running a small or growing business? We'll give you an online presence that looks credible and sells more.</p>
+        <div class="hero-ctas">
+          <a href="contact.html" class="btn btn-primary">Tell us about your business</a>
+          <a href="projects.html" class="btn btn-secondary">See our work</a>
+        </div>
       </div>
 
-      <p class="hero-tagline">Websites for artists and cafés that feel as good as they look.</p>
+      <div class="hero-right" aria-hidden="true">
+        <div class="hero-dark-panel">
+          <div class="dot-grid"></div>
 
-      <div class="hero-ctas">
-        <a href="projects.html" class="btn-text accent">
-          Browse Projects
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4"/>
-          </svg>
-        </a>
-        <a href="contact.html" class="btn-text muted">
-          Get in Touch
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4"/>
-          </svg>
-        </a>
+          <div class="browser-stack">
+            <!-- Card 1: Café Bloom -->
+            <div class="browser-card browser-card--front">
+              <div class="browser-chrome">
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+                <span class="browser-url">alihaider1145.github.io/cafe-bloom-site</span>
+              </div>
+              <div class="browser-preview">
+                <img src="assets/images/cafe-bloom-preview.jpg" alt="Café Bloom website preview" />
+              </div>
+              <div class="browser-footer">
+                <span class="browser-project">Café Bloom</span>
+                <span class="browser-tag">Hospitality</span>
+                <a href="https://alihaider1145.github.io/cafe-bloom-site/" class="browser-link" target="_blank" rel="noopener noreferrer">View live ↗</a>
+              </div>
+            </div>
+
+            <!-- Card 2: Thomas Windsor -->
+            <div class="browser-card browser-card--back">
+              <div class="browser-chrome">
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+                <span class="browser-url">thomas-windsor-site.netlify.app</span>
+              </div>
+              <div class="browser-preview">
+                <img src="assets/images/thomas-windsor-preview.jpg" alt="Thomas Windsor artist portfolio preview" />
+              </div>
+              <div class="browser-footer">
+                <span class="browser-project">Thomas Windsor</span>
+                <span class="browser-tag">Artist</span>
+                <a href="https://thomas-windsor-site.netlify.app/" class="browser-link" target="_blank" rel="noopener noreferrer">View live ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lighthouse scores -->
+          <div class="lighthouse-row">
+            <div class="lighthouse-score">
+              <svg viewBox="0 0 44 44" class="score-ring" aria-hidden="true">
+                <circle cx="22" cy="22" r="18" class="score-track" />
+                <circle cx="22" cy="22" r="18" class="score-fill score-fill--96" />
+              </svg>
+              <span class="score-num">96</span>
+              <span class="score-label">Performance</span>
+            </div>
+            <div class="lighthouse-score">
+              <svg viewBox="0 0 44 44" class="score-ring" aria-hidden="true">
+                <circle cx="22" cy="22" r="18" class="score-track" />
+                <circle cx="22" cy="22" r="18" class="score-fill score-fill--98" />
+              </svg>
+              <span class="score-num">98</span>
+              <span class="score-label">Accessibility</span>
+            </div>
+            <div class="lighthouse-score">
+              <svg viewBox="0 0 44 44" class="score-ring" aria-hidden="true">
+                <circle cx="22" cy="22" r="18" class="score-track" />
+                <circle cx="22" cy="22" r="18" class="score-fill score-fill--92" />
+              </svg>
+              <span class="score-num">92</span>
+              <span class="score-label">Best Practices</span>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
-    <!-- ===== ABOUT SNIPPET ===== -->
-    <section class="about-snippet" aria-labelledby="about-heading">
-      <div class="about-inner">
-        <div>
-          <p class="section-label">About</p>
-          <h2 id="about-heading" class="section-title" style="margin-bottom: 1.2rem;">
-            Crafted with <em>care</em>
-          </h2>
-          <p class="about-text">
-            I'm Ali Haider, founder of Zaree Studios. I design and build <em>custom websites</em> for independent artists and café owners — people who deserve a site as unique as what they create. Clean code, warm design, and no unnecessary fluff.
-          </p>
+    <!-- ===================== PROBLEM ===================== -->
+    <section class="section problem-section" aria-labelledby="problemHeading">
+      <div class="container">
+        <h2 class="section-heading" id="problemHeading">Is your business invisible online?</h2>
+        <div class="problem-grid">
+          <article class="problem-card js-fade">
+            <div class="problem-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 class="problem-title">You look amateur before they even call you</h3>
+            <p class="problem-body">A poor website signals distrust before a word is spoken. First impressions happen in under 3 seconds.</p>
+          </article>
+          <article class="problem-card js-fade">
+            <div class="problem-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h3 class="problem-title">Customers can't find you on Google</h3>
+            <p class="problem-body">Without proper structure and speed, you're not showing up. Slow, template-heavy sites get buried.</p>
+          </article>
+          <article class="problem-card js-fade">
+            <div class="problem-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3 class="problem-title">Your competitor gets the enquiry, not you</h3>
+            <p class="problem-body">The business with the better website wins, every time. That business should be yours.</p>
+          </article>
         </div>
-        <div>
-          <a href="contact.html" class="btn-text">
-            Get in Touch
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4"/>
-            </svg>
+      </div>
+    </section>
+
+    <!-- ===================== HOW WE WORK ===================== -->
+    <section class="section process-section" aria-labelledby="processHeading">
+      <div class="container">
+        <h2 class="section-heading" id="processHeading">Three steps, no surprises</h2>
+        <div class="process-row js-fade">
+          <div class="process-step">
+            <span class="step-number" aria-hidden="true">01</span>
+            <h3 class="step-title">Brief</h3>
+            <p class="step-body">We talk through what your business needs and what success looks like. No jargon, no assumptions.</p>
+          </div>
+          <div class="process-connector" aria-hidden="true">
+            <svg width="40" height="2" viewBox="0 0 40 2"><line x1="0" y1="1" x2="32" y2="1" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/><polyline points="28,−4 36,1 28,6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <div class="process-step">
+            <span class="step-number" aria-hidden="true">02</span>
+            <h3 class="step-title">Build</h3>
+            <p class="step-body">I build your site from scratch — no templates, no drag-and-drop. You get to see it take shape.</p>
+          </div>
+          <div class="process-connector" aria-hidden="true">
+            <svg width="40" height="2" viewBox="0 0 40 2"><line x1="0" y1="1" x2="32" y2="1" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/><polyline points="28,−4 36,1 28,6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <div class="process-step">
+            <span class="step-number" aria-hidden="true">03</span>
+            <h3 class="step-title">Launch</h3>
+            <p class="step-body">Your site goes live, optimised for speed and search. I stay on hand for any tweaks after launch.</p>
+          </div>
+        </div>
+        <p class="process-note">Typical turnaround: 2–4 weeks</p>
+      </div>
+    </section>
+
+    <!-- ===================== SELECTED WORK ===================== -->
+    <section class="section work-section" aria-labelledby="workHeading">
+      <div class="container">
+        <h2 class="section-heading" id="workHeading">Built with intention</h2>
+        <div class="work-grid">
+
+          <article class="work-card js-fade">
+            <div class="work-card-image">
+              <img src="assets/images/cafe-bloom-preview.jpg" alt="Café Bloom website — hospitality site for a Quetta café" />
+            </div>
+            <div class="work-card-body">
+              <span class="tag">Hospitality</span>
+              <h3 class="work-card-title">Café Bloom</h3>
+              <p class="work-card-brief">A neighbourhood café that needed to feel as welcoming online as in person — with a menu, WhatsApp ordering, and a site their customers trust.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">HTML/CSS/JS</span>
+                <span class="tech-tag">Responsive</span>
+                <span class="tech-tag">WhatsApp integration</span>
+              </div>
+              <a href="projects.html" class="work-card-link">View case study →</a>
+            </div>
+          </article>
+
+          <article class="work-card js-fade">
+            <div class="work-card-image">
+              <img src="assets/images/thomas-windsor-preview.jpg" alt="Thomas Windsor artist portfolio — gallery and store for a British painter" />
+            </div>
+            <div class="work-card-body">
+              <span class="tag">Artist &amp; Creator</span>
+              <h3 class="work-card-title">Thomas Windsor</h3>
+              <p class="work-card-brief">An independent British painter who needed a gallery store and editorial site that lets the art breathe without competing with it.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">HTML/CSS/JS</span>
+                <span class="tech-tag">Gallery lightbox</span>
+                <span class="tech-tag">E-commerce flow</span>
+              </div>
+              <a href="projects.html" class="work-card-link">View case study →</a>
+            </div>
+          </article>
+
+        </div>
+        <div class="work-footer">
+          <a href="projects.html" class="see-all-link">See all work →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section about-section" id="about" aria-labelledby="aboutHeading">
+      <div class="container about-inner">
+        <div class="about-left">
+          <h2 class="about-heading" id="aboutHeading">Who's behind<br /><em>Zaree Studio</em></h2>
+        </div>
+        <div class="about-right">
+          <div class="about-photo-wrap">
+            <img src="assets/images/ali-haider.jpg" alt="Ali Haider, founder of Zaree Studio" class="about-photo" />
+          </div>
+          <div class="about-copy">
+            <p>I'm Ali Haider, founder of Zaree Studio — a web studio based in Quetta. I started building websites because I kept seeing good businesses lose customers to bad ones online.</p>
+            <p>Every site I build is hand-coded, fast, and built to last. No templates. No bloated builders. Just clean code and considered design.</p>
+            <div class="about-links">
+              <a href="mailto:ali@zaree.studio" class="about-link" aria-label="Send an email to Ali Haider">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                ali@zaree.studio →
+              </a>
+              <a href="https://wa.me/923XXXXXXXXX" class="about-link" target="_blank" rel="noopener noreferrer" aria-label="Message Ali on WhatsApp">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                WhatsApp →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="principles-row">
+          <div class="principle-card js-fade">
+            <h4 class="principle-title">Hand-coded</h4>
+            <p class="principle-body">Every line written by hand. No WordPress, no Wix, no shortcuts that slow you down.</p>
+          </div>
+          <div class="principle-card js-fade">
+            <h4 class="principle-title">Performance-first</h4>
+            <p class="principle-body">Sites that load in under 2 seconds. Because every extra second costs you a customer.</p>
+          </div>
+          <div class="principle-card js-fade">
+            <h4 class="principle-title">No templates</h4>
+            <p class="principle-body">Your site is built for your business — not a theme someone else already used a thousand times.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CLOSING CTA ===================== -->
+    <section class="section cta-strip" aria-labelledby="ctaHeading">
+      <div class="container cta-inner">
+        <h2 class="cta-heading" id="ctaHeading">Ready to look like the business you are?</h2>
+        <a href="contact.html" class="btn btn-primary btn-large">Tell us about your project →</a>
+        <p class="cta-whatsapp">
+          <a href="https://wa.me/923XXXXXXXXX" target="_blank" rel="noopener noreferrer" aria-label="Message Zaree Studio on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            Or message directly on WhatsApp
           </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== PROJECTS PREVIEW ===== -->
-    <section class="projects-preview" aria-labelledby="projects-heading">
-      <div class="projects-preview-header section-header">
-        <div>
-          <p class="section-label">Selected Work</p>
-          <h2 id="projects-heading" class="section-title">Projects</h2>
-        </div>
-        <a href="projects.html" class="btn-circle" aria-label="See all projects">
-          <svg viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M4 12L12 4M12 4H6M12 4v6"/>
-          </svg>
-        </a>
-      </div>
-
-      <div class="projects-stack">
-
-        <div id="scroll-progress-track" aria-hidden="true"></div>
-        <div id="scroll-progress" aria-hidden="true"></div>
-
-        <!-- Card 1 -->
-        <article class="project-card" aria-label="Café Bloom Website project">
-          <div class="project-card-image" role="img" aria-label="Café Bloom Website preview"></div>
-          <div class="project-card-body">
-            <div class="project-card-top">
-              <span class="project-card-tag">Café Website</span>
-              <a href="projects.html" class="btn-circle" aria-label="View Café Bloom project">
-                <svg viewBox="0 0 16 16" aria-hidden="true">
-                  <path d="M4 12L12 4M12 4H6M12 4v6"/>
-                </svg>
-              </a>
-            </div>
-            <h3>Café Bloom Website</h3>
-            <p>A warm, inviting site for a neighbourhood café — showcasing menu, ambiance, and story.</p>
-          </div>
-        </article>
-
-        <!-- Card 2 -->
-        <article class="project-card" aria-label="Menu & Order System project">
-          <div class="project-card-image" role="img" aria-label="Menu & Order System preview"></div>
-          <div class="project-card-body">
-            <div class="project-card-top">
-              <span class="project-card-tag">Café Website</span>
-              <a href="projects.html" class="btn-circle" aria-label="View Menu & Order System project">
-                <svg viewBox="0 0 16 16" aria-hidden="true">
-                  <path d="M4 12L12 4M12 4H6M12 4v6"/>
-                </svg>
-              </a>
-            </div>
-            <h3>Menu &amp; Order System</h3>
-            <p>Digital menu and simple order flow, helping a café ditch the paper and streamline service.</p>
-          </div>
-        </article>
-
-        <!-- Card 3 -->
-        <article class="project-card" aria-label="Painting Store project">
-          <div class="project-card-image" role="img" aria-label="Painting Store preview"></div>
-          <div class="project-card-body">
-            <div class="project-card-top">
-              <span class="project-card-tag">Artist Portfolio</span>
-              <a href="projects.html" class="btn-circle" aria-label="View Painting Store project">
-                <svg viewBox="0 0 16 16" aria-hidden="true">
-                  <path d="M4 12L12 4M12 4H6M12 4v6"/>
-                </svg>
-              </a>
-            </div>
-            <h3>Painting Store</h3>
-            <p>A no-code-managed online store for an independent painter to sell and update their work independently.</p>
-          </div>
-        </article>
-
-        <!-- Card 4 -->
-        <article class="project-card" aria-label="Artist Portfolio project">
-          <div class="project-card-image" role="img" aria-label="Artist Portfolio preview"></div>
-          <div class="project-card-body">
-            <div class="project-card-top">
-              <span class="project-card-tag">Artist Portfolio</span>
-              <a href="projects.html" class="btn-circle" aria-label="View Artist Portfolio project">
-                <svg viewBox="0 0 16 16" aria-hidden="true">
-                  <path d="M4 12L12 4M12 4H6M12 4v6"/>
-                </svg>
-              </a>
-            </div>
-            <h3>Artist Portfolio</h3>
-            <p>A curated, gallery-style portfolio for a visual artist — all the work, none of the noise.</p>
-          </div>
-        </article>
-
-      </div>
-      <div class="projects-stack-spacer" aria-hidden="true"></div>
-    </section>
-
-    <!-- ===== SERVICES ===== -->
-    <section class="services" aria-labelledby="services-heading">
-      <div class="section-header">
-        <div>
-          <p class="section-label">What I Offer</p>
-          <h2 id="services-heading" class="section-title">My <em>Services</em></h2>
-        </div>
-      </div>
-
-      <ul class="accordion-list" role="list">
-
-        <!-- Web Design -->
-        <li class="accordion-item open">
-          <button class="accordion-trigger" aria-expanded="true" aria-controls="service-design-body">
-            <span class="accordion-title">Web Design</span>
-            <span class="btn-circle accordion-icon" aria-hidden="true">
-              <svg viewBox="0 0 16 16">
-                <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-          </button>
-          <div class="accordion-body" id="service-design-body">
-            <p class="accordion-desc">Wireframes, visual layouts, and brand-aligned design — built around how your audience thinks and feels.</p>
-            <ul class="accordion-includes" aria-label="What's included">
-              <li>Wireframing and layout planning</li>
-              <li>Canva / Figma mockups</li>
-              <li>Responsive layout design</li>
-              <li>Brand color and font application</li>
-            </ul>
-            <div class="accordion-image-placeholder" role="img" aria-label="Web design service illustration"></div>
-          </div>
-        </li>
-
-        <!-- Web Development -->
-        <li class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" aria-controls="service-dev-body">
-            <span class="accordion-title">Web Development</span>
-            <span class="btn-circle accordion-icon" aria-hidden="true">
-              <svg viewBox="0 0 16 16">
-                <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-          </button>
-          <div class="accordion-body" id="service-dev-body">
-            <p class="accordion-desc">Clean, fast, mobile-friendly websites — coded by hand for performance and reliability.</p>
-            <ul class="accordion-includes" aria-label="What's included">
-              <li>HTML / CSS / JS development</li>
-              <li>Mobile-first responsive build</li>
-              <li>Cross-browser testing</li>
-              <li>Performance optimisation</li>
-            </ul>
-            <div class="accordion-image-placeholder" role="img" aria-label="Web development service illustration"></div>
-          </div>
-        </li>
-
-        <!-- Maintenance -->
-        <li class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false" aria-controls="service-maintenance-body">
-            <span class="accordion-title">Maintenance &amp; Updates</span>
-            <span class="btn-circle accordion-icon" aria-hidden="true">
-              <svg viewBox="0 0 16 16">
-                <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-          </button>
-          <div class="accordion-body" id="service-maintenance-body">
-            <p class="accordion-desc">Keep your site fresh and working long after launch — without the stress of doing it yourself.</p>
-            <ul class="accordion-includes" aria-label="What's included">
-              <li>Content updates</li>
-              <li>Bug fixes</li>
-              <li>Minor feature additions</li>
-              <li>Monthly support retainer</li>
-            </ul>
-            <div class="accordion-image-placeholder" role="img" aria-label="Maintenance service illustration"></div>
-          </div>
-        </li>
-
-      </ul>
-    </section>
-
-    <!-- ===== COLLABORATORS ===== -->
-    <section class="collaborators" aria-labelledby="collab-heading">
-      <div class="section-header">
-        <div>
-          <p class="section-label">Kind Words</p>
-          <h2 id="collab-heading" class="section-title">What <em>Collaborators</em> Say</h2>
-        </div>
-      </div>
-
-      <div class="testimonial-carousel" role="region" aria-roledescription="carousel" aria-label="Testimonials">
-        <div class="testimonial-track" aria-live="polite">
-
-          <article class="testimonial-card">
-            <p class="testimonial-quote">Ali's work completely transformed how people see our café online. The site feels warm, professional, and exactly like us.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar" role="img" aria-label="Sara's avatar"></div>
-              <div>
-                <p class="testimonial-name">Sara K.</p>
-                <p class="testimonial-role">Classmate</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="testimonial-card">
-            <p class="testimonial-quote">He listened carefully to what I needed and delivered something even better. My portfolio finally represents my art properly.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar" role="img" aria-label="Hamza's avatar"></div>
-              <div>
-                <p class="testimonial-name">Hamza R.</p>
-                <p class="testimonial-role">Colleague</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="testimonial-card">
-            <p class="testimonial-quote">Working with Zaree Studios was smooth from start to finish. Great communication, great results, and a site I'm proud to share.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar" role="img" aria-label="Nadia's avatar"></div>
-              <div>
-                <p class="testimonial-name">Nadia A.</p>
-                <p class="testimonial-role">Friend</p>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-
-      <div class="carousel-controls">
-        <button class="btn-circle carousel-prev" aria-label="Previous testimonial">
-          <svg viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M10 4L6 8l4 4"/>
-          </svg>
-        </button>
-        <button class="btn-circle carousel-next" aria-label="Next testimonial">
-          <svg viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M6 4l4 4-4 4"/>
-          </svg>
-        </button>
-        <div class="carousel-dots" role="tablist" aria-label="Testimonial navigation">
-          <button class="carousel-dot active" role="tab" aria-label="Testimonial 1" aria-selected="true"></button>
-          <button class="carousel-dot" role="tab" aria-label="Testimonial 2" aria-selected="false"></button>
-          <button class="carousel-dot" role="tab" aria-label="Testimonial 3" aria-selected="false"></button>
-        </div>
+        </p>
       </div>
     </section>
 
   </main>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="footer-top">
-      <div>
-        <p class="footer-cta-line">I'm excited to<br>hear from <em>you!</em></p>
-        <p class="footer-cta-sub">Let's build something worth showing off.</p>
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container footer-inner">
+      <div class="footer-top">
+        <p class="footer-tagline"><em>Let's build something worth showing off.</em></p>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="index.html" aria-current="page">Home</a>
+          <a href="projects.html">Work</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="footer-socials">
+          <a href="https://instagram.com/zareestudio" target="_blank" rel="noopener noreferrer" aria-label="Zaree Studio on Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/alihaider" target="_blank" rel="noopener noreferrer" aria-label="Ali Haider on LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://github.com/alihaider1145" target="_blank" rel="noopener noreferrer" aria-label="Ali Haider on GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+        </div>
       </div>
-
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <p class="footer-nav-label">Navigate</p>
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="footer-socials">
-        <!-- Instagram -->
-        <a href="#" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </a>
-        <!-- LinkedIn -->
-        <a href="#" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-          </svg>
-        </a>
-        <!-- GitHub -->
-        <a href="#" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-          </svg>
-        </a>
+      <div class="footer-bottom">
+        <p>© 2025 Zaree Studio · Built by Ali Haider · Quetta, Pakistan</p>
       </div>
-
-      <p class="footer-copy">© 2025 Zaree Studios</p>
     </div>
   </footer>
 
-  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

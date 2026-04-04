@@ -1,180 +1,172 @@
+/* ============================================================
+   ZAREE STUDIO — main.js
+   All interactivity for index.html, projects.html, contact.html
+   Vanilla JS, no dependencies.
+   ============================================================ */
+
 (function () {
   'use strict';
- /* ===== SCROLL PROGRESS INDICATOR ===== */
-  const initScrollProgress = () => {
-  const bar = document.querySelector('#scroll-progress');
-  const projects = document.querySelector('.projects-preview');
-  if (!bar || !projects) return;
 
-  const updateProgress = () => {
-    const sectionTop = projects.offsetTop;
-    const sectionHeight = projects.offsetHeight;
-    const scrollTop = window.scrollY;
-    const windowHeight = window.innerHeight;
+  /* ── 2. STICKY NAV ── */
+  const header = document.getElementById('siteHeader');
 
-    const scrolledIntoSection = scrollTop - sectionTop;
-    const scrollableDistance = sectionHeight - windowHeight;
-    const pct = Math.min(Math.max((scrolledIntoSection / scrollableDistance) * 100, 0), 100);
-
-    if (scrollTop < sectionTop || scrollTop > sectionTop + sectionHeight) {
-      bar.style.height = '0%';
-    } else {
-      bar.style.height = pct + '%';
+  if (header) {
+    function handleNavScroll() {
+      if (window.scrollY > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     }
-  };
+    window.addEventListener('scroll', handleNavScroll, { passive: true });
+    handleNavScroll(); // run on load
+  }
 
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
-};
+  /* ── 3. MOBILE MENU ── */
+  const hamburger = document.getElementById('navHamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuClose = document.getElementById('mobileMenuClose');
 
-  /* ===== STICKY NAV ===== */
-  const initStickyNav = () => {
-    const nav = document.querySelector('.nav');
-    if (!nav) return;
+  function openMenu() {
+    if (!mobileMenu || !hamburger) return;
+    mobileMenu.classList.add('is-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    menuClose && menuClose.focus();
+  }
 
-    const onScroll = () => {
-      nav.classList.toggle('scrolled', window.scrollY > 20);
-    };
+  function closeMenu() {
+    if (!mobileMenu || !hamburger) return;
+    mobileMenu.classList.remove('is-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    hamburger.focus();
+  }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-  };
+  hamburger && hamburger.addEventListener('click', openMenu);
+  menuClose && menuClose.addEventListener('click', closeMenu);
 
-  /* ===== MOBILE NAV TOGGLE ===== */
-  const initMobileNav = () => {
-    const hamburger = document.querySelector('.nav-hamburger');
-    const mobileMenu = document.querySelector('.nav-mobile');
-    if (!hamburger || !mobileMenu) return;
-
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      hamburger.classList.toggle('active', isOpen);
-      hamburger.setAttribute('aria-expanded', isOpen);
+  // Close on mobile link click
+  if (mobileMenu) {
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
     });
 
-    // Close on link click
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', false);
-      });
-    });
-  };
-
-  /* ===== SERVICES ACCORDION ===== */
-  const initAccordion = () => {
-    const items = document.querySelectorAll('.accordion-item');
-    if (!items.length) return;
-
-    items.forEach(item => {
-      const trigger = item.querySelector('.accordion-trigger');
-      if (!trigger) return;
-
-      trigger.addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-
-        // Close all
-        items.forEach(i => i.classList.remove('open'));
-
-        // Open clicked if it was closed
-        if (!isOpen) {
-          item.classList.add('open');
-        }
-      });
-    });
-  };
-
-  /* ===== TESTIMONIAL CAROUSEL ===== */
-  const initCarousel = () => {
-    const track = document.querySelector('.testimonial-track');
-    const dots = document.querySelectorAll('.carousel-dot');
-    const btnPrev = document.querySelector('.carousel-prev');
-    const btnNext = document.querySelector('.carousel-next');
-    if (!track) return;
-
-    let current = 0;
-    const cards = track.querySelectorAll('.testimonial-card');
-    const total = cards.length;
-
-    const goTo = (index) => {
-      current = (index + total) % total;
-      track.style.transform = `translateX(-${current * 100}%)`;
-      dots.forEach((d, i) => d.classList.toggle('active', i === current));
-    };
-
-    btnPrev?.addEventListener('click', () => goTo(current - 1));
-    btnNext?.addEventListener('click', () => goTo(current + 1));
-
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => goTo(i));
-    });
-
-    // Auto-advance every 5s
-    let timer = setInterval(() => goTo(current + 1), 5000);
-
-    track.parentElement.addEventListener('mouseenter', () => clearInterval(timer));
-    track.parentElement.addEventListener('mouseleave', () => {
-      timer = setInterval(() => goTo(current + 1), 5000);
-    });
-
-    // Touch swipe
-    let startX = 0;
-    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener('touchend', e => {
-      const diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
-    });
-
-    goTo(0);
-  };
-
-  /* ===== CONTACT FORM ===== */
-  const initContactForm = () => {
-    const form = document.querySelector('.contact-form');
-    if (!form) return;
-
-    const statusEl = form.querySelector('.form-status');
-    const submitBtn = form.querySelector('.btn-submit');
-
-    const setStatus = (msg, type) => {
-      statusEl.textContent = msg;
-      statusEl.className = `form-status ${type}`;
-    };
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      submitBtn.disabled = true;
-      setStatus('Sending…', '');
-
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (res.ok) {
-          setStatus("Message sent! I'll be in touch soon.", 'success');
-          form.reset();
-        } else {
-          setStatus('Something went wrong — please try again.', 'error');
-        }
-      } catch {
-        setStatus('Network error — please try again.', 'error');
-      } finally {
-        submitBtn.disabled = false;
+    // Close on escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
+        closeMenu();
       }
     });
-  };
+  }
 
-  /* ===== INIT ===== */
-  document.addEventListener('DOMContentLoaded', () => {
-    initScrollProgress();
-    initStickyNav();
-    initMobileNav();
-    initAccordion();
-    initCarousel();
-    initContactForm();
+  /* ── 4. SMOOTH SCROLL for anchor links ── */
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   });
+
+  /* ── 5. INTERSECTION OBSERVER — fade in on scroll ── */
+  const fadeEls = document.querySelectorAll('.js-fade, .js-slide-left, .js-slide-right');
+
+  if (fadeEls.length > 0 && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // animate once
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    fadeEls.forEach(function (el) {
+      observer.observe(el);
+    });
+  } else {
+    // Fallback: show all immediately if IntersectionObserver not supported
+    fadeEls.forEach(function (el) {
+      el.classList.add('visible');
+    });
+  }
+
+  /* ── 6. CONTACT FORM — async Formspree submit ── */
+  const contactForm = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+  const submitBtn = document.getElementById('submitBtn');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      // Basic JS validation
+      const name = contactForm.querySelector('[name="name"]');
+      const need = contactForm.querySelector('[name="need"]');
+
+      if (!name || !name.value.trim()) {
+        showFormMessage('error', 'Please enter your name.');
+        name && name.focus();
+        return;
+      }
+
+      if (!need || !need.value.trim()) {
+        showFormMessage('error', 'Please tell us what you need the site to do.');
+        need && need.focus();
+        return;
+      }
+
+      // Disable button during submit
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' },
+        });
+
+        if (response.ok) {
+          contactForm.reset();
+          showFormMessage('success', 'Sent! I\'ll be in touch within 24 hours.');
+        } else {
+          const data = await response.json().catch(function () { return {}; });
+          const msg =
+            data && data.errors
+              ? data.errors.map(function (err) { return err.message; }).join(', ')
+              : 'Something went wrong — try again or WhatsApp me directly.';
+          showFormMessage('error', msg);
+        }
+      } catch (err) {
+        showFormMessage('error', 'Something went wrong — try again or WhatsApp me directly.');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send message →';
+        }
+      }
+    });
+  }
+
+  function showFormMessage(type, text) {
+    if (!formMessage) return;
+    formMessage.className = 'form-message ' + type;
+    formMessage.textContent = text;
+    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 
 })();
