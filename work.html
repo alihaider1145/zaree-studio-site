@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Zaree Studio — Selected work. Case studies for Café Bloom and Thomas Windsor portfolio." />
+  <meta name="theme-color" content="#060608" />
+
+  <title>Work — Zaree Studio</title>
+
+  <meta property="og:title"       content="Work — Zaree Studio" />
+  <meta property="og:description" content="Real projects, real thinking. See how we build for cafés and artists." />
+  <meta property="og:type"        content="website" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      min-height: 60vh;
+      padding-top: var(--nav-height);
+      display: flex;
+      align-items: flex-end;
+      background: var(--background);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero__orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .page-hero__orb--1 {
+      width: clamp(300px, 50vw, 700px);
+      height: clamp(300px, 50vw, 700px);
+      top: -20%;
+      right: -10%;
+      background: radial-gradient(circle, rgba(0,201,167,0.04) 0%, transparent 65%);
+      animation: orb-drift 10s ease-in-out infinite;
+    }
+
+    @keyframes orb-drift {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%       { transform: translateY(-30px) scale(1.04); }
+    }
+
+    .page-hero__inner {
+      padding-bottom: clamp(3rem, 6vw, 5rem);
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .page-hero__eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .page-hero__eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .page-hero__heading {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 9vw, 9rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 0.88;
+      color: var(--text-primary);
+      margin-bottom: 0.15em;
+    }
+
+    .page-hero__heading em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 0.75em;
+      color: var(--text-secondary);
+      display: block;
+      letter-spacing: -0.01em;
+    }
+
+    .page-hero__sub {
+      margin-top: var(--space-lg);
+      max-width: 520px;
+      font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+      color: var(--text-secondary);
+      line-height: 1.85;
+    }
+
+    /* ===== FILTER BAR ===== */
+    .filter-bar {
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--background-surface);
+      padding: 0;
+      position: sticky;
+      top: var(--nav-height);
+      z-index: 100;
+    }
+
+    .filter-bar__inner {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .filter-bar__inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .work-filter__btn {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      padding: 1.1rem 1.5rem;
+      border: none;
+      border-bottom: 2px solid transparent;
+      background: none;
+      cursor: none;
+      white-space: nowrap;
+      transition:
+        color var(--duration-fast),
+        border-color var(--duration-base);
+    }
+
+    .work-filter__btn:hover {
+      color: var(--text-primary);
+    }
+
+    .work-filter__btn--active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .filter-bar__count {
+      margin-left: auto;
+      padding: 0 var(--container-pad);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: var(--text-ghost);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ===== CASE STUDIES LIST ===== */
+    .case-studies {
+      background: var(--background);
+      padding-block: var(--space-2xl);
+    }
+
+    .case-studies__list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    /* ===== WORK CARD (full case study) ===== */
+    .work-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 540px;
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      position: relative;
+      transition:
+        border-color var(--duration-slow),
+        opacity var(--duration-slow),
+        transform var(--duration-slow);
+    }
+
+    .work-card:hover {
+      border-color: var(--border-moderate);
+    }
+
+    /* Visual panel */
+    .work-card__visual {
+      position: relative;
+      overflow: hidden;
+      background: var(--background-raised);
+      min-height: 400px;
+    }
+
+    .work-card__visual-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.9s var(--ease-out-expo);
+    }
+
+    .work-card:hover .work-card__visual-bg {
+      transform: scale(1.04);
+    }
+
+    /* Unique bg per card */
+    .work-card--cafe .work-card__visual-bg {
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(0,201,167,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 25%, rgba(0,90,70,0.07) 0%, transparent 50%),
+        linear-gradient(160deg, var(--background-raised) 0%, #0a120f 100%);
+    }
+
+    .work-card--artist .work-card__visual-bg {
+      background:
+        radial-gradient(ellipse at 70% 70%, rgba(140,90,220,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 25% 25%, rgba(180,120,50,0.06) 0%, transparent 50%),
+        linear-gradient(160deg, var(--background-raised) 0%, #0e0a14 100%);
+    }
+
+    /* Abstract art in visual panel */
+    .work-card__art {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    /* Café art — concentric circles */
+    .work-card--cafe .work-card__art::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 280px; height: 280px;
+      border: 1px solid rgba(0,201,167,0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: ring-pulse 4s ease-in-out infinite;
+    }
+
+    .work-card--cafe .work-card__art::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 160px; height: 160px;
+      border: 1px solid rgba(0,201,167,0.06);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: ring-pulse 4s ease-in-out infinite 0.8s;
+    }
+
+    @keyframes ring-pulse {
+      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+      50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.03); }
+    }
+
+    /* Artist art — rotated squares */
+    .work-card--artist .work-card__art::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 200px; height: 200px;
+      border: 1px solid rgba(140,90,220,0.1);
+      transform: translate(-50%, -50%) rotate(45deg);
+      animation: square-drift 6s ease-in-out infinite;
+    }
+
+    .work-card--artist .work-card__art::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 110px; height: 110px;
+      border: 1px solid rgba(180,120,50,0.08);
+      transform: translate(-50%, -50%) rotate(22deg);
+      animation: square-drift 6s ease-in-out infinite 1.2s;
+    }
+
+    @keyframes square-drift {
+      0%, 100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
+      50%       { transform: translate(-50%, -50%) rotate(52deg) scale(1.04); }
+    }
+
+    /* Card number watermark */
+    .work-card__watermark {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      font-family: var(--font-display);
+      font-size: 6rem;
+      font-weight: 900;
+      color: rgba(232,228,220,0.03);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Mockup device (CSS-only) */
+    .work-card__mockup {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(180px, 55%, 260px);
+      transition: transform 0.9s var(--ease-out-expo), bottom 0.9s var(--ease-out-expo);
+    }
+
+    .work-card:hover .work-card__mockup {
+      bottom: 0;
+      transform: translateX(-50%) translateY(-12px);
+    }
+
+    .mockup__browser {
+      background: var(--background-surface);
+      border: 1px solid var(--border-moderate);
+      border-radius: 6px 6px 0 0;
+      overflow: hidden;
+    }
+
+    .mockup__bar {
+      background: var(--background-raised);
+      padding: 0.4rem 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .mockup__dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--border-moderate);
+    }
+
+    .mockup__url {
+      flex: 1;
+      height: 5px;
+      background: var(--border-subtle);
+      border-radius: 2px;
+      margin-left: 0.3rem;
+    }
+
+    .mockup__screen {
+      aspect-ratio: 16/10;
+      background: var(--background);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Café screen mock content */
+    .work-card--cafe .mockup__screen-content {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(0,201,167,0.05) 0%, transparent 40%),
+        var(--background);
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem;
+      gap: 0.25rem;
+    }
+
+    .mockup__line {
+      height: 3px;
+      border-radius: 1px;
+      background: var(--border-moderate);
+    }
+
+    .mockup__line--accent {
+      background: var(--accent);
+      width: 30%;
+    }
+
+    .mockup__line--short {
+      width: 60%;
+    }
+
+    .mockup__line--xshort {
+      width: 40%;
+    }
+
+    /* Content panel */
+    .work-card__content {
+      padding: clamp(2rem, 4vw, 3.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--background-surface);
+      border-left: 1px solid var(--border-subtle);
+    }
+
+    .work-card__top {}
+
+    .work-card__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-lg);
+    }
+
+    .work-card__category {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .work-card__year {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: var(--text-ghost);
+    }
+
+    .work-card__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2.4rem);
+      font-weight: 300;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 0.4em;
+    }
+
+    .work-card__subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 1.5vw, 1.3rem);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-lg);
+      line-height: 1.3;
+    }
+
+    .work-card__desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: var(--space-lg);
+    }
+
+    /* Tags row */
+    .work-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: var(--space-lg);
+    }
+
+    .work-card__tag {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      padding: 0.3rem 0.65rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Stats row */
+    .work-card__stats {
+      display: flex;
+      gap: var(--space-lg);
+      padding: var(--space-md) 0;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: var(--space-lg);
+    }
+
+    .work-stat {}
+
+    .work-stat__value {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .work-stat__label {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+
+    /* Bottom of card */
+    .work-card__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .work-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 0.75rem 1.4rem;
+      border: 1px solid var(--accent-mid);
+      transition:
+        background var(--duration-fast),
+        border-color var(--duration-fast),
+        gap var(--duration-base) var(--ease-out-expo);
+    }
+
+    .work-card__link:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      gap: 1rem;
+    }
+
+    .work-card__num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--border-subtle);
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* ===== PROCESS CALLOUT ===== */
+    .process-callout {
+      background: var(--background-surface);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .process-callout__grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .process-callout__heading {
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+    }
+
+    .process-callout__steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .process-callout__step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-lg);
+      padding-block: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      align-items: start;
+    }
+
+    .process-callout__step:first-child {
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .process-callout__step-num {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--text-ghost);
+      padding-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    .process-callout__step-content {}
+
+    .process-callout__step-name {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .process-callout__step-desc {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* ===== CTA ===== */
+    .work-cta {
+      background: var(--background);
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .work-cta__inner {
+      padding-block: var(--space-2xl);
+    }
+
+    .work-cta__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 6vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 0.9;
+      color: var(--text-primary);
+      margin-bottom: 0.12em;
+    }
+
+    .work-cta__sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.8rem, 4.5vw, 4.5rem);
+      color: var(--text-secondary);
+      line-height: 0.9;
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .work-cta__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 900px) {
+      .work-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .work-card__visual {
+        min-height: 300px;
+      }
+
+      .work-card__content {
+        border-left: none;
+        border-top: 1px solid var(--border-subtle);
+      }
+
+      .work-card__mockup {
+        width: 55%;
+      }
+
+      .process-callout__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+
+      .work-cta__actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .work-card__stats {
+        gap: var(--space-md);
+      }
+
+      .work-card__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-md);
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true" role="presentation"></div>
+
+  <!-- ===== NAV ===== -->
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+
+        <a href="index.html" class="site-nav__logo" aria-label="Zaree Studio — home">Zaree</a>
+
+        <div class="site-nav__status" aria-label="Studio availability">
+          <div class="site-nav__status-dot" aria-hidden="true"></div>
+          <span>Taking projects</span>
+        </div>
+
+        <button
+          class="site-nav__toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
+          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
+          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
+        </button>
+
+        <div class="site-nav__links" id="nav-links" role="list">
+          <a href="work.html"    class="site-nav__link" role="listitem" aria-current="page">Work</a>
+          <a href="cafes.html"   class="site-nav__link" role="listitem">Cafés</a>
+          <a href="artists.html" class="site-nav__link" role="listitem">Artists</a>
+          <a href="start.html"   class="site-nav__cta"  role="listitem">Start a project →</a>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero" aria-labelledby="work-hero-heading">
+      <div class="page-hero__orb page-hero__orb--1" aria-hidden="true"></div>
+      <div class="container page-hero__inner">
+
+        <p class="page-hero__eyebrow reveal">Selected work</p>
+
+        <h1 class="page-hero__heading reveal reveal--delay-2" id="work-hero-heading">
+          Built with
+          <em>intention.</em>
+        </h1>
+
+        <p class="page-hero__sub reveal reveal--delay-3">
+          Two demo projects. Both built to prove a point — that a small agency from Quetta can craft something a business in any city would be proud to have.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ===== FILTER BAR ===== -->
+    <div class="filter-bar" role="navigation" aria-label="Filter projects by category">
+      <div class="container">
+        <div class="filter-bar__inner">
+          <button
+            class="work-filter__btn work-filter__btn--active"
+            data-filter="all"
+            aria-pressed="true"
+            aria-label="Show all projects"
+          >All work</button>
+          <button
+            class="work-filter__btn"
+            data-filter="cafe"
+            aria-pressed="false"
+            aria-label="Show café projects"
+          >Cafés</button>
+          <button
+            class="work-filter__btn"
+            data-filter="artist"
+            aria-pressed="false"
+            aria-label="Show artist projects"
+          >Artists</button>
+          <span class="filter-bar__count" aria-live="polite">2 projects</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CASE STUDIES ===== -->
+    <section class="case-studies" aria-label="Case studies">
+      <div class="container">
+        <div class="case-studies__list">
+
+          <!-- ── CASE STUDY 01: Café Bloom ── -->
+          <article
+            class="work-card work-card--cafe reveal"
+            id="cafe-bloom"
+            data-category="cafe"
+            aria-labelledby="cs-1-title"
+          >
+
+            <!-- Visual panel -->
+            <div class="work-card__visual" aria-hidden="true">
+              <div class="work-card__visual-bg"></div>
+              <div class="work-card__art"></div>
+              <span class="work-card__watermark">01</span>
+
+              <!-- CSS mockup browser -->
+              <div class="work-card__mockup" role="img" aria-label="Café Bloom website mockup">
+                <div class="mockup__browser">
+                  <div class="mockup__bar">
+                    <div class="mockup__dot"></div>
+                    <div class="mockup__dot"></div>
+                    <div class="mockup__dot"></div>
+                    <div class="mockup__url"></div>
+                  </div>
+                  <div class="mockup__screen">
+                    <div class="work-card--cafe mockup__screen-content">
+                      <div class="mockup__line mockup__line--accent" style="margin-bottom:4px;"></div>
+                      <div class="mockup__line" style="width:80%;height:8px;margin-bottom:8px;"></div>
+                      <div class="mockup__line mockup__line--short" style="height:2px;"></div>
+                      <div class="mockup__line mockup__line--xshort" style="height:2px;"></div>
+                      <div class="mockup__line" style="width:70%;height:2px;margin-bottom:8px;"></div>
+                      <div class="mockup__line mockup__line--accent" style="width:45%;height:5px;border-radius:2px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content panel -->
+            <div class="work-card__content">
+              <div class="work-card__top">
+
+                <div class="work-card__meta">
+                  <span class="work-card__category">Café &amp; food</span>
+                  <span class="work-card__year">2025</span>
+                </div>
+
+                <h2 class="work-card__title" id="cs-1-title">Café Bloom</h2>
+                <p class="work-card__subtitle">A warm space, finally online.</p>
+
+                <p class="work-card__desc">
+                  Café Bloom is a concept brief for a local café that had a strong Instagram following but no real web presence. The challenge: translate warmth — a feeling that lives in lighting, music, and the smell of coffee — into pixels. The solution: a site that loads fast, feels unhurried, and gets a customer to book a table in under 12 seconds.
+                </p>
+
+                <div class="work-card__tags" aria-label="Technologies and skills used">
+                  <span class="work-card__tag">Web design</span>
+                  <span class="work-card__tag">HTML / CSS</span>
+                  <span class="work-card__tag">Vanilla JS</span>
+                  <span class="work-card__tag">Mobile-first</span>
+                  <span class="work-card__tag">Reservations UX</span>
+                </div>
+
+                <div class="work-card__stats" aria-label="Project outcomes">
+                  <div class="work-stat">
+                    <div class="work-stat__value">&lt;12s</div>
+                    <div class="work-stat__label">To book a table</div>
+                  </div>
+                  <div class="work-stat">
+                    <div class="work-stat__value">98</div>
+                    <div class="work-stat__label">Lighthouse score</div>
+                  </div>
+                  <div class="work-stat">
+                    <div class="work-stat__value">8d</div>
+                    <div class="work-stat__label">Delivery time</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="work-card__bottom">
+                <a
+                  href="cafes.html"
+                  class="work-card__link"
+                  aria-label="View Café Bloom project and café services"
+                >
+                  View project →
+                </a>
+                <span class="work-card__num" aria-hidden="true">01</span>
+              </div>
+            </div>
+
+          </article>
+
+          <!-- ── CASE STUDY 02: Thomas Windsor ── -->
+          <article
+            class="work-card work-card--artist reveal reveal--delay-1"
+            id="thomas-windsor"
+            data-category="artist"
+            aria-labelledby="cs-2-title"
+          >
+
+            <!-- Visual panel -->
+            <div class="work-card__visual" aria-hidden="true">
+              <div class="work-card__visual-bg"></div>
+              <div class="work-card__art"></div>
+              <span class="work-card__watermark">02</span>
+
+              <!-- CSS mockup -->
+              <div class="work-card__mockup" role="img" aria-label="Thomas Windsor website mockup">
+                <div class="mockup__browser">
+                  <div class="mockup__bar">
+                    <div class="mockup__dot"></div>
+                    <div class="mockup__dot"></div>
+                    <div class="mockup__dot"></div>
+                    <div class="mockup__url"></div>
+                  </div>
+                  <div class="mockup__screen">
+                    <div style="
+                      position:absolute;inset:0;
+                      background: linear-gradient(135deg, #0e0a14 0%, #1a1020 100%);
+                      display:flex;flex-direction:column;
+                      padding:0.4rem;gap:0.2rem;
+                    ">
+                      <div style="display:flex;gap:0.2rem;flex:1;">
+                        <div style="flex:1;background:rgba(140,90,220,0.12);border-radius:1px;"></div>
+                        <div style="flex:1.4;background:rgba(180,120,50,0.08);border-radius:1px;"></div>
+                      </div>
+                      <div class="mockup__line" style="width:50%;height:2px;margin-top:3px;"></div>
+                      <div class="mockup__line mockup__line--xshort" style="height:2px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content panel -->
+            <div class="work-card__content">
+              <div class="work-card__top">
+
+                <div class="work-card__meta">
+                  <span class="work-card__category">Artist / Portfolio</span>
+                  <span class="work-card__year">2025</span>
+                </div>
+
+                <h2 class="work-card__title" id="cs-2-title">Thomas Windsor</h2>
+                <p class="work-card__subtitle">A photographer's space, not a slideshow.</p>
+
+                <p class="work-card__desc">
+                  Thomas Windsor is a concept portfolio for an independent photographer. The brief: make the site feel like walking into a gallery — quiet, intentional, where each image has room to breathe. No grids, no scrollable feeds. A curated experience that positions the work at the level collectors expect.
+                </p>
+
+                <div class="work-card__tags" aria-label="Technologies and skills used">
+                  <span class="work-card__tag">Portfolio design</span>
+                  <span class="work-card__tag">HTML / CSS</span>
+                  <span class="work-card__tag">Vanilla JS</span>
+                  <span class="work-card__tag">Gallery UX</span>
+                  <span class="work-card__tag">Editorial layout</span>
+                </div>
+
+                <div class="work-card__stats" aria-label="Project outcomes">
+                  <div class="work-stat">
+                    <div class="work-stat__value">Gallery</div>
+                    <div class="work-stat__label">Feel, not a feed</div>
+                  </div>
+                  <div class="work-stat">
+                    <div class="work-stat__value">97</div>
+                    <div class="work-stat__label">Lighthouse score</div>
+                  </div>
+                  <div class="work-stat">
+                    <div class="work-stat__value">10d</div>
+                    <div class="work-stat__label">Delivery time</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="work-card__bottom">
+                <a
+                  href="artists.html"
+                  class="work-card__link"
+                  aria-label="View Thomas Windsor project and artist services"
+                >
+                  View project →
+                </a>
+                <span class="work-card__num" aria-hidden="true">02</span>
+              </div>
+            </div>
+
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MARQUEE ===== -->
+    <div class="marquee marquee--reverse" aria-hidden="true" role="presentation">
+      <div class="marquee__track">
+        <div class="marquee__item">Clean Code <span class="marquee__item-dot">◆</span></div>
+        <div class="marquee__item">Fast Delivery <span class="marquee__item-dot">◆</span></div>
+        <div class="marquee__item">Mobile First <span class="marquee__item-dot">◆</span></div>
+        <div class="marquee__item">You Own Everything <span class="marquee__item-dot">◆</span></div>
+        <div class="marquee__item">No Lock-in <span class="marquee__item-dot">◆</span></div>
+        <div class="marquee__item">SEO Ready <span class="marquee__item-dot">◆</span></div>
+        <div class="marquee__item">Clean Code <span class="marquee__item-dot">◆</span></div>
+        <div class="marquee__item">Fast Delivery <span class="marquee__item-dot">◆</span></div>
+        <div class="marquee__item">Mobile First <span class="marquee__item-dot">◆</span></div>
+        <div class="marquee__item">You Own Everything <span class="marquee__item-dot">◆</span></div>
+        <div class="marquee__item">No Lock-in <span class="marquee__item-dot">◆</span></div>
+        <div class="marquee__item">SEO Ready <span class="marquee__item-dot">◆</span></div>
+      </div>
+    </div>
+
+    <!-- ===== HOW WE BUILD ===== -->
+    <section class="section process-callout" aria-labelledby="process-heading">
+      <div class="container">
+        <div class="process-callout__grid">
+
+          <div>
+            <p class="section__tag reveal">How every project runs</p>
+            <h2 class="section__heading process-callout__heading reveal reveal--delay-2" id="process-heading">
+              Same process.<br>Every time.
+            </h2>
+            <p class="reveal reveal--delay-3" style="margin-top:1.2rem;font-size:0.78rem;color:var(--text-secondary);line-height:1.85;max-width:300px;">
+              Consistency is how you get predictable results. We don't reinvent the process — we perfect it.
+            </p>
+          </div>
+
+          <div class="process-callout__steps">
+
+            <div class="process-callout__step reveal">
+              <span class="process-callout__step-num">01 /</span>
+              <div class="process-callout__step-content">
+                <h3 class="process-callout__step-name">Discover</h3>
+                <p class="process-callout__step-desc">One call. We listen more than we talk. We learn your customer, your goal, and what you've already tried.</p>
+              </div>
+            </div>
+
+            <div class="process-callout__step reveal reveal--delay-1">
+              <span class="process-callout__step-num">02 /</span>
+              <div class="process-callout__step-content">
+                <h3 class="process-callout__step-name">Design</h3>
+                <p class="process-callout__step-desc">One clear direction. We research your niche, propose a design, and get your approval before a single line of code is written.</p>
+              </div>
+            </div>
+
+            <div class="process-callout__step reveal reveal--delay-2">
+              <span class="process-callout__step-num">03 /</span>
+              <div class="process-callout__step-content">
+                <h3 class="process-callout__step-name">Build</h3>
+                <p class="process-callout__step-desc">Hand-written code. No page builders. No bloat. Fast, clean, and built to last — not to lock you in.</p>
+              </div>
+            </div>
+
+            <div class="process-callout__step reveal reveal--delay-3">
+              <span class="process-callout__step-num">04 /</span>
+              <div class="process-callout__step-content">
+                <h3 class="process-callout__step-name">Launch</h3>
+                <p class="process-callout__step-desc">We deploy, test across every device, and hand you the keys. You own the code. You own the domain. Always.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WORK CTA ===== -->
+    <section class="section work-cta" aria-labelledby="work-cta-heading">
+      <div class="container work-cta__inner">
+
+        <p class="section__tag reveal">One slot open this month</p>
+        <h2 class="work-cta__heading reveal reveal--delay-1" id="work-cta-heading">Your project</h2>
+        <p class="work-cta__sub reveal reveal--delay-1">could be next.</p>
+
+        <div class="work-cta__actions reveal reveal--delay-2">
+          <a href="start.html" class="btn-primary">
+            Start a project →
+          </a>
+          <a href="index.html" class="btn-secondary">
+            Back to home →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <p class="site-footer__copy">© 2025 Zaree Studio. Quetta, Pakistan.</p>
+        <nav class="site-footer__links" aria-label="Footer navigation">
+          <a href="work.html"    class="site-footer__link">Work</a>
+          <a href="cafes.html"   class="site-footer__link">Cafés</a>
+          <a href="artists.html" class="site-footer__link">Artists</a>
+          <a href="start.html"   class="site-footer__link">Start a project</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+
+  <!-- Page-specific JS: live filter count -->
+  <script defer>
+    (function () {
+      'use strict';
+
+      const updateCount = () => {
+        const activeBtn   = document.querySelector('.work-filter__btn--active');
+        const filter      = activeBtn ? activeBtn.dataset.filter : 'all';
+        const cards       = document.querySelectorAll('.work-card');
+        const countEl     = document.querySelector('.filter-bar__count');
+        if (!countEl) return;
+
+        const visible = filter === 'all'
+          ? cards.length
+          : [...cards].filter(c => c.dataset.category === filter).length;
+
+        countEl.textContent = visible + (visible === 1 ? ' project' : ' projects');
+      };
+
+      document.querySelectorAll('.work-filter__btn').forEach((btn) => {
+        btn.addEventListener('click', updateCount);
+      });
+
+      updateCount();
+    })();
+  </script>
+
+</body>
+</html>

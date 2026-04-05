@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Zaree Studio builds websites for cafés and food businesses in Pakistan. Get a fast, beautiful site that takes reservations, shows your menu, and works on every phone." />
+  <meta name="theme-color" content="#060608" />
+
+  <title>For Cafés — Zaree Studio</title>
+
+  <meta property="og:title"       content="Websites for Cafés — Zaree Studio" />
+  <meta property="og:description" content="Your café deserves more than a link in a bio. We build sites that take reservations, show your menu, and feel as warm as your space." />
+  <meta property="og:type"        content="website" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+
+    /* ===== HERO ===== */
+    .cafe-hero {
+      min-height: 100vh;
+      padding-top: var(--nav-height);
+      display: grid;
+      grid-template-rows: 1fr auto;
+      background: var(--background);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Warm ambient light — different from the default teal orbs */
+    .cafe-hero__warmth {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .cafe-hero__warmth--1 {
+      width: clamp(500px, 70vw, 1000px);
+      height: clamp(500px, 70vw, 1000px);
+      top: -25%;
+      right: -20%;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(0,201,167,0.042) 0%,
+        rgba(180,120,40,0.02) 40%,
+        transparent 70%
+      );
+      animation: warmth-drift 13s ease-in-out infinite;
+    }
+
+    .cafe-hero__warmth--2 {
+      width: clamp(300px, 40vw, 600px);
+      height: clamp(300px, 40vw, 600px);
+      bottom: 5%;
+      left: -10%;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(0,201,167,0.025) 0%,
+        transparent 65%
+      );
+      animation: warmth-drift 17s ease-in-out infinite 5s;
+    }
+
+    @keyframes warmth-drift {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%       { transform: translateY(-28px) scale(1.04); }
+    }
+
+    /* Main content area */
+    .cafe-hero__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 6vw, 5rem) var(--container-pad) 0;
+      position: relative;
+      z-index: 2;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      width: 100%;
+    }
+
+    .cafe-hero__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-lg);
+      opacity: 0;
+      animation: fade-up 0.8s var(--ease-out-expo) 0.2s forwards;
+    }
+
+    .cafe-hero__eyebrow-line {
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .cafe-hero__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 8vw, 9rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 0.88;
+      color: var(--text-primary);
+      margin-bottom: 0.2em;
+      opacity: 0;
+      animation: fade-up 0.9s var(--ease-out-expo) 0.35s forwards;
+    }
+
+    .cafe-hero__heading-serif {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-style: italic;
+      font-size: 0.75em;
+      color: var(--text-secondary);
+      display: block;
+      letter-spacing: -0.01em;
+    }
+
+    .cafe-hero__heading-accent {
+      color: var(--accent);
+    }
+
+    .cafe-hero__sub {
+      font-size: clamp(0.85rem, 1.3vw, 1rem);
+      color: var(--text-secondary);
+      line-height: 1.9;
+      max-width: 500px;
+      margin-top: var(--space-lg);
+      opacity: 0;
+      animation: fade-up 0.9s var(--ease-out-expo) 0.55s forwards;
+    }
+
+    .cafe-hero__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fade-up 0.9s var(--ease-out-expo) 0.72s forwards;
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Bottom strip — the truth statement */
+    .cafe-hero__strip {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid var(--border-subtle);
+      padding: var(--space-lg) var(--container-pad);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border-subtle);
+      max-width: 100%;
+      opacity: 0;
+      animation: fade-up 0.9s var(--ease-out-expo) 1s forwards;
+    }
+
+    .cafe-hero__strip-item {
+      background: var(--background);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .cafe-hero__strip-value {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .cafe-hero__strip-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    /* ===== THE PROBLEM ===== */
+    .problem {
+      background: var(--background-surface);
+    }
+
+    .problem__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 7rem);
+      align-items: center;
+    }
+
+    .problem__heading {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: var(--space-lg);
+    }
+
+    .problem__heading strong {
+      font-style: normal;
+      font-family: var(--font-display);
+      font-size: 0.6em;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3em;
+    }
+
+    .problem__body {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.95;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    /* Visual: the "before" — Instagram limitations illustrated */
+    .problem__visual {
+      position: relative;
+    }
+
+    .instagram-mockup {
+      border: 1px solid var(--border-moderate);
+      background: var(--background-raised);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .instagram-mockup__header {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .instagram-mockup__avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--border-moderate);
+    }
+
+    .instagram-mockup__handle {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+    }
+
+    .instagram-mockup__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      padding: 2px;
+    }
+
+    .instagram-mockup__cell {
+      aspect-ratio: 1;
+      background: var(--background-raised);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Gradient fills per cell to suggest photos */
+    .instagram-mockup__cell:nth-child(1) { background: linear-gradient(135deg, #1a1208, #2a1c0a); }
+    .instagram-mockup__cell:nth-child(2) { background: linear-gradient(135deg, #0a1a12, #0f2218); }
+    .instagram-mockup__cell:nth-child(3) { background: linear-gradient(135deg, #1a1210, #221810); }
+    .instagram-mockup__cell:nth-child(4) { background: linear-gradient(135deg, #0e1a1a, #122020); }
+    .instagram-mockup__cell:nth-child(5) { background: linear-gradient(135deg, #1a1408, #20180a); }
+    .instagram-mockup__cell:nth-child(6) { background: linear-gradient(135deg, #120a1a, #180e22); }
+
+    .instagram-mockup__bio {
+      padding: 0.8rem 1rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .instagram-mockup__bio-line {
+      height: 6px;
+      background: var(--border-subtle);
+      border-radius: 2px;
+      margin-bottom: 6px;
+    }
+
+    .instagram-mockup__bio-line:nth-child(2) { width: 70%; }
+    .instagram-mockup__bio-line:nth-child(3) { width: 45%; background: var(--accent-dim); }
+
+    /* Pain point labels */
+    .problem__pain {
+      position: absolute;
+      background: var(--background);
+      border: 1px solid var(--border-moderate);
+      padding: 0.5rem 0.8rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .problem__pain::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: #e05252;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .problem__pain--1 {
+      top: -0.8rem;
+      right: -1.5rem;
+    }
+
+    .problem__pain--2 {
+      bottom: 30%;
+      right: -2rem;
+    }
+
+    .problem__pain--3 {
+      bottom: -0.8rem;
+      left: -1.5rem;
+    }
+
+    /* ===== WHAT YOU GET ===== */
+    .deliverables {
+      background: var(--background);
+    }
+
+    .deliverables__header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: end;
+      margin-bottom: clamp(3rem, 5vw, 5rem);
+    }
+
+    .deliverables__heading {
+      font-size: clamp(1.6rem, 3vw, 2.8rem);
+    }
+
+    .deliverables__intro {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.9;
+    }
+
+    .deliverables__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .deliverable-card {
+      background: var(--background-raised);
+      border: 1px solid var(--border-subtle);
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      transition: border-color var(--duration-slow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .deliverable-card:hover {
+      border-color: var(--border-accent);
+    }
+
+    /* Accent corner mark */
+    .deliverable-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width var(--duration-slow) var(--ease-out-expo);
+    }
+
+    .deliverable-card:hover::before {
+      width: 100%;
+    }
+
+    .deliverable-card__num {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--text-ghost);
+    }
+
+    .deliverable-card__icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      margin-block: 0.2rem;
+    }
+
+    .deliverable-card__title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 1.6vw, 1.4rem);
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .deliverable-card__desc {
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      flex: 1;
+    }
+
+    /* ===== BEFORE / AFTER ===== */
+    .comparison {
+      background: var(--background-surface);
+    }
+
+    .comparison__heading {
+      font-size: clamp(1.6rem, 3vw, 2.8rem);
+      margin-bottom: clamp(2.5rem, 4vw, 4rem);
+    }
+
+    .comparison__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .comparison__col {
+      padding: clamp(1.8rem, 3.5vw, 3rem);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .comparison__col--before {
+      background: var(--background-raised);
+    }
+
+    .comparison__col--after {
+      background: var(--background);
+      border-color: var(--border-accent);
+      position: relative;
+    }
+
+    /* Glow on the "after" column */
+    .comparison__col--after::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0,201,167,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .comparison__col-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .comparison__col-label--before { color: #e05252; }
+    .comparison__col-label--after  { color: var(--accent); }
+
+    .comparison__col-label-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    .comparison__list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .comparison__item {
+      display: flex;
+      gap: 0.9rem;
+      padding-block: 0.9rem;
+      border-bottom: 1px solid var(--border-subtle);
+      align-items: flex-start;
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+
+    .comparison__item:last-child {
+      border-bottom: none;
+    }
+
+    .comparison__item-icon {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.55rem;
+      margin-top: 0.1rem;
+    }
+
+    .comparison__col--before .comparison__item-icon {
+      background: rgba(224,82,82,0.12);
+      color: #e05252;
+    }
+
+    .comparison__col--after .comparison__item-icon {
+      background: var(--accent-dim);
+      color: var(--accent);
+    }
+
+    .comparison__col--before .comparison__item {
+      color: var(--text-secondary);
+    }
+
+    .comparison__col--after .comparison__item {
+      color: var(--text-primary);
+    }
+
+    /* ===== CASE STUDY PREVIEW ===== */
+    .cafe-case {
+      background: var(--background);
+    }
+
+    .cafe-case__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+    }
+
+    /* Visual side */
+    .cafe-case__visual {
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(0,201,167,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 25%, rgba(0,90,70,0.07) 0%, transparent 50%),
+        linear-gradient(160deg, var(--background-raised) 0%, #0a120f 100%);
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cafe-case__visual-geo {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .cafe-case__visual-geo::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 300px; height: 300px;
+      border: 1px solid rgba(0,201,167,0.08);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: ring-breathe 5s ease-in-out infinite;
+    }
+
+    .cafe-case__visual-geo::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 180px; height: 180px;
+      border: 1px solid rgba(0,201,167,0.05);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: ring-breathe 5s ease-in-out infinite 1s;
+    }
+
+    @keyframes ring-breathe {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+      50%       { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+    }
+
+    .cafe-case__label {
+      position: absolute;
+      bottom: var(--space-lg);
+      left: var(--space-lg);
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      color: rgba(232,228,220,0.04);
+      line-height: 1;
+      user-select: none;
+      letter-spacing: -0.03em;
+    }
+
+    /* Stat badges floating over visual */
+    .cafe-case__badge {
+      position: absolute;
+      background: var(--background);
+      border: 1px solid var(--border-moderate);
+      padding: 0.7rem 1rem;
+    }
+
+    .cafe-case__badge--1 {
+      top: var(--space-lg);
+      left: var(--space-lg);
+    }
+
+    .cafe-case__badge--2 {
+      bottom: var(--space-xl);
+      right: var(--space-lg);
+    }
+
+    .cafe-case__badge-value {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    .cafe-case__badge-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    /* Content side */
+    .cafe-case__content {
+      padding: clamp(2rem, 4vw, 3.5rem);
+      background: var(--background-surface);
+      border-left: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cafe-case__kicker {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+    }
+
+    .cafe-case__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      font-weight: 300;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+      margin-bottom: 0.3em;
+    }
+
+    .cafe-case__subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-lg);
+    }
+
+    .cafe-case__desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: var(--space-lg);
+    }
+
+    .cafe-case__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: var(--space-lg);
+    }
+
+    .cafe-case__tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      padding: 0.3rem 0.65rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* ===== OBJECTION HANDLER ===== */
+    .objections {
+      background: var(--background-raised);
+    }
+
+    .objections__heading {
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      margin-bottom: clamp(2.5rem, 4vw, 4.5rem);
+      max-width: 600px;
+    }
+
+    .objections__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .objection-card {
+      background: var(--background-surface);
+      border: 1px solid var(--border-subtle);
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+    }
+
+    .objection-card__q {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-sm);
+      line-height: 1.3;
+    }
+
+    .objection-card__q::before {
+      content: '"';
+      color: var(--text-ghost);
+    }
+
+    .objection-card__q::after {
+      content: '"';
+      color: var(--text-ghost);
+    }
+
+    .objection-card__a {
+      font-size: 0.78rem;
+      color: var(--text-primary);
+      line-height: 1.85;
+    }
+
+    .objection-card__a strong {
+      color: var(--accent);
+      font-weight: 400;
+    }
+
+    /* ===== FINAL CTA ===== */
+    .cafe-cta {
+      background: var(--background);
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cafe-cta__bg-text {
+      position: absolute;
+      bottom: -0.1em;
+      left: -0.02em;
+      font-family: var(--font-display);
+      font-size: clamp(8rem, 18vw, 22rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: rgba(232,228,220,0.022);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .cafe-cta__inner {
+      position: relative;
+      z-index: 2;
+      padding-block: var(--space-2xl);
+      width: 100%;
+    }
+
+    .cafe-cta__eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-lg);
+    }
+
+    .cafe-cta__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 7vw, 8rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 0.88;
+      color: var(--text-primary);
+      margin-bottom: 0.15em;
+    }
+
+    .cafe-cta__sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.8rem, 5vw, 5.5rem);
+      color: var(--text-secondary);
+      line-height: 0.9;
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .cafe-cta__note {
+      font-size: 0.72rem;
+      color: var(--text-ghost);
+      letter-spacing: 0.1em;
+      margin-top: var(--space-md);
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 900px) {
+      .cafe-hero__strip {
+        grid-template-columns: 1fr;
+        gap: 1px;
+      }
+
+      .problem__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+
+      .problem__visual {
+        order: -1;
+      }
+
+      .problem__pain--1 { right: 0; top: -1rem; }
+      .problem__pain--2 { right: 0; bottom: 35%; }
+      .problem__pain--3 { left: 0; bottom: -1rem; }
+
+      .deliverables__header {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+      }
+
+      .deliverables__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cafe-case__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .cafe-case__visual {
+        min-height: 320px;
+      }
+
+      .cafe-case__content {
+        border-left: none;
+        border-top: 1px solid var(--border-subtle);
+      }
+
+      .objections__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true" role="presentation"></div>
+
+  <!-- ===== NAV ===== -->
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+
+        <a href="index.html" class="site-nav__logo" aria-label="Zaree Studio — home">Zaree</a>
+
+        <div class="site-nav__status" aria-label="Studio availability">
+          <div class="site-nav__status-dot" aria-hidden="true"></div>
+          <span>Taking projects</span>
+        </div>
+
+        <button
+          class="site-nav__toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
+          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
+          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
+        </button>
+
+        <div class="site-nav__links" id="nav-links" role="list">
+          <a href="work.html"    class="site-nav__link" role="listitem">Work</a>
+          <a href="cafes.html"   class="site-nav__link" role="listitem" aria-current="page">Cafés</a>
+          <a href="artists.html" class="site-nav__link" role="listitem">Artists</a>
+          <a href="start.html"   class="site-nav__cta"  role="listitem">Start a project →</a>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="cafe-hero" aria-labelledby="cafe-hero-heading">
+      <div class="cafe-hero__warmth cafe-hero__warmth--1" aria-hidden="true"></div>
+      <div class="cafe-hero__warmth cafe-hero__warmth--2" aria-hidden="true"></div>
+
+      <div class="cafe-hero__content">
+        <p class="cafe-hero__eyebrow">
+          <span class="cafe-hero__eyebrow-line" aria-hidden="true"></span>
+          For cafés &amp; food businesses
+        </p>
+
+        <h1 class="cafe-hero__heading" id="cafe-hero-heading">
+          Your café
+          <span class="cafe-hero__heading-accent">deserves</span>
+          <span class="cafe-hero__heading-serif">more than a link in a bio.</span>
+        </h1>
+
+        <p class="cafe-hero__sub">
+          Every café in Quetta is competing on Instagram. A real website changes that conversation — your menu, your atmosphere, your reservations, all in one place you actually own.
+        </p>
+
+        <div class="cafe-hero__actions">
+          <a href="start.html" class="btn-primary">Get your café online →</a>
+          <a href="work.html#cafe-bloom" class="btn-secondary">See the demo →</a>
+        </div>
+      </div>
+
+      <!-- Bottom stat strip -->
+      <div class="cafe-hero__strip" aria-label="Key outcomes">
+        <div class="cafe-hero__strip-item">
+          <span class="cafe-hero__strip-value">&lt;12s</span>
+          <span class="cafe-hero__strip-label">To book a table online</span>
+        </div>
+        <div class="cafe-hero__strip-item">
+          <span class="cafe-hero__strip-value">8 days</span>
+          <span class="cafe-hero__strip-label">Average delivery time</span>
+        </div>
+        <div class="cafe-hero__strip-item">
+          <span class="cafe-hero__strip-value">You own it</span>
+          <span class="cafe-hero__strip-label">Code, domain &amp; hosting — yours</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== THE PROBLEM ===== -->
+    <section class="section problem" aria-labelledby="problem-heading">
+      <div class="container">
+        <div class="problem__grid">
+
+          <div>
+            <p class="section__tag reveal">The real problem</p>
+            <h2 class="problem__heading reveal reveal--delay-1" id="problem-heading">
+              <strong>Instagram is rented land.</strong>
+              You're building your entire business on someone else's platform.
+            </h2>
+            <div class="problem__body reveal reveal--delay-2">
+              <p>When Instagram changes its algorithm — and it will — your reach drops overnight. You have no email list, no reservation system, no way to reach your customers directly.</p>
+              <p>Your menu lives in a PDF nobody downloads. Your location is buried in highlights. Your phone number requires three taps to find.</p>
+              <p>Meanwhile, the café across town with a website gets Google traffic. Gets bookings at 2am. Gets found by people who've never heard of them.</p>
+            </div>
+          </div>
+
+          <div class="problem__visual reveal reveal--delay-2" aria-hidden="true">
+            <div class="instagram-mockup">
+              <div class="instagram-mockup__header">
+                <div class="instagram-mockup__avatar"></div>
+                <span class="instagram-mockup__handle">@yourcafe.pkk</span>
+              </div>
+              <div class="instagram-mockup__grid">
+                <div class="instagram-mockup__cell"></div>
+                <div class="instagram-mockup__cell"></div>
+                <div class="instagram-mockup__cell"></div>
+                <div class="instagram-mockup__cell"></div>
+                <div class="instagram-mockup__cell"></div>
+                <div class="instagram-mockup__cell"></div>
+              </div>
+              <div class="instagram-mockup__bio">
+                <div class="instagram-mockup__bio-line"></div>
+                <div class="instagram-mockup__bio-line"></div>
+                <div class="instagram-mockup__bio-line"></div>
+              </div>
+            </div>
+
+            <!-- Pain labels -->
+            <div class="problem__pain problem__pain--1">No reservation system</div>
+            <div class="problem__pain problem__pain--2">Menu lost in highlights</div>
+            <div class="problem__pain problem__pain--3">Zero Google presence</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WHAT YOU GET ===== -->
+    <section class="section deliverables" aria-labelledby="deliverables-heading">
+      <div class="container">
+
+        <div class="deliverables__header">
+          <div>
+            <p class="section__tag reveal">What we build</p>
+            <h2 class="section__heading deliverables__heading reveal reveal--delay-1" id="deliverables-heading">
+              Everything a café needs.<br>Nothing it doesn't.
+            </h2>
+          </div>
+          <p class="deliverables__intro reveal reveal--delay-2">
+            No bloated CMS. No monthly subscription. No template that looks like every other café. A site built specifically for you, from scratch.
+          </p>
+        </div>
+
+        <div class="deliverables__grid">
+
+          <article class="deliverable-card reveal" aria-labelledby="del-1-title">
+            <span class="deliverable-card__num">01</span>
+            <span class="deliverable-card__icon" aria-hidden="true">📅</span>
+            <h3 class="deliverable-card__title" id="del-1-title">Reservation system</h3>
+            <p class="deliverable-card__desc">A clean, fast booking flow. Customers pick a date, time, and party size. You get notified. No phone tag.</p>
+          </article>
+
+          <article class="deliverable-card reveal reveal--delay-1" aria-labelledby="del-2-title">
+            <span class="deliverable-card__num">02</span>
+            <span class="deliverable-card__icon" aria-hidden="true">🍽️</span>
+            <h3 class="deliverable-card__title" id="del-2-title">Live menu page</h3>
+            <p class="deliverable-card__desc">Seasonal items, dietary labels, pricing — all in one beautiful page. Update it yourself in minutes, no developer needed.</p>
+          </article>
+
+          <article class="deliverable-card reveal reveal--delay-2" aria-labelledby="del-3-title">
+            <span class="deliverable-card__num">03</span>
+            <span class="deliverable-card__icon" aria-hidden="true">📍</span>
+            <h3 class="deliverable-card__title" id="del-3-title">Google-ready presence</h3>
+            <p class="deliverable-card__desc">Your café shows up when people search "café near me." Local SEO built in from day one — not bolted on later.</p>
+          </article>
+
+          <article class="deliverable-card reveal" aria-labelledby="del-4-title">
+            <span class="deliverable-card__num">04</span>
+            <span class="deliverable-card__icon" aria-hidden="true">📱</span>
+            <h3 class="deliverable-card__title" id="del-4-title">Mobile-first design</h3>
+            <p class="deliverable-card__desc">85% of your customers will visit on a phone. The site is built mobile-first, then scaled up — not the other way around.</p>
+          </article>
+
+          <article class="deliverable-card reveal reveal--delay-1" aria-labelledby="del-5-title">
+            <span class="deliverable-card__num">05</span>
+            <span class="deliverable-card__icon" aria-hidden="true">⚡</span>
+            <h3 class="deliverable-card__title" id="del-5-title">Fast. Actually fast.</h3>
+            <p class="deliverable-card__desc">Hand-written code, no page builders, no bloat. Under 2 seconds to load on mobile — because slow sites lose customers before they even see your menu.</p>
+          </article>
+
+          <article class="deliverable-card reveal reveal--delay-2" aria-labelledby="del-6-title">
+            <span class="deliverable-card__num">06</span>
+            <span class="deliverable-card__icon" aria-hidden="true">🔑</span>
+            <h3 class="deliverable-card__title" id="del-6-title">You own everything</h3>
+            <p class="deliverable-card__desc">The code, the domain, the hosting. When we're done, it's yours — no monthly fees, no lock-in, no needing to call us to change your hours.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BEFORE / AFTER ===== -->
+    <section class="section comparison" aria-labelledby="comparison-heading">
+      <div class="container">
+
+        <p class="section__tag reveal">The difference</p>
+        <h2 class="section__heading comparison__heading reveal reveal--delay-1" id="comparison-heading">
+          Instagram vs. a real website.
+        </h2>
+
+        <div class="comparison__grid">
+
+          <div class="comparison__col comparison__col--before reveal">
+            <div class="comparison__col-label comparison__col-label--before">
+              <span class="comparison__col-label-dot" aria-hidden="true"></span>
+              Instagram only
+            </div>
+            <ul class="comparison__list" aria-label="Limitations of Instagram only">
+              <li class="comparison__item">
+                <span class="comparison__item-icon" aria-hidden="true">✕</span>
+                No reservation system — customers DM to book, you miss half of them
+              </li>
+              <li class="comparison__item">
+                <span class="comparison__item-icon" aria-hidden="true">✕</span>
+                Menu lives in a PDF or highlight reel nobody opens
+              </li>
+              <li class="comparison__item">
+                <span class="comparison__item-icon" aria-hidden="true">✕</span>
+                Invisible on Google — zero organic search traffic
+              </li>
+              <li class="comparison__item">
+                <span class="comparison__item-icon" aria-hidden="true">✕</span>
+                Algorithm changes wipe your reach overnight
+              </li>
+              <li class="comparison__item">
+                <span class="comparison__item-icon" aria-hidden="true">✕</span>
+                No way to collect customer emails or run promotions
+              </li>
+              <li class="comparison__item">
+                <span class="comparison__item-icon" aria-hidden="true">✕</span>
+                Looks identical to every other café in the city
+              </li>
+            </ul>
+          </div>
+
+          <div class="comparison__col comparison__col--after reveal reveal--delay-2">
+            <div class="comparison__col-label comparison__col-label--after">
+              <span class="comparison__col-label-dot" aria-hidden="true"></span>
+              With a Zaree site
+            </div>
+            <ul class="comparison__list" aria-label="Benefits of a Zaree website">
+              <li class="comparison__item">
+                <span class="comparison__item-icon" aria-hidden="true">✓</span>
+                Reservations happen automatically, even at 2am
+              </li>
+              <li class="comparison__item">
+                <span class="comparison__item-icon" aria-hidden="true">✓</span>
+                Menu is one tap away, always up to date
+              </li>
+              <li class="comparison__item">
+                <span class="comparison__item-icon" aria-hidden="true">✓</span>
+                Google finds you — and sends new customers every week
+              </li>
+              <li class="comparison__item">
+                <span class="comparison__item-icon" aria-hidden="true">✓</span>
+                You own your platform — no algorithm can take it away
+              </li>
+              <li class="comparison__item">
+                <span class="comparison__item-icon" aria-hidden="true">✓</span>
+                Email capture built in — run promotions directly to customers
+              </li>
+              <li class="comparison__item">
+                <span class="comparison__item-icon" aria-hidden="true">✓</span>
+                A site as distinctive as your space — built for you alone
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CASE STUDY PREVIEW ===== -->
+    <section class="section cafe-case" aria-labelledby="case-heading">
+      <div class="container">
+
+        <p class="section__tag reveal">In practice</p>
+        <h2 class="section__heading reveal reveal--delay-1" id="case-heading"
+            style="font-size:clamp(1.6rem,3vw,2.6rem);margin-bottom:clamp(2rem,4vw,3.5rem);">
+          See it built. Café Bloom.
+        </h2>
+
+        <div class="cafe-case__inner reveal">
+
+          <div class="cafe-case__visual">
+            <div class="cafe-case__visual-geo" aria-hidden="true"></div>
+            <span class="cafe-case__label" aria-hidden="true">BLOOM</span>
+
+            <div class="cafe-case__badge cafe-case__badge--1" aria-label="Performance: 98 Lighthouse score">
+              <div class="cafe-case__badge-value">98</div>
+              <div class="cafe-case__badge-label">Lighthouse score</div>
+            </div>
+
+            <div class="cafe-case__badge cafe-case__badge--2" aria-label="Booking time: under 12 seconds">
+              <div class="cafe-case__badge-value">&lt;12s</div>
+              <div class="cafe-case__badge-label">To book a table</div>
+            </div>
+          </div>
+
+          <div class="cafe-case__content">
+            <div>
+              <p class="cafe-case__kicker">Demo project — Café niche</p>
+              <h3 class="cafe-case__title">Café Bloom</h3>
+              <p class="cafe-case__subtitle">Warm, unhurried, and built to convert.</p>
+              <p class="cafe-case__desc">
+                Built as a proof of concept for the café niche. The brief was simple: make the site feel as warm as walking into the space, and get a customer from landing page to confirmed booking in under 12 seconds. Mobile-first, hand-coded, zero dependencies.
+              </p>
+              <div class="cafe-case__tags" aria-label="What was built">
+                <span class="cafe-case__tag">Reservation flow</span>
+                <span class="cafe-case__tag">Menu page</span>
+                <span class="cafe-case__tag">Photo gallery</span>
+                <span class="cafe-case__tag">Local SEO</span>
+                <span class="cafe-case__tag">Mobile-first</span>
+              </div>
+            </div>
+            <a href="work.html#cafe-bloom" class="btn-primary" style="align-self:flex-start;">
+              View full case study →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OBJECTION HANDLER ===== -->
+    <section class="section objections" aria-labelledby="objections-heading">
+      <div class="container">
+
+        <p class="section__tag reveal">Honest answers</p>
+        <h2 class="section__heading objections__heading reveal reveal--delay-1" id="objections-heading">
+          Things café owners ask us.
+        </h2>
+
+        <div class="objections__grid">
+
+          <article class="objection-card reveal" aria-labelledby="obj-1-q">
+            <p class="objection-card__q" id="obj-1-q">My customers just use Instagram. Do I really need a website?</p>
+            <p class="objection-card__a">Your Instagram customers already know you. A website catches the people who <strong>don't</strong> — the ones Googling "café in Quetta" right now. That's new revenue, not the same audience you already have.</p>
+          </article>
+
+          <article class="objection-card reveal reveal--delay-1" aria-labelledby="obj-2-q">
+            <p class="objection-card__q" id="obj-2-q">How much does it cost?</p>
+            <p class="objection-card__a">We talk about pricing on a call — every project is scoped differently. What we can tell you: <strong>no monthly fees, no recurring charges.</strong> You pay once. You own it forever.</p>
+          </article>
+
+          <article class="objection-card reveal reveal--delay-2" aria-labelledby="obj-3-q">
+            <p class="objection-card__q" id="obj-3-q">How long does it take?</p>
+            <p class="objection-card__a">Most café sites are live in <strong>8–12 days</strong> from our first call. We move fast because we've done this before and we don't reinvent the process for every project.</p>
+          </article>
+
+          <article class="objection-card reveal reveal--delay-3" aria-labelledby="obj-4-q">
+            <p class="objection-card__q" id="obj-4-q">What if I need to update the menu later?</p>
+            <p class="objection-card__a">We build it so you can update your own menu without touching code. Or we do it for you — <strong>small updates are always free</strong> within the first 30 days after launch.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="section cafe-cta" aria-labelledby="cafe-cta-heading">
+      <span class="cafe-cta__bg-text" aria-hidden="true">ZAREE</span>
+      <div class="container cafe-cta__inner">
+
+        <p class="cafe-cta__eyebrow reveal">One slot available this month</p>
+        <h2 class="cafe-cta__heading reveal reveal--delay-1" id="cafe-cta-heading">
+          Let's get your<br>café online.
+        </h2>
+        <p class="cafe-cta__sub reveal reveal--delay-1">For real, this time.</p>
+
+        <div style="display:flex;align-items:center;gap:var(--space-lg);flex-wrap:wrap;" class="reveal reveal--delay-2">
+          <a href="start.html" class="btn-primary">Start the conversation →</a>
+          <a href="work.html"  class="btn-secondary">See all work →</a>
+        </div>
+
+        <p class="cafe-cta__note reveal reveal--delay-3">
+          No commitment. Just a conversation about what you need.
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <p class="site-footer__copy">© 2025 Zaree Studio. Quetta, Pakistan.</p>
+        <nav class="site-footer__links" aria-label="Footer navigation">
+          <a href="work.html"    class="site-footer__link">Work</a>
+          <a href="cafes.html"   class="site-footer__link">Cafés</a>
+          <a href="artists.html" class="site-footer__link">Artists</a>
+          <a href="start.html"   class="site-footer__link">Start a project</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+
+</body>
+</html>
