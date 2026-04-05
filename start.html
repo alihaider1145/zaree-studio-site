@@ -3,189 +3,1403 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Zaree Studios</title>
-  <meta name="description" content="Get in touch with Ali Haider at Zaree Studios to start your web design or development project." />
+  <meta name="description" content="Start a project with Zaree Studio. Tell us what you need — we'll get back to you within 24 hours." />
+  <meta name="theme-color" content="#060608" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <title>Start a Project — Zaree Studio</title>
+
+  <meta property="og:title"       content="Start a Project — Zaree Studio" />
+  <meta property="og:description" content="One short form. A conversation within 24 hours. No commitment." />
+  <meta property="og:type"        content="website" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+
+    /* ===== PAGE LAYOUT ===== */
+    /*
+      Two-column split:
+      Left  — fixed context panel (who we are, what happens next, trust signals)
+      Right — the form itself
+      On mobile: stacks, context panel comes first
+    */
+    .start-page {
+      min-height: 100vh;
+      padding-top: var(--nav-height);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--background);
+    }
+
+    /* ===== LEFT PANEL ===== */
+    .start-context {
+      position: sticky;
+      top: var(--nav-height);
+      height: calc(100vh - var(--nav-height));
+      overflow-y: auto;
+      scrollbar-width: none;
+      padding: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+      background: var(--background-surface);
+      border-right: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+    }
+
+    .start-context::-webkit-scrollbar { display: none; }
+
+    /* Ambient orb inside context panel */
+    .start-context__orb {
+      position: absolute;
+      top: -10%;
+      left: -20%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,201,167,0.04) 0%, transparent 65%);
+      pointer-events: none;
+      animation: ctx-orb-drift 12s ease-in-out infinite;
+    }
+
+    @keyframes ctx-orb-drift {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50%       { transform: scale(1.06) translateY(-20px); }
+    }
+
+    .start-context__top {}
+
+    .start-context__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-md);
+    }
+
+    .start-context__eyebrow-line {
+      width: 22px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .start-context__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 0.92;
+      color: var(--text-primary);
+      margin-bottom: 0.2em;
+    }
+
+    .start-context__heading-serif {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 0.82em;
+      color: var(--text-secondary);
+      display: block;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+
+    .start-context__sub {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-top: var(--space-md);
+      max-width: 380px;
+    }
+
+    /* ===== WHAT HAPPENS NEXT ===== */
+    .next-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .next-steps__label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-md);
+    }
+
+    .next-step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      padding-block: 1.1rem;
+      border-top: 1px solid var(--border-subtle);
+      align-items: start;
+    }
+
+    .next-step:last-child {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .next-step__num {
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--border-moderate);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      color: var(--text-ghost);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .next-step__content {}
+
+    .next-step__title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .next-step__desc {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* ===== TRUST SIGNALS ===== */
+    .trust-signals {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .trust-signals__label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 0.2rem;
+    }
+
+    .trust-signal {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .trust-signal__icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.55rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ===== AVAILABILITY BADGE ===== */
+    .availability-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border-subtle);
+      background: var(--background-raised);
+    }
+
+    .availability-badge__dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: pulse-dot 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.35; transform: scale(0.6); }
+    }
+
+    .availability-badge__text {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .availability-badge__text strong {
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+
+    /* ===== RIGHT PANEL — FORM ===== */
+    .start-form-panel {
+      padding: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+      background: var(--background);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .start-form-panel__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-xl);
+    }
+
+    /* ===== MULTI-STEP FORM ===== */
+    .project-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      flex: 1;
+    }
+
+    /* Step indicators */
+    .form-steps {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: var(--space-xl);
+    }
+
+    .form-step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    .form-step-indicator:not(:last-child)::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-subtle);
+      margin-left: 0.5rem;
+    }
+
+    .form-step-indicator__dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--text-ghost);
+      flex-shrink: 0;
+      transition:
+        border-color var(--duration-base),
+        background var(--duration-base),
+        color var(--duration-base);
+    }
+
+    .form-step-indicator.is-active .form-step-indicator__dot {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .form-step-indicator.is-done .form-step-indicator__dot {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--background);
+    }
+
+    .form-step-indicator__label {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      white-space: nowrap;
+      transition: color var(--duration-base);
+    }
+
+    .form-step-indicator.is-active .form-step-indicator__label {
+      color: var(--text-secondary);
+    }
+
+    .form-step-indicator.is-done .form-step-indicator__label {
+      color: var(--accent);
+    }
+
+    /* Form steps — each is a screen */
+    .form-screen {
+      display: none;
+      flex-direction: column;
+      gap: var(--space-lg);
+      flex: 1;
+    }
+
+    .form-screen.is-active {
+      display: flex;
+    }
+
+    .form-screen__heading {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .form-screen__sub {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-top: -0.8rem;
+    }
+
+    /* ===== FORM FIELDS ===== */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    /* Choice cards (niche selector) */
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+    }
+
+    .choice-card {
+      position: relative;
+    }
+
+    .choice-card__input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .choice-card__label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1.4rem;
+      border: 1px solid var(--border-subtle);
+      background: var(--background-raised);
+      cursor: none;
+      transition:
+        border-color var(--duration-base),
+        background var(--duration-base);
+    }
+
+    .choice-card__label:hover {
+      border-color: var(--border-moderate);
+    }
+
+    .choice-card__input:checked + .choice-card__label {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .choice-card__input:focus-visible + .choice-card__label {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .choice-card__icon {
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .choice-card__title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .choice-card__desc {
+      font-size: 0.68rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Budget selector */
+    .budget-options {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .budget-option {
+      position: relative;
+    }
+
+    .budget-option__input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .budget-option__label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border-subtle);
+      background: var(--background-raised);
+      cursor: none;
+      transition:
+        border-color var(--duration-base),
+        background var(--duration-base);
+    }
+
+    .budget-option__label:hover {
+      border-color: var(--border-moderate);
+    }
+
+    .budget-option__input:checked + .budget-option__label {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .budget-option__input:focus-visible + .budget-option__label {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .budget-option__range {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+    }
+
+    .budget-option__desc {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary);
+    }
+
+    .budget-option__check {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+      transition: border-color var(--duration-base), background var(--duration-base);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .budget-option__input:checked + .budget-option__label .budget-option__check {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    /* Form field error message */
+    .form-field__error {
+      font-size: 0.65rem;
+      color: #e05252;
+      letter-spacing: 0.08em;
+      margin-top: 0.2rem;
+      min-height: 1em;
+    }
+
+    /* Textarea */
+    .form-field__textarea {
+      min-height: 140px;
+    }
+
+    /* ===== FORM NAV BUTTONS ===== */
+    .form-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border-subtle);
+      gap: var(--space-md);
+    }
+
+    .form-nav__back {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      cursor: none;
+      transition: color var(--duration-fast);
+      background: none;
+      border: none;
+    }
+
+    .form-nav__back:hover { color: var(--text-secondary); }
+    .form-nav__back[hidden] { visibility: hidden; }
+
+    .form-nav__next {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 0.85rem 2rem;
+      border: 1px solid var(--accent-mid);
+      background: none;
+      cursor: none;
+      transition:
+        background var(--duration-fast),
+        border-color var(--duration-fast),
+        opacity var(--duration-fast);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .form-nav__next:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+    }
+
+    .form-nav__next:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Submit button */
+    .form-nav__submit {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--background);
+      background: var(--accent);
+      padding: 0.85rem 2rem;
+      border: 1px solid var(--accent);
+      cursor: none;
+      transition:
+        background var(--duration-fast),
+        opacity var(--duration-fast);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .form-nav__submit:hover {
+      background: var(--text-primary);
+      border-color: var(--text-primary);
+    }
+
+    .form-nav__submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* ===== SUCCESS STATE ===== */
+    .form-success {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: var(--space-lg);
+      flex: 1;
+      padding-block: var(--space-xl);
+    }
+
+    .form-success.is-visible {
+      display: flex;
+    }
+
+    .form-success__icon {
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .form-success__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--text-primary);
+    }
+
+    .form-success__sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 1.8vw, 1.4rem);
+      color: var(--text-secondary);
+      line-height: 1.3;
+    }
+
+    .form-success__body {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      max-width: 400px;
+    }
+
+    .form-success__links {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-top: var(--space-sm);
+    }
+
+    /* ===== PROGRESS BAR ===== */
+    .form-progress {
+      height: 1px;
+      background: var(--border-subtle);
+      margin-bottom: var(--space-xl);
+      position: relative;
+    }
+
+    .form-progress__fill {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.5s var(--ease-out-expo);
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 900px) {
+      .start-page {
+        grid-template-columns: 1fr;
+      }
+
+      .start-context {
+        position: static;
+        height: auto;
+        overflow: visible;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .start-context__orb {
+        display: none;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .choice-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .form-step-indicator__label {
+        display: none;
+      }
+    }
+
+  </style>
 </head>
 <body>
 
-  <!-- Scroll Progress Line -->
-  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true" role="presentation"></div>
 
   <!-- ===== NAV ===== -->
   <header>
-    <nav class="nav" role="navigation" aria-label="Main navigation">
-      <a href="index.html" class="nav-logo">
-        <span>Zaree</span> Studios
-      </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
 
-      <!-- Desktop links -->
-      <ul class="nav-links" role="list">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html" aria-current="page">Contact</a></li>
-      </ul>
+        <a href="index.html" class="site-nav__logo" aria-label="Zaree Studio — home">Zaree</a>
 
-      <!-- Mobile hamburger -->
-      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </nav>
+        <div class="site-nav__status" aria-label="Studio availability">
+          <div class="site-nav__status-dot" aria-hidden="true"></div>
+          <span>Taking projects</span>
+        </div>
 
-    <!-- Mobile menu -->
-    <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation">
-      <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html" aria-current="page">Contact</a>
+        <button
+          class="site-nav__toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
+          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
+          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
+        </button>
+
+        <div class="site-nav__links" id="nav-links" role="list">
+          <a href="work.html"    class="site-nav__link" role="listitem">Work</a>
+          <a href="cafes.html"   class="site-nav__link" role="listitem">Cafés</a>
+          <a href="artists.html" class="site-nav__link" role="listitem">Artists</a>
+          <a href="start.html"   class="site-nav__cta"  role="listitem" aria-current="page">Start a project →</a>
+        </div>
+
+      </div>
     </nav>
   </header>
 
   <main>
+    <div class="start-page">
 
-    <!-- ===== CONTACT ===== -->
-    <section class="contact-main" aria-labelledby="contact-heading">
-      <div class="contact-inner">
+      <!-- ===== LEFT: CONTEXT PANEL ===== -->
+      <aside class="start-context" aria-label="Project information">
+        <div class="start-context__orb" aria-hidden="true"></div>
 
-        <!-- Left: heading + info -->
-        <div class="contact-left">
-          <p class="section-label">Get in Touch</p>
-          <h1 id="contact-heading" class="contact-heading">
-            Let's work<br><em>together</em>
+        <div class="start-context__top">
+          <p class="start-context__eyebrow">
+            <span class="start-context__eyebrow-line" aria-hidden="true"></span>
+            Start a project
+          </p>
+          <h1 class="start-context__heading">
+            Let's build
+            <span class="start-context__heading-serif">something real.</span>
           </h1>
-          <p class="contact-reply-note">I usually reply within 24 hours.</p>
+          <p class="start-context__sub">
+            Fill in the form — it takes about two minutes. We'll read it properly and get back to you within 24 hours with honest thoughts, not a sales pitch.
+          </p>
+        </div>
 
-          <div class="contact-details">
-            <div>
-              <p class="contact-detail-label">Email</p>
-              <a href="mailto:ali@Zaree.studio" class="contact-detail-link">
-                ali@Zaree.studio
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M4 12L12 4M12 4H6M12 4v6"/>
-                </svg>
-              </a>
+        <!-- What happens next -->
+        <div class="next-steps">
+          <p class="next-steps__label">What happens next</p>
+
+          <div class="next-step">
+            <div class="next-step__num" aria-hidden="true">01</div>
+            <div class="next-step__content">
+              <h2 class="next-step__title">We read your brief</h2>
+              <p class="next-step__desc">Within 24 hours — not a week. We look at what you actually need, not what we can upsell you on.</p>
             </div>
-            <div>
-              <p class="contact-detail-label">Instagram</p>
-              <a href="https://instagram.com/Zareestudios" target="_blank" rel="noopener noreferrer" class="contact-detail-link">
-                @Zareestudios
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M4 12L12 4M12 4H6M12 4v6"/>
-                </svg>
-              </a>
+          </div>
+
+          <div class="next-step">
+            <div class="next-step__num" aria-hidden="true">02</div>
+            <div class="next-step__content">
+              <h2 class="next-step__title">One short call</h2>
+              <p class="next-step__desc">20–30 minutes. We ask questions. You ask questions. We figure out if this is the right fit — for both of us.</p>
+            </div>
+          </div>
+
+          <div class="next-step">
+            <div class="next-step__num" aria-hidden="true">03</div>
+            <div class="next-step__content">
+              <h2 class="next-step__title">A clear proposal</h2>
+              <p class="next-step__desc">Scope, timeline, and price — in writing. No vague estimates, no surprises later.</p>
+            </div>
+          </div>
+
+          <div class="next-step">
+            <div class="next-step__num" aria-hidden="true">04</div>
+            <div class="next-step__content">
+              <h2 class="next-step__title">We get to work</h2>
+              <p class="next-step__desc">If the proposal works for you, we start. Most sites are live within 8–12 days of kickoff.</p>
             </div>
           </div>
         </div>
 
-        <!-- Right: form -->
-        <div class="contact-form-wrap">
-          <form
-            class="contact-form"
-            action="https://formspree.io/f/YOUR_ID"
-            method="POST"
-            novalidate
-            aria-label="Contact form"
-          >
+        <!-- Trust signals -->
+        <div class="trust-signals" aria-label="What we promise">
+          <p class="trust-signals__label">What we promise</p>
+
+          <div class="trust-signal">
+            <div class="trust-signal__icon" aria-hidden="true">✓</div>
+            Response within 24 hours, always
+          </div>
+          <div class="trust-signal">
+            <div class="trust-signal__icon" aria-hidden="true">✓</div>
+            No commitment required from this form
+          </div>
+          <div class="trust-signal">
+            <div class="trust-signal__icon" aria-hidden="true">✓</div>
+            One project at a time — you get full focus
+          </div>
+          <div class="trust-signal">
+            <div class="trust-signal__icon" aria-hidden="true">✓</div>
+            You own everything we build. No lock-in.
+          </div>
+        </div>
+
+        <!-- Availability badge -->
+        <div class="availability-badge" role="status" aria-live="polite">
+          <div class="availability-badge__dot" aria-hidden="true"></div>
+          <p class="availability-badge__text">
+            <strong>One slot open this month.</strong>
+            Taking on new projects now.
+          </p>
+        </div>
+
+      </aside>
+
+      <!-- ===== RIGHT: FORM PANEL ===== -->
+      <div class="start-form-panel">
+
+        <p class="start-form-panel__heading">
+          Tell us about your project — step <span id="current-step-num">1</span> of 3
+        </p>
+
+        <!-- Step indicators -->
+        <div class="form-steps" role="list" aria-label="Form progress">
+          <div class="form-step-indicator is-active" role="listitem" id="step-ind-1">
+            <div class="form-step-indicator__dot" aria-current="step">1</div>
+            <span class="form-step-indicator__label">About you</span>
+          </div>
+          <div class="form-step-indicator" role="listitem" id="step-ind-2">
+            <div class="form-step-indicator__dot">2</div>
+            <span class="form-step-indicator__label">Your project</span>
+          </div>
+          <div class="form-step-indicator" role="listitem" id="step-ind-3">
+            <div class="form-step-indicator__dot">3</div>
+            <span class="form-step-indicator__label">Final details</span>
+          </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="form-progress" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" aria-label="Form completion">
+          <div class="form-progress__fill" id="form-progress-fill" style="width: 33%;"></div>
+        </div>
+
+        <!-- FORM -->
+        <form
+          class="project-form"
+          id="project-form"
+          novalidate
+          aria-label="Start a project form"
+        >
+
+          <!-- ── SCREEN 1: About you ── -->
+          <fieldset class="form-screen is-active" id="screen-1" aria-labelledby="screen-1-heading">
+            <legend class="form-screen__heading" id="screen-1-heading">
+              First — who are you?
+            </legend>
+            <p class="form-screen__sub">We want to know who we're talking to before anything else.</p>
 
             <div class="form-row">
               <div class="form-field">
-                <label for="contact-name">Name</label>
+                <label class="form-field__label" for="first-name">First name <span aria-hidden="true">*</span></label>
                 <input
+                  class="form-field__input"
                   type="text"
-                  id="contact-name"
-                  name="name"
-                  placeholder="Your name"
+                  id="first-name"
+                  name="first_name"
+                  placeholder="Ali"
                   required
-                  autocomplete="name"
+                  autocomplete="given-name"
+                  aria-required="true"
                 />
+                <span class="form-field__error" role="alert" aria-live="polite"></span>
               </div>
-
               <div class="form-field">
-                <label for="contact-email">Email</label>
+                <label class="form-field__label" for="last-name">Last name</label>
                 <input
-                  type="email"
-                  id="contact-email"
-                  name="email"
-                  placeholder="your@email.com"
-                  required
-                  autocomplete="email"
+                  class="form-field__input"
+                  type="text"
+                  id="last-name"
+                  name="last_name"
+                  placeholder="Khan"
+                  autocomplete="family-name"
                 />
               </div>
             </div>
 
             <div class="form-field">
-              <label for="contact-message">Tell me about your project</label>
-              <textarea
-                id="contact-message"
-                name="message"
-                placeholder="What are you building? What do you need? Any details help."
+              <label class="form-field__label" for="email">Email address <span aria-hidden="true">*</span></label>
+              <input
+                class="form-field__input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
                 required
+                autocomplete="email"
+                aria-required="true"
+              />
+              <span class="form-field__error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="instagram">Instagram handle <span style="color:var(--text-ghost);font-size:0.6rem;letter-spacing:0.1em;">(optional)</span></label>
+              <input
+                class="form-field__input"
+                type="text"
+                id="instagram"
+                name="instagram"
+                placeholder="@yourhandle"
+              />
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="business-name">Business or studio name <span aria-hidden="true">*</span></label>
+              <input
+                class="form-field__input"
+                type="text"
+                id="business-name"
+                name="business_name"
+                placeholder="Café Bloom / Thomas Windsor Art"
+                required
+                aria-required="true"
+              />
+              <span class="form-field__error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-nav">
+              <button type="button" class="form-nav__back" hidden aria-hidden="true">← Back</button>
+              <button type="button" class="form-nav__next" id="next-1" aria-label="Continue to project details">
+                Continue →
+              </button>
+            </div>
+          </fieldset>
+
+          <!-- ── SCREEN 2: Your project ── -->
+          <fieldset class="form-screen" id="screen-2" aria-labelledby="screen-2-heading">
+            <legend class="form-screen__heading" id="screen-2-heading">
+              Now — what do you need?
+            </legend>
+            <p class="form-screen__sub">Pick the option that fits closest. We'll figure out the details together.</p>
+
+            <!-- Niche selector -->
+            <div class="form-field" role="group" aria-labelledby="niche-label">
+              <p class="form-field__label" id="niche-label">What kind of business is this? <span aria-hidden="true">*</span></p>
+              <div class="choice-grid">
+
+                <div class="choice-card">
+                  <input
+                    class="choice-card__input"
+                    type="radio"
+                    name="niche"
+                    id="niche-cafe"
+                    value="cafe"
+                    required
+                    aria-required="true"
+                  />
+                  <label class="choice-card__label" for="niche-cafe">
+                    <span class="choice-card__icon" aria-hidden="true">☕</span>
+                    <span class="choice-card__title">Café or food business</span>
+                    <span class="choice-card__desc">Reservations, menu, local presence</span>
+                  </label>
+                </div>
+
+                <div class="choice-card">
+                  <input
+                    class="choice-card__input"
+                    type="radio"
+                    name="niche"
+                    id="niche-artist"
+                    value="artist"
+                  />
+                  <label class="choice-card__label" for="niche-artist">
+                    <span class="choice-card__icon" aria-hidden="true">🎨</span>
+                    <span class="choice-card__title">Artist or creative</span>
+                    <span class="choice-card__desc">Portfolio, commissions, gallery</span>
+                  </label>
+                </div>
+
+                <div class="choice-card">
+                  <input
+                    class="choice-card__input"
+                    type="radio"
+                    name="niche"
+                    id="niche-other"
+                    value="other"
+                  />
+                  <label class="choice-card__label" for="niche-other">
+                    <span class="choice-card__icon" aria-hidden="true">💼</span>
+                    <span class="choice-card__title">Other business</span>
+                    <span class="choice-card__desc">Tell us more below</span>
+                  </label>
+                </div>
+
+                <div class="choice-card">
+                  <input
+                    class="choice-card__input"
+                    type="radio"
+                    name="niche"
+                    id="niche-notsure"
+                    value="not_sure"
+                  />
+                  <label class="choice-card__label" for="niche-notsure">
+                    <span class="choice-card__icon" aria-hidden="true">🤔</span>
+                    <span class="choice-card__title">Not sure yet</span>
+                    <span class="choice-card__desc">Let's figure it out together</span>
+                  </label>
+                </div>
+
+              </div>
+              <span class="form-field__error" role="alert" aria-live="polite" id="niche-error"></span>
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="project-desc">Describe your project in a few sentences <span aria-hidden="true">*</span></label>
+              <textarea
+                class="form-field__input form-field__textarea"
+                id="project-desc"
+                name="project_description"
+                placeholder="We're a café in Quetta with a strong Instagram following but no website. We need somewhere customers can see our menu, book a table, and find us on Google…"
+                required
+                aria-required="true"
+              ></textarea>
+              <span class="form-field__error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="existing-site">Do you have an existing website? <span style="color:var(--text-ghost);font-size:0.6rem;">(url or 'no')</span></label>
+              <input
+                class="form-field__input"
+                type="text"
+                id="existing-site"
+                name="existing_site"
+                placeholder="https://yourcafe.com or no"
+              />
+            </div>
+
+            <div class="form-nav">
+              <button type="button" class="form-nav__back" id="back-2">← Back</button>
+              <button type="button" class="form-nav__next" id="next-2" aria-label="Continue to final details">
+                Continue →
+              </button>
+            </div>
+          </fieldset>
+
+          <!-- ── SCREEN 3: Final details ── -->
+          <fieldset class="form-screen" id="screen-3" aria-labelledby="screen-3-heading">
+            <legend class="form-screen__heading" id="screen-3-heading">
+              Almost there — last few things.
+            </legend>
+            <p class="form-screen__sub">No wrong answers here. This just helps us come to the call prepared.</p>
+
+            <!-- Budget selector -->
+            <div class="form-field" role="group" aria-labelledby="budget-label">
+              <p class="form-field__label" id="budget-label">Rough budget range <span aria-hidden="true">*</span></p>
+              <div class="budget-options">
+
+                <div class="budget-option">
+                  <input
+                    class="budget-option__input"
+                    type="radio"
+                    name="budget"
+                    id="budget-1"
+                    value="under_50k"
+                    required
+                    aria-required="true"
+                  />
+                  <label class="budget-option__label" for="budget-1">
+                    <span class="budget-option__range">Under PKR 50,000</span>
+                    <span class="budget-option__desc">Entry-level</span>
+                    <span class="budget-option__check" aria-hidden="true"></span>
+                  </label>
+                </div>
+
+                <div class="budget-option">
+                  <input
+                    class="budget-option__input"
+                    type="radio"
+                    name="budget"
+                    id="budget-2"
+                    value="50k_100k"
+                  />
+                  <label class="budget-option__label" for="budget-2">
+                    <span class="budget-option__range">PKR 50,000 – 100,000</span>
+                    <span class="budget-option__desc">Standard site</span>
+                    <span class="budget-option__check" aria-hidden="true"></span>
+                  </label>
+                </div>
+
+                <div class="budget-option">
+                  <input
+                    class="budget-option__input"
+                    type="radio"
+                    name="budget"
+                    id="budget-3"
+                    value="100k_200k"
+                  />
+                  <label class="budget-option__label" for="budget-3">
+                    <span class="budget-option__range">PKR 100,000 – 200,000</span>
+                    <span class="budget-option__desc">Full custom build</span>
+                    <span class="budget-option__check" aria-hidden="true"></span>
+                  </label>
+                </div>
+
+                <div class="budget-option">
+                  <input
+                    class="budget-option__input"
+                    type="radio"
+                    name="budget"
+                    id="budget-4"
+                    value="flexible"
+                  />
+                  <label class="budget-option__label" for="budget-4">
+                    <span class="budget-option__range">Flexible / Let's talk</span>
+                    <span class="budget-option__desc">Tell me what's possible</span>
+                    <span class="budget-option__check" aria-hidden="true"></span>
+                  </label>
+                </div>
+
+              </div>
+              <span class="form-field__error" role="alert" aria-live="polite" id="budget-error"></span>
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="timeline">When do you need this live?</label>
+              <select class="form-field__input form-field__select" id="timeline" name="timeline">
+                <option value="" disabled selected>Select a rough timeline</option>
+                <option value="asap">As soon as possible</option>
+                <option value="1_month">Within a month</option>
+                <option value="2_3_months">2–3 months</option>
+                <option value="no_rush">No rush — whenever it's right</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="anything-else">Anything else we should know? <span style="color:var(--text-ghost);font-size:0.6rem;">(optional)</span></label>
+              <textarea
+                class="form-field__input form-field__textarea"
+                id="anything-else"
+                name="anything_else"
+                style="min-height:100px;"
+                placeholder="Inspiration you like, specific features you need, questions you have — anything helps."
               ></textarea>
             </div>
 
-            <div class="form-submit-row">
-              <p class="form-status" aria-live="polite"></p>
-              <button type="submit" class="btn-submit">
-                Send Message
-                <svg viewBox="0 0 16 16" aria-hidden="true">
-                  <path d="M3 8h10M9 4l4 4-4 4"/>
-                </svg>
+            <div class="form-nav">
+              <button type="button" class="form-nav__back" id="back-3">← Back</button>
+              <button type="submit" class="form-nav__submit" id="submit-btn" aria-label="Submit your project brief">
+                Send brief →
               </button>
             </div>
+          </fieldset>
 
-          </form>
+        </form>
+
+        <!-- ===== SUCCESS STATE ===== -->
+        <div class="form-success" id="form-success" aria-live="polite" aria-label="Form submitted successfully">
+          <div class="form-success__icon" aria-hidden="true">✓</div>
+          <h2 class="form-success__heading">Brief received.</h2>
+          <p class="form-success__sub">We'll be in touch within 24 hours.</p>
+          <p class="form-success__body">
+            We've got your details and we'll read through everything properly before we reply. No auto-responses, no templates — a real reply from us about your specific project.
+          </p>
+          <div class="form-success__links">
+            <a href="work.html" class="btn-primary">See our work →</a>
+            <a href="index.html" class="btn-secondary">Back to home →</a>
+          </div>
         </div>
 
       </div>
-    </section>
-
+    </div>
   </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="footer-top">
-      <div>
-        <p class="footer-cta-line">I'm excited to<br>hear from <em>you!</em></p>
-        <p class="footer-cta-sub">Let's build something worth showing off.</p>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <p class="site-footer__copy">© 2025 Zaree Studio. Quetta, Pakistan.</p>
+        <nav class="site-footer__links" aria-label="Footer navigation">
+          <a href="work.html"    class="site-footer__link">Work</a>
+          <a href="cafes.html"   class="site-footer__link">Cafés</a>
+          <a href="artists.html" class="site-footer__link">Artists</a>
+          <a href="start.html"   class="site-footer__link">Start a project</a>
+        </nav>
       </div>
-
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <p class="footer-nav-label">Navigate</p>
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="footer-socials">
-        <a href="#" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </a>
-        <a href="#" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-          </svg>
-        </a>
-        <a href="#" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-          </svg>
-        </a>
-      </div>
-      <p class="footer-copy">© 2025 Zaree Studios</p>
     </div>
   </footer>
 
   <script src="assets/js/main.js" defer></script>
+
+  <!-- Page-specific JS: multi-step form logic -->
+  <script defer>
+  (function () {
+    'use strict';
+
+    const TOTAL_STEPS = 3;
+    let currentStep = 1;
+
+    const screens      = [null,
+      document.getElementById('screen-1'),
+      document.getElementById('screen-2'),
+      document.getElementById('screen-3'),
+    ];
+    const indicators   = [null,
+      document.getElementById('step-ind-1'),
+      document.getElementById('step-ind-2'),
+      document.getElementById('step-ind-3'),
+    ];
+    const progressFill = document.getElementById('form-progress-fill');
+    const progressBar  = progressFill?.parentElement;
+    const stepNumEl    = document.getElementById('current-step-num');
+    const successEl    = document.getElementById('form-success');
+    const formEl       = document.getElementById('project-form');
+
+    /* ── Update UI to reflect current step ── */
+    const goToStep = (step) => {
+      // Hide all screens
+      screens.slice(1).forEach((s) => {
+        if (!s) return;
+        s.classList.remove('is-active');
+      });
+
+      // Update indicators
+      indicators.slice(1).forEach((ind, i) => {
+        if (!ind) return;
+        const n = i + 1;
+        ind.classList.remove('is-active', 'is-done');
+        if (n < step)  ind.classList.add('is-done');
+        if (n === step) ind.classList.add('is-active');
+        const dot = ind.querySelector('.form-step-indicator__dot');
+        if (dot) {
+          dot.textContent = n < step ? '✓' : String(n);
+          dot.setAttribute('aria-current', n === step ? 'step' : 'false');
+        }
+      });
+
+      // Show current screen
+      if (screens[step]) {
+        screens[step].classList.add('is-active');
+        // Focus first input in the screen
+        const firstInput = screens[step].querySelector('input, textarea, select');
+        if (firstInput) setTimeout(() => firstInput.focus(), 80);
+      }
+
+      // Update progress bar
+      const pct = Math.round((step / TOTAL_STEPS) * 100);
+      if (progressFill) progressFill.style.width = pct + '%';
+      if (progressBar)  progressBar.setAttribute('aria-valuenow', pct);
+
+      // Update step counter text
+      if (stepNumEl) stepNumEl.textContent = step;
+
+      currentStep = step;
+    };
+
+    /* ── Validate a specific screen ── */
+    const validateScreen = (step) => {
+      let valid = true;
+
+      if (step === 1) {
+        const required = screens[1].querySelectorAll('[required]');
+        required.forEach((input) => {
+          const err = input.parentElement.querySelector('.form-field__error');
+          if (!input.value.trim()) {
+            if (err) err.textContent = 'This field is required.';
+            input.setAttribute('aria-invalid', 'true');
+            valid = false;
+          } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+            if (err) err.textContent = 'Please enter a valid email.';
+            input.setAttribute('aria-invalid', 'true');
+            valid = false;
+          } else {
+            if (err) err.textContent = '';
+            input.setAttribute('aria-invalid', 'false');
+          }
+        });
+      }
+
+      if (step === 2) {
+        const nicheSelected = screens[2].querySelector('input[name="niche"]:checked');
+        const nicheErr      = document.getElementById('niche-error');
+        const descInput     = document.getElementById('project-desc');
+        const descErr       = descInput?.parentElement.querySelector('.form-field__error');
+
+        if (!nicheSelected) {
+          if (nicheErr) nicheErr.textContent = 'Please select one option.';
+          valid = false;
+        } else {
+          if (nicheErr) nicheErr.textContent = '';
+        }
+
+        if (descInput && !descInput.value.trim()) {
+          if (descErr) descErr.textContent = 'This field is required.';
+          descInput.setAttribute('aria-invalid', 'true');
+          valid = false;
+        } else if (descInput) {
+          if (descErr) descErr.textContent = '';
+          descInput.setAttribute('aria-invalid', 'false');
+        }
+      }
+
+      if (step === 3) {
+        const budgetSelected = screens[3].querySelector('input[name="budget"]:checked');
+        const budgetErr      = document.getElementById('budget-error');
+        if (!budgetSelected) {
+          if (budgetErr) budgetErr.textContent = 'Please select a budget range.';
+          valid = false;
+        } else {
+          if (budgetErr) budgetErr.textContent = '';
+        }
+      }
+
+      return valid;
+    };
+
+    /* ── Wire navigation buttons ── */
+    const next1 = document.getElementById('next-1');
+    const next2 = document.getElementById('next-2');
+    const back2 = document.getElementById('back-2');
+    const back3 = document.getElementById('back-3');
+
+    next1?.addEventListener('click', () => {
+      if (validateScreen(1)) goToStep(2);
+    });
+
+    next2?.addEventListener('click', () => {
+      if (validateScreen(2)) goToStep(3);
+    });
+
+    back2?.addEventListener('click', () => goToStep(1));
+    back3?.addEventListener('click', () => goToStep(2));
+
+    /* ── Form submit ── */
+    formEl?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!validateScreen(3)) return;
+
+      const submitBtn = document.getElementById('submit-btn');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+
+      // Simulate async submit — replace with Formspree/Netlify fetch in production
+      setTimeout(() => {
+        if (formEl)      formEl.style.display = 'none';
+        if (successEl)   successEl.classList.add('is-visible');
+        const stepCountEl = document.querySelector('.start-form-panel__heading');
+        if (stepCountEl) stepCountEl.style.display = 'none';
+        const stepsEl = document.querySelector('.form-steps');
+        if (stepsEl)   stepsEl.style.display = 'none';
+        const progressEl = document.querySelector('.form-progress');
+        if (progressEl) progressEl.style.display = 'none';
+        // Focus success heading for a11y
+        const successHead = successEl?.querySelector('.form-success__heading');
+        if (successHead) setTimeout(() => successHead.focus(), 100);
+      }, 900);
+    });
+
+    /* ── Init ── */
+    goToStep(1);
+
+  })();
+  </script>
+
 </body>
 </html>
