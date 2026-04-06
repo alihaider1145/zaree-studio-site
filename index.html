@@ -189,19 +189,21 @@
 
     .hero-caption__tag {
       display: block;
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
     }
 
     .hero-caption__text {
       font-family: var(--font-serif);
       font-style: italic;
-      font-size: clamp(1.1rem, 2.2vw, 1.9rem);
+      font-size: clamp(1.3rem, 2.5vw, 2.2rem);
       font-weight: 400;
-      line-height: 1.25;
+      line-height: 1.22;
       color: var(--text-primary);
     }
 
@@ -270,11 +272,10 @@
       flex-shrink: 0;
     }
 
-    /* Card grid: one tall left, two stacked right */
+    /* Card grid: two equal columns, both tall */
     .work-preview__grid {
       display: grid;
-      grid-template-columns: 5fr 4fr;
-      grid-template-rows: auto auto;
+      grid-template-columns: 1fr 1fr;
       gap: 3px;
     }
 
@@ -292,12 +293,11 @@
     }
 
     .card--tall {
-      grid-row: span 2;
-      min-height: 620px;
+      min-height: 580px;
     }
 
     .card--half {
-      min-height: 308px;
+      min-height: 580px;
     }
 
     .card__bg {
@@ -326,9 +326,7 @@
     }
 
     .card--open .card__bg {
-      background:
-        radial-gradient(ellipse at 50% 50%, rgba(0,201,167,0.04) 0%, transparent 65%),
-        var(--background-raised);
+      display: none;
     }
 
     /* Decorative geometry per card */
@@ -547,10 +545,26 @@
     /* Accordion */
     .accordion__item {
       border-top: 1px solid var(--border-subtle);
+      border-left: 2px solid transparent;
+      padding-left: 0;
+      transition:
+        border-left-color var(--duration-base) var(--ease-out-expo),
+        padding-left var(--duration-base) var(--ease-out-expo);
     }
 
     .accordion__item:last-child {
       border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .accordion__item:hover,
+    .accordion__item--open {
+      border-left-color: var(--accent);
+      padding-left: 1rem;
+    }
+
+    .accordion__item:hover .accordion__num,
+    .accordion__item--open .accordion__num {
+      color: var(--accent);
     }
 
     .accordion__trigger {
@@ -578,6 +592,7 @@
       letter-spacing: 0.18em;
       color: var(--text-ghost);
       flex-shrink: 0;
+      transition: color var(--duration-base);
     }
 
     .accordion__title {
@@ -720,13 +735,9 @@
         grid-template-columns: 1fr;
       }
 
-      .card--tall {
-        grid-row: span 1;
-        min-height: 380px;
-      }
-
+      .card--tall,
       .card--half {
-        min-height: 320px;
+        min-height: 380px;
       }
 
       .work-preview__header {
@@ -769,11 +780,6 @@
         <a href="index.html" class="site-nav__logo" aria-label="Zaree Studio — home">
           Zaree
         </a>
-
-        <div class="site-nav__status" aria-label="Studio availability">
-          <div class="site-nav__status-dot" aria-hidden="true"></div>
-          <span>Taking projects</span>
-        </div>
 
         <!-- Mobile toggle -->
         <button
@@ -929,23 +935,6 @@
             </div>
           </article>
 
-          <!-- Card 3 — Open slot -->
-          <article class="card card--half card--open" aria-labelledby="card-3-title">
-            <div class="card__bg" aria-hidden="true"></div>
-            <div class="card__fade" aria-hidden="true"></div>
-            <div class="card__body">
-              <span class="card__number" aria-hidden="true">03</span>
-              <p class="card__category">Next project</p>
-              <h3 class="card__title" id="card-3-title">Yours?</h3>
-              <p class="card__desc">
-                One new project per month. That slot could be yours.
-              </p>
-              <a href="start.html" class="card__link" aria-label="Start your project with Zaree Studio">
-                Let's talk →
-              </a>
-            </div>
-          </article>
-
         </div>
 
         <div style="margin-top: 2.5rem; display: flex; justify-content: flex-end;">
@@ -1087,8 +1076,8 @@
           Start a project →
         </a>
         <br>
-        <a href="mailto:hello@zaree.studio" class="cta-strip__email reveal reveal--delay-4">
-          hello@zaree.studio
+        <a href="/cdn-cgi/l/email-protection#b9d1dcd5d5d6f9c3d8cbdcdc97cacdccddd0d6" class="cta-strip__email reveal reveal--delay-4">
+          <span class="__cf_email__" data-cfemail="2048454c4c4f605a415245450e53545544494f">[email&#160;protected]</span>
         </a>
       </div>
     </section>
@@ -1106,12 +1095,4 @@
           <a href="work.html"    class="site-footer__link">Work</a>
           <a href="cafes.html"   class="site-footer__link">Cafés</a>
           <a href="artists.html" class="site-footer__link">Artists</a>
-          <a href="start.html"   class="site-footer__link">Start a project</a>
-        </nav>
-      </div>
-    </div>
-  </footer>
-
-  <script src="assets/js/main.js" defer></script>
-</body>
-</html>
+          <a href="start.html"   class="site-footer__link">Start a proj

@@ -645,6 +645,7 @@
     /* Content side */
     .cafe-case__content {
       padding: clamp(2rem, 4vw, 3.5rem);
+      padding-bottom: clamp(2.5rem, 5vw, 4rem);
       background: var(--background-surface);
       border-left: 1px solid var(--border-subtle);
       display: flex;
@@ -765,7 +766,7 @@
 
     .cafe-cta__bg-text {
       position: absolute;
-      bottom: -0.1em;
+      bottom: -0.05em;
       left: -0.02em;
       font-family: var(--font-display);
       font-size: clamp(8rem, 18vw, 22rem);
@@ -817,6 +818,7 @@
       color: var(--text-ghost);
       letter-spacing: 0.1em;
       margin-top: var(--space-md);
+      margin-bottom: var(--space-lg);
     }
 
     /* ===== MOBILE ===== */
@@ -885,9 +887,6 @@
 
         <a href="index.html" class="site-nav__logo" aria-label="Zaree Studio — home">Zaree</a>
 
-        <div class="site-nav__status" aria-label="Studio availability">
-          <div class="site-nav__status-dot" aria-hidden="true"></div>
-          <span>Taking projects</span>
         </div>
 
         <button

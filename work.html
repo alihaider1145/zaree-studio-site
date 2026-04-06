@@ -393,8 +393,6 @@
       border-left: 1px solid var(--border-subtle);
     }
 
-    .work-card__top {}
-
     .work-card__meta {
       display: flex;
       align-items: center;
@@ -468,8 +466,6 @@
       border-bottom: 1px solid var(--border-subtle);
       margin-bottom: var(--space-lg);
     }
-
-    .work-stat {}
 
     .work-stat__value {
       font-family: var(--font-display);
@@ -557,11 +553,25 @@
       gap: var(--space-lg);
       padding-block: 1.5rem;
       border-bottom: 1px solid var(--border-subtle);
+      border-left: 2px solid transparent;
+      padding-left: 0;
       align-items: start;
+      transition:
+        border-left-color var(--duration-base) var(--ease-out-expo),
+        padding-left var(--duration-base) var(--ease-out-expo);
     }
 
     .process-callout__step:first-child {
       border-top: 1px solid var(--border-subtle);
+    }
+
+    .process-callout__step:hover {
+      border-left-color: var(--accent);
+      padding-left: 1rem;
+    }
+
+    .process-callout__step:hover .process-callout__step-num {
+      color: var(--accent);
     }
 
     .process-callout__step-num {
@@ -570,9 +580,8 @@
       color: var(--text-ghost);
       padding-top: 0.2rem;
       flex-shrink: 0;
+      transition: color var(--duration-base);
     }
-
-    .process-callout__step-content {}
 
     .process-callout__step-name {
       font-family: var(--font-serif);
@@ -684,9 +693,6 @@
 
         <a href="index.html" class="site-nav__logo" aria-label="Zaree Studio — home">Zaree</a>
 
-        <div class="site-nav__status" aria-label="Studio availability">
-          <div class="site-nav__status-dot" aria-hidden="true"></div>
-          <span>Taking projects</span>
         </div>
 
         <button
@@ -956,24 +962,6 @@
         </div>
       </div>
     </section>
-
-    <!-- ===== MARQUEE ===== -->
-    <div class="marquee marquee--reverse" aria-hidden="true" role="presentation">
-      <div class="marquee__track">
-        <div class="marquee__item">Clean Code <span class="marquee__item-dot">◆</span></div>
-        <div class="marquee__item">Fast Delivery <span class="marquee__item-dot">◆</span></div>
-        <div class="marquee__item">Mobile First <span class="marquee__item-dot">◆</span></div>
-        <div class="marquee__item">You Own Everything <span class="marquee__item-dot">◆</span></div>
-        <div class="marquee__item">No Lock-in <span class="marquee__item-dot">◆</span></div>
-        <div class="marquee__item">SEO Ready <span class="marquee__item-dot">◆</span></div>
-        <div class="marquee__item">Clean Code <span class="marquee__item-dot">◆</span></div>
-        <div class="marquee__item">Fast Delivery <span class="marquee__item-dot">◆</span></div>
-        <div class="marquee__item">Mobile First <span class="marquee__item-dot">◆</span></div>
-        <div class="marquee__item">You Own Everything <span class="marquee__item-dot">◆</span></div>
-        <div class="marquee__item">No Lock-in <span class="marquee__item-dot">◆</span></div>
-        <div class="marquee__item">SEO Ready <span class="marquee__item-dot">◆</span></div>
-      </div>
-    </div>
 
     <!-- ===== HOW WE BUILD ===== -->
     <section class="section process-callout" aria-labelledby="process-heading">

@@ -66,8 +66,6 @@
       50%       { transform: scale(1.06) translateY(-20px); }
     }
 
-    .start-context__top {}
-
     .start-context__eyebrow {
       display: flex;
       align-items: center;
@@ -158,8 +156,6 @@
       margin-top: 0.1rem;
     }
 
-    .next-step__content {}
-
     .next-step__title {
       font-family: var(--font-serif);
       font-style: italic;
@@ -173,43 +169,6 @@
       font-size: 0.72rem;
       color: var(--text-secondary);
       line-height: 1.75;
-    }
-
-    /* ===== TRUST SIGNALS ===== */
-    .trust-signals {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-    }
-
-    .trust-signals__label {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin-bottom: 0.2rem;
-    }
-
-    .trust-signal {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      font-size: 0.74rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    .trust-signal__icon {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--accent-dim);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.55rem;
-      color: var(--accent);
-      flex-shrink: 0;
     }
 
     /* ===== AVAILABILITY BADGE ===== */
@@ -347,6 +306,9 @@
       flex-direction: column;
       gap: var(--space-lg);
       flex: 1;
+      border: none;
+      padding: 0;
+      min-width: 0; /* fixes fieldset width collapse in some browsers */
     }
 
     .form-screen.is-active {
@@ -359,13 +321,17 @@
       font-size: clamp(1.4rem, 2.5vw, 2rem);
       color: var(--text-primary);
       line-height: 1.2;
+      padding: 0;
+      margin-bottom: 0;
+      float: none;
+      width: 100%;
     }
 
     .form-screen__sub {
       font-size: 0.76rem;
       color: var(--text-secondary);
       line-height: 1.8;
-      margin-top: -0.8rem;
+      margin-top: -1rem; /* pulls closer to the heading above */
     }
 
     /* ===== FORM FIELDS ===== */
@@ -734,9 +700,6 @@
 
         <a href="index.html" class="site-nav__logo" aria-label="Zaree Studio — home">Zaree</a>
 
-        <div class="site-nav__status" aria-label="Studio availability">
-          <div class="site-nav__status-dot" aria-hidden="true"></div>
-          <span>Taking projects</span>
         </div>
 
         <button
@@ -816,28 +779,6 @@
               <h2 class="next-step__title">We get to work</h2>
               <p class="next-step__desc">If the proposal works for you, we start. Most sites are live within 8–12 days of kickoff.</p>
             </div>
-          </div>
-        </div>
-
-        <!-- Trust signals -->
-        <div class="trust-signals" aria-label="What we promise">
-          <p class="trust-signals__label">What we promise</p>
-
-          <div class="trust-signal">
-            <div class="trust-signal__icon" aria-hidden="true">✓</div>
-            Response within 24 hours, always
-          </div>
-          <div class="trust-signal">
-            <div class="trust-signal__icon" aria-hidden="true">✓</div>
-            No commitment required from this form
-          </div>
-          <div class="trust-signal">
-            <div class="trust-signal__icon" aria-hidden="true">✓</div>
-            One project at a time — you get full focus
-          </div>
-          <div class="trust-signal">
-            <div class="trust-signal__icon" aria-hidden="true">✓</div>
-            You own everything we build. No lock-in.
           </div>
         </div>
 
