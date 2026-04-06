@@ -6,6 +6,14 @@
 (function () {
   'use strict';
 
+  /* ===== SECURITY UTIL ===== */
+  // Coerces a value to a finite number; returns fallback if not.
+  // Prevents any non-numeric value from reaching style/attribute sinks.
+  const safeNum = (v, fallback) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : (fallback !== undefined ? fallback : 0);
+  };
+
   /* ===== CURSOR ===== */
   const initCursor = () => {
     const cursor = document.querySelector('.cursor');
@@ -17,8 +25,8 @@
     let animFrame;
 
     document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+      mouseX = safeNum(e.clientX);
+      mouseY = safeNum(e.clientY);
       cursor.style.left = mouseX + 'px';
       cursor.style.top  = mouseY + 'px';
     });
@@ -26,8 +34,8 @@
     const animateRing = () => {
       ringX += (mouseX - ringX) * 0.12;
       ringY += (mouseY - ringY) * 0.12;
-      ring.style.left = ringX + 'px';
-      ring.style.top  = ringY + 'px';
+      ring.style.left = safeNum(ringX) + 'px';
+      ring.style.top  = safeNum(ringY) + 'px';
       animFrame = requestAnimationFrame(animateRing);
     };
     animateRing();
@@ -45,10 +53,10 @@
     if (!bar) return;
 
     const update = () => {
-      const scrolled = window.scrollY;
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = total > 0 ? (scrolled / total) * 100 : 0;
-      bar.style.width = pct + '%';
+      const scrolled = safeNum(window.scrollY);
+      const total = safeNum(document.documentElement.scrollHeight - window.innerHeight);
+      const pct = total > 0 ? Math.min(100, Math.max(0, (scrolled / total) * 100)) : 0;
+      bar.style.width = safeNum(pct) + '%';
     };
 
     window.addEventListener('scroll', update, { passive: true });
@@ -135,8 +143,8 @@
 
     const update = () => {
       const rect    = driver.getBoundingClientRect();
-      const total   = driver.offsetHeight - window.innerHeight;
-      const scrolled = -rect.top;
+      const total   = safeNum(driver.offsetHeight - window.innerHeight, 1);
+      const scrolled = safeNum(-rect.top);
       const progress = Math.max(0, Math.min(1, scrolled / total));
 
       // Hide scroll indicator after first nudge
@@ -158,12 +166,13 @@
         letter.classList.toggle('hero-letter--past',   past && !active);
 
         if (active) {
-          const band = (progress - lo) / (hi - lo);
-          const shadowY    = Math.round(band * 24);
-          const shadowBlur = Math.round(band * 50);
-          const shadowAlpha = (0.15 + band * 0.3).toFixed(2);
+          const band = Math.max(0, Math.min(1, (progress - lo) / (hi - lo)));
+          const shadowY     = Math.round(safeNum(band) * 24);
+          const shadowBlur  = Math.round(safeNum(band) * 50);
+          const shadowAlpha = Math.min(0.45, Math.max(0, 0.15 + safeNum(band) * 0.3)).toFixed(2);
+          const translateY  = Math.min(0, -(safeNum(band) * 6));
           letter.style.textShadow = `0 ${shadowY}px ${shadowBlur}px rgba(0,201,167,${shadowAlpha}), 0 0 40px rgba(0,201,167,0.45)`;
-          letter.style.transform  = `translateY(${-band * 6}px)`;
+          letter.style.transform  = `translateY(${translateY}px)`;
         } else {
           letter.style.textShadow = '';
           letter.style.transform  = '';
@@ -214,7 +223,7 @@
         if (!isOpen) {
           item.classList.add('accordion__item--open');
           trigger.setAttribute('aria-expanded', 'true');
-          body.style.maxHeight = body.scrollHeight + 'px';
+          body.style.maxHeight = safeNum(body.scrollHeight) + 'px';
         }
       });
 
@@ -232,9 +241,18 @@
     const cards   = document.querySelectorAll('.work-card');
     if (!filters.length || !cards.length) return;
 
+    // Allowlist of valid filter values derived from the actual buttons in the DOM.
+    // Any dataset value not in this set is treated as non-matching.
+    const validFilters = new Set(['all']);
+    filters.forEach((btn) => {
+      const v = btn.dataset.filter;
+      if (typeof v === 'string' && v.trim()) validFilters.add(v.trim());
+    });
+
     filters.forEach((btn) => {
       btn.addEventListener('click', () => {
-        const cat = btn.dataset.filter;
+        const raw = btn.dataset.filter;
+        const cat = (typeof raw === 'string' && validFilters.has(raw.trim())) ? raw.trim() : 'all';
 
         filters.forEach((b) => {
           b.classList.remove('work-filter__btn--active');
@@ -244,7 +262,8 @@
         btn.setAttribute('aria-pressed', 'true');
 
         cards.forEach((card) => {
-          const show = cat === 'all' || card.dataset.category === cat;
+          const cardCat = typeof card.dataset.category === 'string' ? card.dataset.category.trim() : '';
+          const show = cat === 'all' || cardCat === cat;
           card.style.opacity   = show ? '1' : '0.25';
           card.style.transform = show ? 'scale(1)' : 'scale(0.97)';
           card.style.pointerEvents = show ? 'auto' : 'none';
@@ -259,6 +278,10 @@
     const form = document.querySelector('.project-form');
     if (!form) return;
 
+    // Hardcoded error messages — never derived from user input
+    const MSG_REQUIRED = 'This field is required.';
+    const MSG_EMAIL    = 'Please enter a valid email.';
+
     const showError = (input, msg) => {
       const field = input.closest('.form-field');
       if (!field) return;
@@ -269,6 +292,7 @@
         err.setAttribute('role', 'alert');
         field.appendChild(err);
       }
+      // textContent is safe — never innerHTML
       err.textContent = msg;
       input.setAttribute('aria-invalid', 'true');
     };
@@ -291,10 +315,10 @@
 
       form.querySelectorAll('[required]').forEach((input) => {
         if (!input.value.trim()) {
-          showError(input, 'This field is required.');
+          showError(input, MSG_REQUIRED);
           valid = false;
         } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-          showError(input, 'Please enter a valid email.');
+          showError(input, MSG_EMAIL);
           valid = false;
         }
       });
