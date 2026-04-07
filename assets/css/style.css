@@ -173,19 +173,6 @@ body.cursor--hover .cursor-ring {
   border-radius: 2px;
 }
 
-/* ===== SCROLL PROGRESS LINE ===== */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  background: var(--accent);
-  z-index: 9997;
-  width: 0%;
-  transform-origin: left;
-  transition: width 80ms linear;
-}
-
 /* ===== LAYOUT UTILITIES ===== */
 .container {
   width: 100%;
