@@ -269,8 +269,21 @@
           card.style.pointerEvents = show ? 'auto' : 'none';
           card.setAttribute('aria-hidden', show ? 'false' : 'true');
         });
+
+        // Update visible count label
+        const countEl = document.querySelector('.filter-bar__count');
+        if (countEl) {
+          const visible = cat === 'all'
+            ? cards.length
+            : [...cards].filter((c) => c.dataset.category === cat).length;
+          countEl.textContent = visible + (visible === 1 ? ' project' : ' projects');
+        }
       });
     });
+
+    // Init count
+    const initCount = document.querySelector('.filter-bar__count');
+    if (initCount) initCount.textContent = cards.length + ' projects';
   };
 
   /* ===== FORM VALIDATION (contact/start page) ===== */
@@ -334,6 +347,164 @@
     });
   };
 
+  /* ===== PROJECT FORM (start.html multi-step) ===== */
+  const initProjectForm = () => {
+    const formEl = document.getElementById('project-form');
+    if (!formEl) return;
+
+    const TOTAL_STEPS = 3;
+    let currentStep = 1;
+
+    const screens = [null,
+      document.getElementById('screen-1'),
+      document.getElementById('screen-2'),
+      document.getElementById('screen-3'),
+    ];
+    const indicators = [null,
+      document.getElementById('step-ind-1'),
+      document.getElementById('step-ind-2'),
+      document.getElementById('step-ind-3'),
+    ];
+    const progressFill = document.getElementById('form-progress-fill');
+    const progressBar  = progressFill?.parentElement;
+    const stepNumEl    = document.getElementById('current-step-num');
+    const successEl    = document.getElementById('form-success');
+
+    const goToStep = (step) => {
+      screens.slice(1).forEach((s) => { if (s) s.classList.remove('is-active'); });
+
+      indicators.slice(1).forEach((ind, i) => {
+        if (!ind) return;
+        const n = i + 1;
+        ind.classList.remove('is-active', 'is-done');
+        if (n < step)  ind.classList.add('is-done');
+        if (n === step) ind.classList.add('is-active');
+        const dot = ind.querySelector('.form-step-indicator__dot');
+        if (dot) {
+          dot.textContent = n < step ? '✓' : String(n);
+          dot.setAttribute('aria-current', n === step ? 'step' : 'false');
+        }
+      });
+
+      if (screens[step]) {
+        screens[step].classList.add('is-active');
+        const firstInput = screens[step].querySelector('input, textarea, select');
+        if (firstInput) setTimeout(() => firstInput.focus(), 80);
+      }
+
+      const pct = Math.round((step / TOTAL_STEPS) * 100);
+      if (progressFill) progressFill.style.width = pct + '%';
+      if (progressBar)  progressBar.setAttribute('aria-valuenow', pct);
+      if (stepNumEl)    stepNumEl.textContent = step;
+      currentStep = step;
+    };
+
+    const validateScreen = (step) => {
+      let valid = true;
+
+      if (step === 1) {
+        screens[1].querySelectorAll('[required]').forEach((input) => {
+          const err = input.parentElement.querySelector('.form-field__error');
+          if (!input.value.trim()) {
+            if (err) err.textContent = 'This field is required.';
+            input.setAttribute('aria-invalid', 'true');
+            valid = false;
+          } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+            if (err) err.textContent = 'Please enter a valid email.';
+            input.setAttribute('aria-invalid', 'true');
+            valid = false;
+          } else {
+            if (err) err.textContent = '';
+            input.setAttribute('aria-invalid', 'false');
+          }
+        });
+      }
+
+      if (step === 2) {
+        const nicheSelected = screens[2].querySelector('input[name="niche"]:checked');
+        const nicheErr      = document.getElementById('niche-error');
+        const descInput     = document.getElementById('project-desc');
+        const descErr       = descInput?.parentElement.querySelector('.form-field__error');
+
+        if (!nicheSelected) {
+          if (nicheErr) nicheErr.textContent = 'Please select one option.';
+          valid = false;
+        } else {
+          if (nicheErr) nicheErr.textContent = '';
+        }
+
+        if (descInput && !descInput.value.trim()) {
+          if (descErr) descErr.textContent = 'This field is required.';
+          descInput.setAttribute('aria-invalid', 'true');
+          valid = false;
+        } else if (descInput) {
+          if (descErr) descErr.textContent = '';
+          descInput.setAttribute('aria-invalid', 'false');
+        }
+      }
+
+      if (step === 3) {
+        const budgetSelected = screens[3].querySelector('input[name="budget"]:checked');
+        const budgetErr      = document.getElementById('budget-error');
+        if (!budgetSelected) {
+          if (budgetErr) budgetErr.textContent = 'Please select a budget range.';
+          valid = false;
+        } else {
+          if (budgetErr) budgetErr.textContent = '';
+        }
+      }
+
+      return valid;
+    };
+
+    const next1 = document.getElementById('next-1');
+    const next2 = document.getElementById('next-2');
+    const back2 = document.getElementById('back-2');
+    const back3 = document.getElementById('back-3');
+
+    next1?.addEventListener('click', () => { if (validateScreen(1)) goToStep(2); });
+    next2?.addEventListener('click', () => { if (validateScreen(2)) goToStep(3); });
+    back2?.addEventListener('click', () => goToStep(1));
+    back3?.addEventListener('click', () => goToStep(2));
+
+    formEl.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validateScreen(3)) return;
+
+      const submitBtn = document.getElementById('submit-btn');
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+      try {
+        const response = await fetch('https://formspree.io/f/mwvwabwq', {
+          method: 'POST',
+          body: new FormData(formEl),
+          headers: { 'Accept': 'application/json' },
+        });
+
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        if (formEl)    formEl.style.display = 'none';
+        if (successEl) successEl.classList.add('is-visible');
+        const stepCountEl = document.querySelector('.start-form-panel__heading');
+        if (stepCountEl) stepCountEl.style.display = 'none';
+        const stepsEl = document.querySelector('.form-steps');
+        if (stepsEl)   stepsEl.style.display = 'none';
+        const progressEl = document.querySelector('.form-progress');
+        if (progressEl) progressEl.style.display = 'none';
+        const successHead = successEl?.querySelector('.form-success__heading');
+        if (successHead) setTimeout(() => successHead.focus(), 100);
+
+      } catch (err) {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send brief →'; }
+        const budgetErr = document.getElementById('budget-error');
+        if (budgetErr) budgetErr.textContent = 'Something went wrong. Please try again or email us directly.';
+      }
+    });
+
+    // Init to step 1
+    goToStep(1);
+  };
+
   /* ===== INIT ALL ===== */
   const init = () => {
     initCursor();
@@ -345,6 +516,7 @@
     initAccordion();
     initWorkFilter();
     initFormValidation();
+    initProjectForm();
   };
 
   if (document.readyState === 'loading') {
