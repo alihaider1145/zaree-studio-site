@@ -63,6 +63,7 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -459,6 +460,7 @@ body.cursor--hover .cursor-ring {
 
 .site-footer__links {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-md);
 }
 
@@ -583,6 +585,16 @@ body.cursor--hover .cursor-ring {
     display: flex;
     position: relative;
     z-index: 9200; /* must exceed .site-nav__links--open (9100) */
+    cursor: pointer;
+  }
+
+  /* Restore pointer cursor on all interactive elements — cursor: none is desktop-only */
+  a,
+  button,
+  .choice-card__label,
+  .budget-option__label,
+  .work-filter__btn {
+    cursor: pointer;
   }
 
   .site-footer__inner {

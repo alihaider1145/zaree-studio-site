@@ -47,19 +47,6 @@
     });
   };
 
-  /* ===== STICKY NAV ===== */
-  const initStickyNav = () => {
-    const nav = document.querySelector('.site-nav');
-    if (!nav) return;
-
-    const update = () => {
-      nav.classList.toggle('site-nav--scrolled', window.scrollY > 60);
-    };
-
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  };
-
   /* ===== MOBILE NAV TOGGLE ===== */
   const initMobileNav = () => {
     const toggle = document.querySelector('.site-nav__toggle');
@@ -528,7 +515,6 @@
   /* ===== INIT ALL ===== */
   const init = () => {
     initCursor();
-    initStickyNav();
     initMobileNav();
     initScrollReveal();
     initHeroScroll();
