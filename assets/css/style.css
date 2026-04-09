@@ -328,6 +328,10 @@ body.cursor--hover .cursor-ring {
   border-color: var(--text-primary);
   color: var(--background);
 }
+/* Logo cloned into mobile overlay by JS — hidden on desktop */
+.site-nav__links-logo {
+  display: none;
+}
 
 /* Mobile nav toggle */
 .site-nav__toggle {
@@ -537,6 +541,12 @@ body.cursor--hover .cursor-ring {
     display: none;
   }
 
+  .site-nav__links-logo {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: var(--space-xl);
+  }
+
   .site-nav__links {
     position: fixed;
     top: 0;
@@ -571,6 +581,8 @@ body.cursor--hover .cursor-ring {
 
   .site-nav__toggle {
     display: flex;
+    position: relative;
+    z-index: 9200; /* must exceed .site-nav__links--open (9100) */
   }
 
   .site-footer__inner {
@@ -595,13 +607,11 @@ body.cursor--hover .cursor-ring {
 }
 /* ===== INDEX ===== */
 .hero-scroll-driver {
-  height: 400vh;
+  height: 100vh;
   position: relative;
 }
 
 .hero-scroll-pin {
-  position: sticky;
-  top: 0;
   height: 100vh;
   overflow: hidden;
   background: var(--background);
@@ -652,7 +662,7 @@ body.cursor--hover .cursor-ring {
 
 .hero-letter {
   font-family: var(--font-display);
-  font-size: clamp(88px, 16vw, 210px);
+  font-size: clamp(80px, 16vw, 210px);
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 0.88;

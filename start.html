@@ -358,6 +358,23 @@
             </legend>
             <p class="form-screen__sub">No wrong answers here. This just helps us come to the call prepared.</p>
 
+            <!-- Currency selector -->
+            <div class="form-field">
+              <label class="form-field__label" for="budget-currency">Your currency</label>
+              <select
+                class="form-field__select"
+                id="budget-currency"
+                name="currency"
+                aria-label="Select your currency"
+              >
+                <option value="PKR">PKR — Pakistani Rupee</option>
+                <option value="USD">USD — US Dollar</option>
+                <option value="GBP">GBP — British Pound</option>
+                <option value="AED">AED — UAE Dirham</option>
+                <option value="EUR">EUR — Euro</option>
+              </select>
+            </div>
+
             <!-- Budget selector -->
             <div class="form-field" role="group" aria-labelledby="budget-label">
               <p class="form-field__label" id="budget-label">Rough budget range <span aria-hidden="true">*</span></p>

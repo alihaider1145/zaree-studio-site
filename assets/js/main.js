@@ -47,22 +47,6 @@
     });
   };
 
-  /* ===== SCROLL PROGRESS ===== */
-  const initScrollProgress = () => {
-    const bar = document.querySelector('.scroll-progress');
-    if (!bar) return;
-
-    const update = () => {
-      const scrolled = safeNum(window.scrollY);
-      const total = safeNum(document.documentElement.scrollHeight - window.innerHeight);
-      const pct = total > 0 ? Math.min(100, Math.max(0, (scrolled / total) * 100)) : 0;
-      bar.style.width = safeNum(pct) + '%';
-    };
-
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  };
-
   /* ===== STICKY NAV ===== */
   const initStickyNav = () => {
     const nav = document.querySelector('.site-nav');
@@ -99,8 +83,16 @@
       isOpen ? close() : open();
     });
 
+    // Inject logo clone into mobile overlay (DRY — avoids editing every HTML file)
+    const logoEl = document.querySelector('.site-nav__logo');
+    if (logoEl) {
+      const mobileLogoLink = logoEl.cloneNode(true);
+      mobileLogoLink.classList.add('site-nav__links-logo');
+      links.insertBefore(mobileLogoLink, links.firstChild);
+    }
+
     // Close on link click
-    links.querySelectorAll('.site-nav__link').forEach((link) => {
+    links.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', close);
     });
 
@@ -131,60 +123,65 @@
   };
 
   /* ===== HERO STACKED SCROLL EFFECT ===== */
+  // Letters animate via wheel/touch delta — scroll is locked until all 5 light up.
+  // This replaces the old scroll-driver (400vh) approach; the driver is now 100vh.
   const initHeroScroll = () => {
-    const driver = document.querySelector('.hero-scroll-driver');
-    const pin    = document.querySelector('.hero-scroll-pin');
-    if (!driver || !pin) return;
+    const pin = document.querySelector('.hero-scroll-pin');
+    if (!pin) return;
 
-    const letters  = pin.querySelectorAll('.hero-letter');
-    const captions = pin.querySelectorAll('.hero-caption');
+    const letters         = pin.querySelectorAll('.hero-letter');
+    const captions        = pin.querySelectorAll('.hero-caption');
     const scrollIndicator = pin.querySelector('.hero__scroll-indicator');
-    const numLetters = letters.length;
+    const numLetters      = letters.length;
+    if (!numLetters) return;
 
-    const update = () => {
-      const rect    = driver.getBoundingClientRect();
-      const total   = safeNum(driver.offsetHeight - window.innerHeight, 1);
-      const scrolled = safeNum(-rect.top);
-      const progress = Math.max(0, Math.min(1, scrolled / total));
+    let progress   = 0;
+    let accumDelta = 0;
+    let touchLastY = 0;
+    const DELTA_TOTAL = 450; // total scroll-delta (px) to complete all letters
 
-      // Hide scroll indicator after first nudge
+    const getDeltaY = (e) => {
+      if (e.deltaMode === 1) return safeNum(e.deltaY) * 16;  // line mode
+      if (e.deltaMode === 2) return safeNum(e.deltaY) * 100; // page mode
+      return safeNum(e.deltaY);
+    };
+
+    const applyProgress = (p) => {
+      progress = Math.max(0, Math.min(1, p));
+
       if (scrollIndicator) {
         scrollIndicator.style.opacity = progress > 0.04 ? '0' : '1';
       }
 
-      // Activate one letter per band
       for (let i = 0; i < numLetters; i++) {
-        const lo = (i / numLetters) * 0.88;
-        const hi = ((i + 1) / numLetters) * 0.88;
-
-        const letter  = letters[i];
-        const caption = captions[i];
+        const lo      = i / numLetters;
+        const hi      = (i + 1) / numLetters;
         const active  = progress >= lo && progress < hi;
         const past    = progress >= hi;
+        const letter  = letters[i];
+        const caption = captions[i];
 
         letter.classList.toggle('hero-letter--active', active);
         letter.classList.toggle('hero-letter--past',   past && !active);
 
         if (active) {
-          const band = Math.max(0, Math.min(1, (progress - lo) / (hi - lo)));
-          const shadowY     = Math.round(safeNum(band) * 24);
-          const shadowBlur  = Math.round(safeNum(band) * 50);
-          const shadowAlpha = Math.min(0.45, Math.max(0, 0.15 + safeNum(band) * 0.3)).toFixed(2);
-          const translateY  = Math.min(0, -(safeNum(band) * 6));
-          letter.style.textShadow = `0 ${shadowY}px ${shadowBlur}px rgba(0,201,167,${shadowAlpha}), 0 0 40px rgba(0,201,167,0.45)`;
-          letter.style.transform  = `translateY(${translateY}px)`;
+          const band       = Math.max(0, Math.min(1, (progress - lo) / (hi - lo)));
+          const shadowY    = Math.round(safeNum(band) * 24);
+          const shadowBlur = Math.round(safeNum(band) * 50);
+          const alpha      = Math.min(0.45, Math.max(0, 0.15 + safeNum(band) * 0.3)).toFixed(2);
+          const ty         = Math.min(0, -(safeNum(band) * 6));
+          letter.style.textShadow = `0 ${shadowY}px ${shadowBlur}px rgba(0,201,167,${alpha}), 0 0 40px rgba(0,201,167,0.45)`;
+          letter.style.transform  = `translateY(${ty}px)`;
         } else {
           letter.style.textShadow = '';
           letter.style.transform  = '';
         }
 
-        if (caption) {
-          caption.classList.toggle('hero-caption--visible', active);
-        }
+        if (caption) caption.classList.toggle('hero-caption--visible', active);
       }
 
-      // Past all letters — reset (winding down)
-      if (progress >= 0.9) {
+      // Past all letters — reset styling
+      if (progress >= 1) {
         letters.forEach((l) => {
           l.classList.remove('hero-letter--active', 'hero-letter--past');
           l.style.textShadow = '';
@@ -194,8 +191,31 @@
       }
     };
 
-    window.addEventListener('scroll', update, { passive: true });
-    update();
+    const onWheel = (e) => {
+      if (window.scrollY > 0 || progress >= 1) return; // not at top, or already done
+      e.preventDefault();
+      accumDelta = Math.max(0, accumDelta + getDeltaY(e));
+      applyProgress(accumDelta / DELTA_TOTAL);
+    };
+
+    const onTouchStart = (e) => {
+      touchLastY = safeNum(e.touches[0]?.clientY);
+    };
+
+    const onTouchMove = (e) => {
+      if (window.scrollY > 0 || progress >= 1) return;
+      e.preventDefault();
+      const dy   = touchLastY - safeNum(e.touches[0]?.clientY);
+      touchLastY = safeNum(e.touches[0]?.clientY);
+      accumDelta = Math.max(0, accumDelta + dy);
+      applyProgress(accumDelta / DELTA_TOTAL);
+    };
+
+    window.addEventListener('wheel',      onWheel,      { passive: false });
+    window.addEventListener('touchstart', onTouchStart, { passive: true  });
+    window.addEventListener('touchmove',  onTouchMove,  { passive: false });
+
+    applyProgress(0);
   };
 
   /* ===== SERVICES ACCORDION ===== */
@@ -508,7 +528,6 @@
   /* ===== INIT ALL ===== */
   const init = () => {
     initCursor();
-    initScrollProgress();
     initStickyNav();
     initMobileNav();
     initScrollReveal();
