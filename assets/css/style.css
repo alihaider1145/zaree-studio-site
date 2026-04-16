@@ -3298,9 +3298,6 @@ body.cursor--hover .cursor-ring {
 .start-context {
   position: sticky;
   top: var(--nav-height);
-  height: calc(100vh - var(--nav-height));
-  overflow-y: auto;
-  scrollbar-width: none;
   padding: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
   background: var(--background-surface);
   border-right: 1px solid var(--border-subtle);
