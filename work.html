@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Zaree Studio — Selected work. Case studies for Café Bloom and Thomas Windsor portfolio." />
+  <meta name="description" content="Zaree Studio — Selected work. Café Bloom: a food business site built to be found on Google and convert visitors into customers." />
   <meta name="theme-color" content="#060608" />
 
   <title>Work — Zaree Studio</title>
 
   <meta property="og:title"       content="Work — Zaree Studio" />
-  <meta property="og:description" content="Real projects, real thinking. See how we build for cafés and artists." />
+  <meta property="og:description" content="Real projects, real results. See how we build websites that get food businesses found on Google." />
   <meta property="og:type"        content="website" />
 
   <!-- Modern browsers (SVG, sharp at any size) -->
@@ -49,11 +49,10 @@
         </button>
 
         <div class="site-nav__links" id="nav-links" role="list">
-          <a href="work.html"    class="site-nav__link" role="listitem" aria-current="page">Work</a>
-          <a href="cafes.html"   class="site-nav__link" role="listitem">Cafés</a>
-          <a href="artists.html" class="site-nav__link" role="listitem">Artists</a>
-          <a href="about.html"   class="site-nav__link" role="listitem">About</a>
-          <a href="start.html"   class="site-nav__cta"  role="listitem">Start a project →</a>
+          <a href="work.html"  class="site-nav__link" role="listitem" aria-current="page">Work</a>
+          <a href="food.html"  class="site-nav__link" role="listitem">Food Businesses</a>
+          <a href="about.html" class="site-nav__link" role="listitem">About</a>
+          <a href="start.html" class="site-nav__cta"  role="listitem">Start a project →</a>
         </div>
 
       </div>
@@ -75,38 +74,11 @@
         </h1>
 
         <p class="page-hero__sub reveal reveal--delay-3">
-          Two demo projects. Both built to prove a point — that a small agency from Quetta can craft something a business in any city would be proud to have.
+          Every project here is proof — that hand-written code, honest design, and a clear focus on results produces something worth showing.
         </p>
 
       </div>
     </section>
-
-    <!-- ===== FILTER BAR ===== -->
-    <div class="filter-bar" role="navigation" aria-label="Filter projects by category">
-      <div class="container">
-        <div class="filter-bar__inner">
-          <button
-            class="work-filter__btn work-filter__btn--active"
-            data-filter="all"
-            aria-pressed="true"
-            aria-label="Show all projects"
-          >All work</button>
-          <button
-            class="work-filter__btn"
-            data-filter="cafe"
-            aria-pressed="false"
-            aria-label="Show café projects"
-          >Cafés</button>
-          <button
-            class="work-filter__btn"
-            data-filter="artist"
-            aria-pressed="false"
-            aria-label="Show artist projects"
-          >Artists</button>
-          <span class="filter-bar__count" aria-live="polite">2 projects</span>
-        </div>
-      </div>
-    </div>
 
     <!-- ===== CASE STUDIES ===== -->
     <section class="case-studies" aria-label="Case studies">
@@ -160,10 +132,10 @@
                 </div>
 
                 <h2 class="work-card__title" id="cs-1-title">Café Bloom</h2>
-                <p class="work-card__subtitle">A warm space, finally online.</p>
+                <p class="work-card__subtitle">A warm space, finally findable.</p>
 
                 <p class="work-card__desc">
-                  Café Bloom is a concept brief for a local café that had a strong Instagram following but no real web presence. The challenge: translate warmth — a feeling that lives in lighting, music, and the smell of coffee — into pixels. The solution: a site that loads fast, feels unhurried, and gets a customer to book a table in under 12 seconds.
+                  Café Bloom is a concept brief for an independent café with a strong Instagram following and zero web presence. The challenge: translate warmth — lighting, music, the smell of good coffee — into a site that also gets found when someone searches "café near me." The result: fast, focused, and gets a customer to book a table in under 12 seconds.
                 </p>
 
                 <div class="work-card__tags" aria-label="Technologies and skills used">
@@ -172,16 +144,17 @@
                   <span class="work-card__tag">Vanilla JS</span>
                   <span class="work-card__tag">Mobile-first</span>
                   <span class="work-card__tag">Reservations UX</span>
+                  <span class="work-card__tag">Local SEO</span>
                 </div>
 
                 <div class="work-card__stats" aria-label="Project outcomes">
                   <div class="work-stat">
-                    <div class="work-stat__value">&lt;12s</div>
-                    <div class="work-stat__label">To book a table</div>
-                  </div>
-                  <div class="work-stat">
                     <div class="work-stat__value">98</div>
                     <div class="work-stat__label">Lighthouse score</div>
+                  </div>
+                  <div class="work-stat">
+                    <div class="work-stat__value">&lt;12s</div>
+                    <div class="work-stat__label">To book a table</div>
                   </div>
                   <div class="work-stat">
                     <div class="work-stat__value">8d</div>
@@ -193,11 +166,12 @@
 
               <div class="work-card__bottom">
                 <a
-                  href="https://alihaider1145.github.io/cafe-bloom-site/"
+                  href="https://alihaider1145.github.io/cafe-bloom-site"
                   class="work-card__link"
-                  aria-label="View Café Bloom project and café services"
+                  aria-label="View Café Bloom live project"
+                  target="_blank" rel="noopener noreferrer"
                 >
-                  View project →
+                  View live site →
                 </a>
                 <span class="work-card__num" aria-hidden="true">01</span>
               </div>
@@ -205,104 +179,27 @@
 
           </article>
 
-          <!-- ── CASE STUDY 02: Thomas Windsor ── -->
-          <article
-            class="work-card work-card--artist reveal reveal--delay-1"
-            id="thomas-windsor"
-            data-category="artist"
-            aria-labelledby="cs-2-title"
-          >
+        </div>
+      </div>
+    </section>
 
-            <!-- Visual panel -->
-            <div class="work-card__visual" aria-hidden="true">
-              <div class="work-card__visual-bg"></div>
-              <div class="work-card__art"></div>
-              <span class="work-card__watermark">02</span>
-
-              <!-- CSS mockup -->
-              <div class="work-card__mockup" role="img" aria-label="Thomas Windsor website mockup">
-                <div class="mockup__browser">
-                  <div class="mockup__bar">
-                    <div class="mockup__dot"></div>
-                    <div class="mockup__dot"></div>
-                    <div class="mockup__dot"></div>
-                    <div class="mockup__url"></div>
-                  </div>
-                  <div class="mockup__screen">
-                    <div style="
-                      position:absolute;inset:0;
-                      background: linear-gradient(135deg, #0e0a14 0%, #1a1020 100%);
-                      display:flex;flex-direction:column;
-                      padding:0.4rem;gap:0.2rem;
-                    ">
-                      <div style="display:flex;gap:0.2rem;flex:1;">
-                        <div style="flex:1;background:rgba(140,90,220,0.12);border-radius:1px;"></div>
-                        <div style="flex:1.4;background:rgba(180,120,50,0.08);border-radius:1px;"></div>
-                      </div>
-                      <div class="mockup__line" style="width:50%;height:2px;margin-top:3px;"></div>
-                      <div class="mockup__line mockup__line--xshort" style="height:2px;"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Content panel -->
-            <div class="work-card__content">
-              <div class="work-card__top">
-
-                <div class="work-card__meta">
-                  <span class="work-card__category">Artist / Portfolio</span>
-                  <span class="work-card__year">2025</span>
-                </div>
-
-                <h2 class="work-card__title" id="cs-2-title">Thomas Windsor</h2>
-                <p class="work-card__subtitle">A photographer's space, not a slideshow.</p>
-
-                <p class="work-card__desc">
-                  Thomas Windsor is a concept portfolio for an independent photographer. The brief: make the site feel like walking into a gallery — quiet, intentional, where each image has room to breathe. No grids, no scrollable feeds. A curated experience that positions the work at the level collectors expect.
-                </p>
-
-                <div class="work-card__tags" aria-label="Technologies and skills used">
-                  <span class="work-card__tag">Portfolio design</span>
-                  <span class="work-card__tag">HTML / CSS</span>
-                  <span class="work-card__tag">Vanilla JS</span>
-                  <span class="work-card__tag">Gallery UX</span>
-                  <span class="work-card__tag">Editorial layout</span>
-                </div>
-
-                <div class="work-card__stats" aria-label="Project outcomes">
-                  <div class="work-stat">
-                    <div class="work-stat__value">Gallery</div>
-                    <div class="work-stat__label">Feel, not a feed</div>
-                  </div>
-                  <div class="work-stat">
-                    <div class="work-stat__value">97</div>
-                    <div class="work-stat__label">Lighthouse score</div>
-                  </div>
-                  <div class="work-stat">
-                    <div class="work-stat__value">10d</div>
-                    <div class="work-stat__label">Delivery time</div>
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="work-card__bottom">
-                <a
-                  href="https://thomas-windsor-site.netlify.app/"
-                  class="work-card__link"
-                  aria-label="View Thomas Windsor project and artist services"
-                  target="_blank" rel="noopener noreferrer"
-                >
-                  View project →
-                </a>
-                <span class="work-card__num" aria-hidden="true">02</span>
-              </div>
-            </div>
-
-          </article>
-
+    <!-- ===== NEXT PROJECT PLACEHOLDER ===== -->
+    <section class="section next-project" aria-labelledby="next-project-heading">
+      <div class="container">
+        <div class="next-project__inner reveal">
+          <div class="next-project__label" aria-hidden="true">02</div>
+          <div class="next-project__content">
+            <p class="section__tag">Coming soon</p>
+            <h2 class="next-project__heading" id="next-project-heading">
+              Next project —<br><em>yours?</em>
+            </h2>
+            <p class="next-project__desc">
+              One slot open this month. If your café or restaurant is invisible on Google, this is where that changes.
+            </p>
+            <a href="start.html" class="btn-primary">
+              Start a project →
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -387,11 +284,12 @@
   <footer class="site-footer">
     <div class="container">
       <div class="site-footer__inner">
-        <p class="site-footer__copy">© 2026 Zaree Studio. Quetta, Pakistan.</p>
+        <p class="site-footer__copy">© 2026 Zaree Studio.</p>
         <nav class="site-footer__links" aria-label="Footer navigation">
           <a href="https://instagram.com/zareestudios" target="_blank" rel="noopener noreferrer" class="site-footer__link">Instagram</a>
           <a href="https://www.facebook.com/profile.php?id=61572127582054" target="_blank" rel="noopener noreferrer" class="site-footer__link">Facebook</a>
           <a href="https://wa.me/03337128493" target="_blank" rel="noopener noreferrer" class="site-footer__link">WhatsApp</a>
+          <a href="food.html"    class="site-footer__link">Food Businesses</a>
           <a href="privacy.html" class="site-footer__link">Privacy</a>
           <a href="terms.html"   class="site-footer__link">Terms</a>
         </nav>
@@ -399,7 +297,7 @@
     </div>
   </footer>
 
-  </script><script src="assets/js/main.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
 
 </body>
 </html>

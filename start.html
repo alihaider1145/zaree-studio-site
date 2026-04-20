@@ -12,7 +12,6 @@
   <meta property="og:description" content="One short form. A conversation within 24 hours. No commitment." />
   <meta property="og:type"        content="website" />
 
-  
   <!-- Modern browsers (SVG, sharp at any size) -->
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
 
@@ -21,7 +20,6 @@
 
   <!-- iOS/Android home screen icon -->
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
-
 
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
@@ -51,11 +49,10 @@
         </button>
 
         <div class="site-nav__links" id="nav-links" role="list">
-          <a href="work.html"    class="site-nav__link" role="listitem">Work</a>
-          <a href="cafes.html"   class="site-nav__link" role="listitem">Cafés</a>
-          <a href="artists.html" class="site-nav__link" role="listitem">Artists</a>
-          <a href="about.html"   class="site-nav__link" role="listitem">About</a>
-          <a href="start.html"   class="site-nav__cta"  role="listitem" aria-current="page">Start a project →</a>
+          <a href="work.html"  class="site-nav__link" role="listitem">Work</a>
+          <a href="food.html"  class="site-nav__link" role="listitem">Food Businesses</a>
+          <a href="about.html" class="site-nav__link" role="listitem">About</a>
+          <a href="start.html" class="site-nav__cta"  role="listitem" aria-current="page">Start a project →</a>
         </div>
 
       </div>
@@ -79,7 +76,7 @@
             <span class="start-context__heading-serif">something real.</span>
           </h1>
           <p class="start-context__sub">
-            Fill in the form, it takes 2 minutes. Submitting the form doesn't means you have to commit to a project, just a conversation about what you need.
+            Fill in the form — it takes 2 minutes. Submitting doesn't commit you to anything, just starts a conversation about what you need.
           </p>
         </div>
 
@@ -229,7 +226,7 @@
             </div>
 
             <div class="form-field">
-              <label class="form-field__label" for="business-name">Business or studio name <span aria-hidden="true">*</span></label>
+              <label class="form-field__label" for="business-name">Business name <span aria-hidden="true">*</span></label>
               <input
                 class="form-field__input"
                 type="text"
@@ -284,21 +281,6 @@
                     class="choice-card__input"
                     type="radio"
                     name="niche"
-                    id="niche-artist"
-                    value="artist"
-                  />
-                  <label class="choice-card__label" for="niche-artist">
-                    <span class="choice-card__icon" aria-hidden="true">🎨</span>
-                    <span class="choice-card__title">Artist or creative</span>
-                    <span class="choice-card__desc">Portfolio, commissions, gallery</span>
-                  </label>
-                </div>
-
-                <div class="choice-card">
-                  <input
-                    class="choice-card__input"
-                    type="radio"
-                    name="niche"
                     id="niche-other"
                     value="other"
                   />
@@ -334,7 +316,7 @@
                 class="form-field__input form-field__textarea"
                 id="project-desc"
                 name="project_description"
-                placeholder="We're a café in Quetta with a strong Instagram following but no website. We need somewhere customers can see our menu, book a table, and find us on Google…"
+                placeholder="We're an independent café with a loyal following but no website. We need somewhere customers can see our menu, book a table, and find us when they search Google…"
                 required
                 aria-required="true"
               ></textarea>
@@ -376,11 +358,11 @@
                 name="currency"
                 aria-label="Select your currency"
               >
-                <option value="PKR">PKR — Pakistani Rupee</option>
                 <option value="USD">USD — US Dollar</option>
                 <option value="GBP">GBP — British Pound</option>
-                <option value="AED">AED — UAE Dirham</option>
                 <option value="EUR">EUR — Euro</option>
+                <option value="AED">AED — UAE Dirham</option>
+                <option value="PKR">PKR — Pakistani Rupee</option>
               </select>
             </div>
 
@@ -395,12 +377,12 @@
                     type="radio"
                     name="budget"
                     id="budget-1"
-                    value="under_50k"
+                    value="under_500_usd"
                     required
                     aria-required="true"
                   />
                   <label class="budget-option__label" for="budget-1">
-                    <span class="budget-option__range">Under PKR 50,000</span>
+                    <span class="budget-option__range">Under $500</span>
                     <span class="budget-option__desc">Entry-level</span>
                     <span class="budget-option__check" aria-hidden="true"></span>
                   </label>
@@ -412,10 +394,10 @@
                     type="radio"
                     name="budget"
                     id="budget-2"
-                    value="50k_100k"
+                    value="500_1000_usd"
                   />
                   <label class="budget-option__label" for="budget-2">
-                    <span class="budget-option__range">PKR 50,000 – 100,000</span>
+                    <span class="budget-option__range">$500 – $1,000</span>
                     <span class="budget-option__desc">Standard site</span>
                     <span class="budget-option__check" aria-hidden="true"></span>
                   </label>
@@ -427,10 +409,10 @@
                     type="radio"
                     name="budget"
                     id="budget-3"
-                    value="100k_200k"
+                    value="1000_2000_usd"
                   />
                   <label class="budget-option__label" for="budget-3">
-                    <span class="budget-option__range">PKR 100,000 – 200,000</span>
+                    <span class="budget-option__range">$1,000 – $2,000</span>
                     <span class="budget-option__desc">Full custom build</span>
                     <span class="budget-option__check" aria-hidden="true"></span>
                   </label>
@@ -498,11 +480,12 @@
   <footer class="site-footer">
     <div class="container">
       <div class="site-footer__inner">
-        <p class="site-footer__copy">© 2026 Zaree Studio. Quetta, Pakistan.</p>
+        <p class="site-footer__copy">© 2026 Zaree Studio.</p>
         <nav class="site-footer__links" aria-label="Footer navigation">
-          <a href="https://instagram.com/zareestudios"  target="_blank" rel="noopener noreferrer" class="site-footer__link">Instagram</a>
-          <a href="https://www.facebook.com/profile.php?id=61572127582054"   target="_blank" rel="noopener noreferrer" class="site-footer__link">Facebook</a>
+          <a href="https://instagram.com/zareestudios" target="_blank" rel="noopener noreferrer" class="site-footer__link">Instagram</a>
+          <a href="https://www.facebook.com/profile.php?id=61572127582054" target="_blank" rel="noopener noreferrer" class="site-footer__link">Facebook</a>
           <a href="https://wa.me/03337128493" target="_blank" rel="noopener noreferrer" class="site-footer__link">WhatsApp</a>
+          <a href="food.html"    class="site-footer__link">Food Businesses</a>
           <a href="privacy.html" class="site-footer__link">Privacy</a>
           <a href="terms.html"   class="site-footer__link">Terms</a>
         </nav>
@@ -510,7 +493,7 @@
     </div>
   </footer>
 
-  </script><script src="assets/js/main.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
 
 </body>
 </html>
