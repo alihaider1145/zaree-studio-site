@@ -1,533 +1,454 @@
-/* ============================================================
-   ZAREE STUDIO — main.js
-   Shared across all pages
-   ============================================================ */
-
 (function () {
   'use strict';
 
-  /* ===== SECURITY UTIL ===== */
-  // Coerces a value to a finite number; returns fallback if not.
-  // Prevents any non-numeric value from reaching style/attribute sinks.
-  const safeNum = (v, fallback) => {
-    const n = Number(v);
-    return Number.isFinite(n) ? n : (fallback !== undefined ? fallback : 0);
+  /* =========================================================
+     UTILITIES
+  ========================================================= */
+
+  /**
+   * Returns scroll progress (0–1) of a tall scroll-driver container.
+   * progress = 0 when top of container hits viewport top,
+   * progress = 1 when bottom of container hits viewport bottom.
+   */
+  const getProgress = (container) => {
+    const rect = container.getBoundingClientRect();
+    const scrolled = -rect.top;
+    const total = rect.height - window.innerHeight;
+    return Math.min(Math.max(scrolled / total, 0), 1);
   };
 
-  /* ===== CURSOR ===== */
-  const initCursor = () => {
-    const cursor = document.querySelector('.cursor');
-    const ring = document.querySelector('.cursor-ring');
-    if (!cursor || !ring) return;
-
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-    let animFrame;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = safeNum(e.clientX);
-      mouseY = safeNum(e.clientY);
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top  = mouseY + 'px';
-    });
-
-    const animateRing = () => {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      ring.style.left = safeNum(ringX) + 'px';
-      ring.style.top  = safeNum(ringY) + 'px';
-      animFrame = requestAnimationFrame(animateRing);
+  /** requestAnimationFrame throttle for scroll handlers */
+  const onScroll = (callback) => {
+    let ticking = false;
+    return () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          callback();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    animateRing();
-
-    const hoverEls = document.querySelectorAll('a, button, [role="button"], .card, input, textarea, select, label');
-    hoverEls.forEach((el) => {
-      el.addEventListener('mouseenter', () => document.body.classList.add('cursor--hover'));
-      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor--hover'));
-    });
   };
 
-  /* ===== MOBILE NAV TOGGLE ===== */
-  const initMobileNav = () => {
-    const toggle = document.querySelector('.site-nav__toggle');
-    const links  = document.querySelector('.site-nav__links');
-    if (!toggle || !links) return;
+  /* =========================================================
+     NAV — STICKY CLASS + HAMBURGER TOGGLE
+  ========================================================= */
+  const initNav = () => {
+    const nav        = document.getElementById('nav');
+    const hamburger  = document.querySelector('.nav__hamburger');
+    const mobileMenu = document.getElementById('nav-mobile');
 
-    const open = () => {
-      links.classList.add('site-nav__links--open');
-      toggle.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    };
+    if (!nav) return;
 
-    const close = () => {
-      links.classList.remove('site-nav__links--open');
-      toggle.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    };
+    // Sticky scroll class
+    window.addEventListener('scroll', onScroll(() => {
+      if (window.scrollY > 60) {
+        nav.classList.add('nav--scrolled');
+      } else {
+        nav.classList.remove('nav--scrolled');
+      }
+    })(), { passive: true });
 
-    toggle.addEventListener('click', () => {
-      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-      isOpen ? close() : open();
-    });
+    // Hamburger toggle
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('is-open');
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+      });
 
-    // Inject logo clone into mobile overlay (DRY — avoids editing every HTML file)
-    const logoEl = document.querySelector('.site-nav__logo');
-    if (logoEl) {
-      const mobileLogoLink = logoEl.cloneNode(true);
-      mobileLogoLink.classList.add('site-nav__links-logo');
-      links.insertBefore(mobileLogoLink, links.firstChild);
+      // Close on outside click
+      document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target)) {
+          mobileMenu.classList.remove('is-open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          mobileMenu.classList.remove('is-open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      });
     }
-
-    // Close on link click
-    links.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', close);
-    });
-
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') close();
-    });
   };
 
-  /* ===== SCROLL REVEAL ===== */
+  /* =========================================================
+     SCROLL REVEAL — IntersectionObserver
+  ========================================================= */
   const initScrollReveal = () => {
-    const els = document.querySelectorAll('.reveal');
-    if (!els.length) return;
+    const targets = document.querySelectorAll('.reveal');
+    if (!targets.length) return;
+
+    // Respect prefers-reduced-motion
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      targets.forEach(el => el.classList.add('is-visible'));
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('reveal--in');
+            entry.target.classList.add('is-visible');
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
     );
 
-    els.forEach((el) => observer.observe(el));
+    targets.forEach(el => observer.observe(el));
   };
 
-  /* ===== HERO STACKED SCROLL EFFECT ===== */
-  // Letters animate via wheel/touch delta — scroll is locked until all 5 light up.
-  // This replaces the old scroll-driver (400vh) approach; the driver is now 100vh.
-  const initHeroScroll = () => {
-    const pin = document.querySelector('.hero-scroll-pin');
-    if (!pin) return;
+  /* =========================================================
+     SEARCH SWAP — index.html Section 02
+  ========================================================= */
+  const initSearchSwap = () => {
+    const container = document.getElementById('search-swap-section');
+    if (!container) return;
 
-    const letters         = pin.querySelectorAll('.hero-letter');
-    const captions        = pin.querySelectorAll('.hero-caption');
-    const scrollIndicator = pin.querySelector('.hero__scroll-indicator');
-    const numLetters      = letters.length;
-    if (!numLetters) return;
+    const stage0      = document.getElementById('ss-stage-0');
+    const stageT      = document.getElementById('ss-stage-transition');
+    const stage1      = document.getElementById('ss-stage-1');
 
-    let progress   = 0;
-    let accumDelta = 0;
-    let touchLastY = 0;
-    const DELTA_TOTAL = 450; // total scroll-delta (px) to complete all letters
+    if (!stage0 || !stageT || !stage1) return;
 
-    const getDeltaY = (e) => {
-      if (e.deltaMode === 1) return safeNum(e.deltaY) * 16;  // line mode
-      if (e.deltaMode === 2) return safeNum(e.deltaY) * 100; // page mode
-      return safeNum(e.deltaY);
+    let currentStage = 'stage0';
+
+    const setStage = (id) => {
+      if (currentStage === id) return;
+      currentStage = id;
+
+      [stage0, stageT, stage1].forEach(el => el.classList.remove('is-active'));
+
+      if (id === 'stage0')      stage0.classList.add('is-active');
+      else if (id === 'transition') stageT.classList.add('is-active');
+      else if (id === 'stage1') stage1.classList.add('is-active');
     };
 
-    const applyProgress = (p) => {
-      progress = Math.max(0, Math.min(1, p));
+    const update = () => {
+      const p = getProgress(container);
 
-      if (scrollIndicator) {
-        scrollIndicator.style.opacity = progress > 0.04 ? '0' : '1';
-      }
+      if (p < 0.33)       setStage('stage0');
+      else if (p < 0.50)  setStage('transition');
+      else                setStage('stage1');
+    };
 
-      for (let i = 0; i < numLetters; i++) {
-        const lo      = i / numLetters;
-        const hi      = (i + 1) / numLetters;
-        const active  = progress >= lo && progress < hi;
-        const past    = progress >= hi;
-        const letter  = letters[i];
-        const caption = captions[i];
+    window.addEventListener('scroll', onScroll(update), { passive: true });
+    update();
+  };
 
-        letter.classList.toggle('hero-letter--active', active);
-        letter.classList.toggle('hero-letter--past',   past && !active);
+  /* =========================================================
+     DEV LOG — index.html Section 03
+  ========================================================= */
+  const initDevLog = () => {
+    const container = document.getElementById('devlog-section');
+    if (!container) return;
 
-        if (active) {
-          const band       = Math.max(0, Math.min(1, (progress - lo) / (hi - lo)));
-          const shadowY    = Math.round(safeNum(band) * 24);
-          const shadowBlur = Math.round(safeNum(band) * 50);
-          const alpha      = Math.min(0.45, Math.max(0, 0.15 + safeNum(band) * 0.3)).toFixed(2);
-          const ty         = Math.min(0, -(safeNum(band) * 6));
-          letter.style.textShadow = `0 ${shadowY}px ${shadowBlur}px rgba(0,201,167,${alpha}), 0 0 40px rgba(0,201,167,0.45)`;
-          letter.style.transform  = `translateY(${ty}px)`;
+    const stages = [
+      document.getElementById('dl-stage-0'),
+      document.getElementById('dl-stage-1'),
+      document.getElementById('dl-stage-2'),
+      document.getElementById('dl-stage-3'),
+      document.getElementById('dl-stage-4'),
+    ];
+
+    if (stages.some(s => !s)) return;
+
+    // Elements that animate when their stage becomes active
+    const checkItems    = document.querySelectorAll('#dl-stage-1 .devlog-checklist__item');
+    const techBoxMaps   = document.getElementById('tech-box-maps');
+    const techBoxDomain = document.getElementById('tech-box-domain');
+    const chatBubble    = document.getElementById('chat-bubble');
+    const projectDone   = document.getElementById('project-complete');
+
+    let activeStageIndex = 0;
+
+    const activateStage = (index) => {
+      if (activeStageIndex === index) return;
+      activeStageIndex = index;
+
+      stages.forEach((s, i) => {
+        if (i === index) {
+          s.classList.add('is-active');
         } else {
-          letter.style.textShadow = '';
-          letter.style.transform  = '';
-        }
-
-        if (caption) caption.classList.toggle('hero-caption--visible', active);
-      }
-
-      // Past all letters — reset styling
-      if (progress >= 1) {
-        letters.forEach((l) => {
-          l.classList.remove('hero-letter--active', 'hero-letter--past');
-          l.style.textShadow = '';
-          l.style.transform  = '';
-        });
-        captions.forEach((c) => c.classList.remove('hero-caption--visible'));
-      }
-    };
-
-    const onWheel = (e) => {
-      if (window.scrollY > 0 || progress >= 1) return; // not at top, or already done
-      e.preventDefault();
-      accumDelta = Math.max(0, accumDelta + getDeltaY(e));
-      applyProgress(accumDelta / DELTA_TOTAL);
-    };
-
-    const onTouchStart = (e) => {
-      touchLastY = safeNum(e.touches[0]?.clientY);
-    };
-
-    const onTouchMove = (e) => {
-      if (window.scrollY > 0 || progress >= 1) return;
-      e.preventDefault();
-      const dy   = touchLastY - safeNum(e.touches[0]?.clientY);
-      touchLastY = safeNum(e.touches[0]?.clientY);
-      accumDelta = Math.max(0, accumDelta + dy);
-      applyProgress(accumDelta / DELTA_TOTAL);
-    };
-
-    window.addEventListener('wheel',      onWheel,      { passive: false });
-    window.addEventListener('touchstart', onTouchStart, { passive: true  });
-    window.addEventListener('touchmove',  onTouchMove,  { passive: false });
-
-    applyProgress(0);
-  };
-
-  /* ===== SERVICES ACCORDION ===== */
-  const initAccordion = () => {
-    const items = document.querySelectorAll('.accordion__item');
-    if (!items.length) return;
-
-    items.forEach((item) => {
-      const trigger = item.querySelector('.accordion__trigger');
-      const body    = item.querySelector('.accordion__body');
-      if (!trigger || !body) return;
-
-      trigger.addEventListener('click', () => {
-        const isOpen = item.classList.contains('accordion__item--open');
-
-        // Close all
-        items.forEach((i) => {
-          i.classList.remove('accordion__item--open');
-          i.querySelector('.accordion__trigger')?.setAttribute('aria-expanded', 'false');
-          const b = i.querySelector('.accordion__body');
-          if (b) b.style.maxHeight = '0';
-        });
-
-        // Open clicked if it was closed
-        if (!isOpen) {
-          item.classList.add('accordion__item--open');
-          trigger.setAttribute('aria-expanded', 'true');
-          body.style.maxHeight = safeNum(body.scrollHeight) + 'px';
+          s.classList.remove('is-active');
         }
       });
 
-      // Init closed
-      trigger.setAttribute('aria-expanded', 'false');
-      body.style.maxHeight = '0';
-      body.style.overflow  = 'hidden';
-      body.style.transition = 'max-height 0.4s cubic-bezier(0.16,1,0.3,1)';
-    });
-  };
+      // Trigger stage-specific sub-animations
+      if (index === 1) triggerChecklist();
+      if (index === 3) triggerTechBoxes();
+      if (index === 4) triggerHandover();
+    };
 
-  /* ===== WORK FILTER (projects page) ===== */
-  const initWorkFilter = () => {
-    const filters = document.querySelectorAll('.work-filter__btn');
-    const cards   = document.querySelectorAll('.work-card');
-    if (!filters.length || !cards.length) return;
+    const triggerChecklist = () => {
+      checkItems.forEach(item => item.classList.add('is-visible'));
+    };
 
-    // Allowlist of valid filter values derived from the actual buttons in the DOM.
-    // Any dataset value not in this set is treated as non-matching.
-    const validFilters = new Set(['all']);
-    filters.forEach((btn) => {
-      const v = btn.dataset.filter;
-      if (typeof v === 'string' && v.trim()) validFilters.add(v.trim());
-    });
-
-    filters.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const raw = btn.dataset.filter;
-        const cat = (typeof raw === 'string' && validFilters.has(raw.trim())) ? raw.trim() : 'all';
-
-        filters.forEach((b) => {
-          b.classList.remove('work-filter__btn--active');
-          b.setAttribute('aria-pressed', 'false');
-        });
-        btn.classList.add('work-filter__btn--active');
-        btn.setAttribute('aria-pressed', 'true');
-
-        cards.forEach((card) => {
-          const cardCat = typeof card.dataset.category === 'string' ? card.dataset.category.trim() : '';
-          const show = cat === 'all' || cardCat === cat;
-          card.style.opacity   = show ? '1' : '0.25';
-          card.style.transform = show ? 'scale(1)' : 'scale(0.97)';
-          card.style.pointerEvents = show ? 'auto' : 'none';
-          card.setAttribute('aria-hidden', show ? 'false' : 'true');
-        });
-
-        // Update visible count label
-        const countEl = document.querySelector('.filter-bar__count');
-        if (countEl) {
-          const visible = cat === 'all'
-            ? cards.length
-            : [...cards].filter((c) => c.dataset.category === cat).length;
-          countEl.textContent = visible + (visible === 1 ? ' project' : ' projects');
-        }
-      });
-    });
-
-    // Init count
-    const initCount = document.querySelector('.filter-bar__count');
-    if (initCount) initCount.textContent = cards.length + ' projects';
-  };
-
-  /* ===== FORM VALIDATION (contact/start page) ===== */
-  const initFormValidation = () => {
-    const form = document.querySelector('.project-form');
-    if (!form) return;
-
-    // Hardcoded error messages — never derived from user input
-    const MSG_REQUIRED = 'This field is required.';
-    const MSG_EMAIL    = 'Please enter a valid email.';
-
-    const showError = (input, msg) => {
-      const field = input.closest('.form-field');
-      if (!field) return;
-      let err = field.querySelector('.form-field__error');
-      if (!err) {
-        err = document.createElement('span');
-        err.className = 'form-field__error';
-        err.setAttribute('role', 'alert');
-        field.appendChild(err);
+    const triggerTechBoxes = () => {
+      if (techBoxMaps)   techBoxMaps.classList.add('is-visible');
+      if (techBoxDomain) {
+        setTimeout(() => techBoxDomain.classList.add('is-visible'), 180);
       }
-      // textContent is safe — never innerHTML
-      err.textContent = msg;
-      input.setAttribute('aria-invalid', 'true');
     };
 
-    const clearError = (input) => {
-      const field = input.closest('.form-field');
-      if (!field) return;
-      const err = field.querySelector('.form-field__error');
-      if (err) err.textContent = '';
-      input.setAttribute('aria-invalid', 'false');
+    const triggerHandover = () => {
+      if (chatBubble)  chatBubble.classList.add('is-visible');
+      if (projectDone) {
+        setTimeout(() => projectDone.classList.add('is-visible'), 350);
+      }
     };
 
-    form.querySelectorAll('input, textarea, select').forEach((input) => {
-      input.addEventListener('input', () => clearError(input));
-    });
+    // Map progress ranges to stage indices
+    const BREAKPOINTS = [0.15, 0.35, 0.55, 0.75];
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+    const update = () => {
+      const p = getProgress(container);
+
+      let stageIndex = 0;
+      if (p >= BREAKPOINTS[3])      stageIndex = 4;
+      else if (p >= BREAKPOINTS[2]) stageIndex = 3;
+      else if (p >= BREAKPOINTS[1]) stageIndex = 2;
+      else if (p >= BREAKPOINTS[0]) stageIndex = 1;
+
+      activateStage(stageIndex);
+    };
+
+    window.addEventListener('scroll', onScroll(update), { passive: true });
+    update();
+  };
+
+  /* =========================================================
+     STREET SCENE — food.html Section 02
+  ========================================================= */
+  const initStreetScene = () => {
+    const container = document.getElementById('street-section');
+    if (!container) return;
+
+    const stage0 = document.getElementById('st-stage-0');
+    const stage1 = document.getElementById('st-stage-1');
+
+    if (!stage0 || !stage1) return;
+
+    let currentStage = 'stage0';
+
+    const setStage = (id) => {
+      if (currentStage === id) return;
+      currentStage = id;
+
+      [stage0, stage1].forEach(el => el.classList.remove('is-active'));
+
+      if (id === 'stage0') stage0.classList.add('is-active');
+      else                 stage1.classList.add('is-active');
+    };
+
+    const update = () => {
+      const p = getProgress(container);
+      setStage(p < 0.5 ? 'stage0' : 'stage1');
+    };
+
+    window.addEventListener('scroll', onScroll(update), { passive: true });
+    update();
+  };
+
+  /* =========================================================
+     MULTI-STEP FORM — start.html
+  ========================================================= */
+  const initMultiStepForm = () => {
+    const step1El  = document.getElementById('step-1');
+    const step2El  = document.getElementById('step-2');
+    const step3El  = document.getElementById('step-3');
+    const successEl = document.getElementById('form-success');
+
+    if (!step1El || !step2El || !step3El) return;
+
+    const dots = document.querySelectorAll('.form-step__dot');
+
+    // ── Step tracking ──
+    const updateDots = (currentStep) => {
+      dots.forEach((dot, i) => {
+        dot.classList.remove('is-current', 'is-done');
+        const stepNum = i + 1;
+        if (stepNum < currentStep)  dot.classList.add('is-done');
+        if (stepNum === currentStep) dot.classList.add('is-current');
+      });
+    };
+
+    const showStep = (stepEl, stepNum) => {
+      [step1El, step2El, step3El].forEach(s => s.classList.remove('is-active'));
+      stepEl.classList.add('is-active');
+      updateDots(stepNum);
+      stepEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    // ── Field validation helpers ──
+    const validateField = (inputId, errorId, wrapId) => {
+      const input = document.getElementById(inputId);
+      const error = document.getElementById(errorId);
+      const wrap  = wrapId ? document.getElementById(wrapId) : null;
+      if (!input) return true;
+
+      const val = input.value.trim();
       let valid = true;
 
-      form.querySelectorAll('[required]').forEach((input) => {
-        if (!input.value.trim()) {
-          showError(input, MSG_REQUIRED);
-          valid = false;
-        } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-          showError(input, MSG_EMAIL);
-          valid = false;
-        }
-      });
-
-      if (valid) {
-        const btn = form.querySelector('[type="submit"]');
-        if (btn) {
-          btn.textContent = 'Sent ✓';
-          btn.disabled = true;
-        }
-        // TODO: wire to Formspree / Netlify forms / email service
-      }
-    });
-  };
-
-  /* ===== PROJECT FORM (start.html multi-step) ===== */
-  const initProjectForm = () => {
-    const formEl = document.getElementById('project-form');
-    if (!formEl) return;
-
-    const TOTAL_STEPS = 3;
-    let currentStep = 1;
-
-    const screens = [null,
-      document.getElementById('screen-1'),
-      document.getElementById('screen-2'),
-      document.getElementById('screen-3'),
-    ];
-    const indicators = [null,
-      document.getElementById('step-ind-1'),
-      document.getElementById('step-ind-2'),
-      document.getElementById('step-ind-3'),
-    ];
-    const progressFill = document.getElementById('form-progress-fill');
-    const progressBar  = progressFill?.parentElement;
-    const stepNumEl    = document.getElementById('current-step-num');
-    const successEl    = document.getElementById('form-success');
-
-    const goToStep = (step) => {
-      screens.slice(1).forEach((s) => { if (s) s.classList.remove('is-active'); });
-
-      indicators.slice(1).forEach((ind, i) => {
-        if (!ind) return;
-        const n = i + 1;
-        ind.classList.remove('is-active', 'is-done');
-        if (n < step)  ind.classList.add('is-done');
-        if (n === step) ind.classList.add('is-active');
-        const dot = ind.querySelector('.form-step-indicator__dot');
-        if (dot) {
-          dot.textContent = n < step ? '✓' : String(n);
-          dot.setAttribute('aria-current', n === step ? 'step' : 'false');
-        }
-      });
-
-      if (screens[step]) {
-        screens[step].classList.add('is-active');
-        const firstInput = screens[step].querySelector('input, textarea, select');
-        if (firstInput) setTimeout(() => firstInput.focus(), 80);
+      if (input.type === 'email') {
+        valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      } else {
+        valid = val.length > 0;
       }
 
-      const pct = Math.round((step / TOTAL_STEPS) * 100);
-      if (progressFill) progressFill.style.width = pct + '%';
-      if (progressBar)  progressBar.setAttribute('aria-valuenow', pct);
-      if (stepNumEl)    stepNumEl.textContent = step;
-      currentStep = step;
-    };
-
-    const validateScreen = (step) => {
-      let valid = true;
-
-      if (step === 1) {
-        screens[1].querySelectorAll('[required]').forEach((input) => {
-          const err = input.parentElement.querySelector('.form-field__error');
-          if (!input.value.trim()) {
-            if (err) err.textContent = 'This field is required.';
-            input.setAttribute('aria-invalid', 'true');
-            valid = false;
-          } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-            if (err) err.textContent = 'Please enter a valid email.';
-            input.setAttribute('aria-invalid', 'true');
-            valid = false;
-          } else {
-            if (err) err.textContent = '';
-            input.setAttribute('aria-invalid', 'false');
-          }
-        });
-      }
-
-      if (step === 2) {
-        const nicheSelected = screens[2].querySelector('input[name="niche"]:checked');
-        const nicheErr      = document.getElementById('niche-error');
-        const descInput     = document.getElementById('project-desc');
-        const descErr       = descInput?.parentElement.querySelector('.form-field__error');
-
-        if (!nicheSelected) {
-          if (nicheErr) nicheErr.textContent = 'Please select one option.';
-          valid = false;
-        } else {
-          if (nicheErr) nicheErr.textContent = '';
-        }
-
-        if (descInput && !descInput.value.trim()) {
-          if (descErr) descErr.textContent = 'This field is required.';
-          descInput.setAttribute('aria-invalid', 'true');
-          valid = false;
-        } else if (descInput) {
-          if (descErr) descErr.textContent = '';
-          descInput.setAttribute('aria-invalid', 'false');
-        }
-      }
-
-      if (step === 3) {
-        const budgetSelected = screens[3].querySelector('input[name="budget"]:checked');
-        const budgetErr      = document.getElementById('budget-error');
-        if (!budgetSelected) {
-          if (budgetErr) budgetErr.textContent = 'Please select a budget range.';
-          valid = false;
-        } else {
-          if (budgetErr) budgetErr.textContent = '';
-        }
+      if (!valid) {
+        if (error)  error.hidden = false;
+        if (wrap)   wrap.classList.add('form-field--error');
+        input.setAttribute('aria-invalid', 'true');
+      } else {
+        if (error)  error.hidden = true;
+        if (wrap)   wrap.classList.remove('form-field--error');
+        input.setAttribute('aria-invalid', 'false');
       }
 
       return valid;
     };
 
-    const next1 = document.getElementById('next-1');
-    const next2 = document.getElementById('next-2');
-    const back2 = document.getElementById('back-2');
-    const back3 = document.getElementById('back-3');
+    // ── Step 1 → 2 ──
+    const step1Next = document.getElementById('step1-next');
+    if (step1Next) {
+      step1Next.addEventListener('click', () => {
+        const a = validateField('firstname', 'err-firstname', 'field-firstname');
+        const b = validateField('email',     'err-email',     'field-email');
+        const c = validateField('business',  'err-business',  'field-business');
+        if (a && b && c) showStep(step2El, 2);
+      });
+    }
 
-    next1?.addEventListener('click', () => { if (validateScreen(1)) goToStep(2); });
-    next2?.addEventListener('click', () => { if (validateScreen(2)) goToStep(3); });
-    back2?.addEventListener('click', () => goToStep(1));
-    back3?.addEventListener('click', () => goToStep(2));
-
-    formEl.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!validateScreen(3)) return;
-
-      const submitBtn = document.getElementById('submit-btn');
-      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
-
-      try {
-        const response = await fetch('https://formspree.io/f/mwvwabwq', {
-          method: 'POST',
-          body: new FormData(formEl),
-          headers: { 'Accept': 'application/json' },
+    // ── Niche selector ──
+    const nicheCards = document.querySelectorAll('.niche-card');
+    const nicheValue = document.getElementById('niche-value');
+    nicheCards.forEach(card => {
+      card.addEventListener('click', () => {
+        nicheCards.forEach(c => {
+          c.classList.remove('is-selected');
+          c.setAttribute('aria-pressed', 'false');
         });
-
-        if (!response.ok) throw new Error('Network response was not ok');
-
-        if (formEl)    formEl.style.display = 'none';
-        if (successEl) successEl.classList.add('is-visible');
-        const stepCountEl = document.querySelector('.start-form-panel__heading');
-        if (stepCountEl) stepCountEl.style.display = 'none';
-        const stepsEl = document.querySelector('.form-steps');
-        if (stepsEl)   stepsEl.style.display = 'none';
-        const progressEl = document.querySelector('.form-progress');
-        if (progressEl) progressEl.style.display = 'none';
-        const successHead = successEl?.querySelector('.form-success__heading');
-        if (successHead) setTimeout(() => successHead.focus(), 100);
-
-      } catch (err) {
-        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send brief →'; }
-        const budgetErr = document.getElementById('budget-error');
-        if (budgetErr) budgetErr.textContent = 'Something went wrong. Please try again or email us directly.';
-      }
+        card.classList.add('is-selected');
+        card.setAttribute('aria-pressed', 'true');
+        if (nicheValue) nicheValue.value = card.dataset.niche;
+      });
     });
 
-    // Init to step 1
-    goToStep(1);
+    // ── Step 2 ──
+    const step2Back = document.getElementById('step2-back');
+    const step2Next = document.getElementById('step2-next');
+    if (step2Back) step2Back.addEventListener('click', () => showStep(step1El, 1));
+    if (step2Next) {
+      step2Next.addEventListener('click', () => {
+        const a = validateField('description', 'err-description', 'field-description');
+        if (a) showStep(step3El, 3);
+      });
+    }
+
+    // ── Currency pills ──
+    const currencyPills = document.querySelectorAll('.currency-pill');
+    const currencyValue = document.getElementById('currency-value');
+    currencyPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        currencyPills.forEach(p => {
+          p.classList.remove('is-selected');
+          p.setAttribute('aria-pressed', 'false');
+        });
+        pill.classList.add('is-selected');
+        pill.setAttribute('aria-pressed', 'true');
+        if (currencyValue) currencyValue.value = pill.dataset.currency;
+      });
+    });
+
+    // ── Budget cards ──
+    const budgetCards = document.querySelectorAll('.budget-card');
+    const budgetValue = document.getElementById('budget-value');
+    budgetCards.forEach(card => {
+      card.addEventListener('click', () => {
+        budgetCards.forEach(c => {
+          c.classList.remove('is-selected');
+          c.setAttribute('aria-pressed', 'false');
+        });
+        card.classList.add('is-selected');
+        card.setAttribute('aria-pressed', 'true');
+        if (budgetValue) budgetValue.value = card.dataset.budget;
+      });
+    });
+
+    // ── Step 3 back ──
+    const step3Back = document.getElementById('step3-back');
+    if (step3Back) step3Back.addEventListener('click', () => showStep(step2El, 2));
+
+    // ── Submit to Formspree ──
+    const submitBtn = document.getElementById('form-submit');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', async () => {
+        submitBtn.textContent = 'Sending...';
+        submitBtn.setAttribute('aria-busy', 'true');
+        submitBtn.disabled = true;
+
+        // Gather all form data
+        const data = {
+          firstname:     document.getElementById('firstname')?.value || '',
+          lastname:      document.getElementById('lastname')?.value  || '',
+          email:         document.getElementById('email')?.value     || '',
+          instagram:     document.getElementById('instagram')?.value || '',
+          business:      document.getElementById('business')?.value  || '',
+          niche:         document.getElementById('niche-value')?.value   || '',
+          description:   document.getElementById('description')?.value   || '',
+          existing_site: document.getElementById('existing-site')?.value || '',
+          currency:      document.getElementById('currency-value')?.value || '',
+          budget:        document.getElementById('budget-value')?.value   || '',
+          anything_else: document.getElementById('anything-else')?.value  || '',
+        };
+
+        try {
+          const response = await fetch('https://formspree.io/f/mwvwabwq', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+            body: JSON.stringify(data),
+          });
+
+          if (response.ok) {
+            // Hide form, show success
+            const formContainer = document.querySelector('.form-container');
+            if (formContainer) formContainer.style.display = 'none';
+            if (successEl) successEl.classList.add('is-visible');
+            successEl?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            submitBtn.textContent = 'Try again →';
+            submitBtn.setAttribute('aria-busy', 'false');
+            submitBtn.disabled = false;
+          }
+        } catch {
+          submitBtn.textContent = 'Try again →';
+          submitBtn.setAttribute('aria-busy', 'false');
+          submitBtn.disabled = false;
+        }
+      });
+    }
   };
 
-  /* ===== INIT ALL ===== */
-  const init = () => {
-    initCursor();
-    initMobileNav();
+  /* =========================================================
+     INIT
+  ========================================================= */
+  document.addEventListener('DOMContentLoaded', () => {
+    initNav();
     initScrollReveal();
-    initHeroScroll();
-    initAccordion();
-    initWorkFilter();
-    initFormValidation();
-    initProjectForm();
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+    initSearchSwap();
+    initDevLog();
+    initStreetScene();
+    initMultiStepForm();
+  });
 
 })();

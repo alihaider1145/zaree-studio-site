@@ -1,333 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Zaree Studio — We build websites for independent cafés and restaurants that are invisible on Google, and get them found by new customers in under 2 weeks." />
-  <meta name="theme-color" content="#060608" />
-
-  <title>Zaree Studio — Websites for Cafés & Restaurants</title>
-
-  <!-- Open Graph -->
-  <meta property="og:title"       content="Zaree Studio — Websites for Cafés & Restaurants" />
-  <meta property="og:description" content="We build websites for independent cafés and restaurants that are invisible on Google — and get them found by new customers, in under 2 weeks." />
-  <meta property="og:type"        content="website" />
-
-  <!-- Modern browsers (SVG, sharp at any size) -->
-  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
-
-  <!-- Legacy browser fallback (16×16, 32×32, 48×48 in one file) -->
-  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
-
-  <!-- iOS/Android home screen icon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
-
-  <!-- Shared styles -->
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zaree Studio builds fast, search-optimised websites for food businesses. Get found on Google in 14 days.">
+  <title>Zaree Studio — Web Design for Food Businesses</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <!-- Cursor -->
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"></div>
-
   <!-- ===== NAV ===== -->
-  <header>
-    <nav class="site-nav" aria-label="Main navigation">
-      <div class="site-nav__inner">
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Zaree Studio home">
+        ZAREE <span class="nav__logo-serif">Studio</span>
+      </a>
 
-        <a href="index.html" class="site-nav__logo" aria-label="Zaree Studio — home">
-          Zaree
-        </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav__links">
+          <li><a href="index.html" class="nav__link" aria-current="page">Home</a></li>
+          <li><a href="food.html" class="nav__link">Food</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+          <li><a href="start.html" class="nav__cta">Get Found in 14 Days</a></li>
+        </ul>
+      </nav>
 
-        <!-- Mobile toggle -->
-        <button
-          class="site-nav__toggle"
-          aria-label="Toggle navigation menu"
-          aria-expanded="false"
-          aria-controls="nav-links"
-        >
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-        </button>
+      <button class="nav__hamburger" aria-expanded="false" aria-controls="nav-mobile" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
 
-        <div class="site-nav__links" id="nav-links" role="list">
-          <a href="work.html"  class="site-nav__link" role="listitem">Work</a>
-          <a href="food.html"  class="site-nav__link" role="listitem">Food Businesses</a>
-          <a href="about.html" class="site-nav__link" role="listitem">About</a>
-          <a href="start.html" class="site-nav__cta"  role="listitem">Start a project →</a>
-        </div>
-
-      </div>
+    <nav class="nav__mobile" id="nav-mobile" aria-label="Mobile navigation">
+      <a href="index.html" class="nav__link" aria-current="page">Home</a>
+      <a href="food.html" class="nav__link">Food</a>
+      <a href="about.html" class="nav__link">About</a>
+      <a href="start.html" class="nav__cta">Get Found in 14 Days</a>
     </nav>
   </header>
 
   <main>
 
-    <!-- ===== HERO (scroll-driven) ===== -->
-    <div class="hero-scroll-driver">
-      <div class="hero-scroll-pin" aria-label="Studio introduction">
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="orb" style="width:700px;height:700px;top:-120px;right:-180px;"></div>
+      <div class="container">
+        <p class="eyebrow reveal">Web Design for Food Businesses</p>
 
-        <!-- Ambient orbs -->
-        <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
-        <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
+        <h1 id="hero-heading" class="type-hero reveal" data-delay="1">
+          YOUR RESTAURANT<br>
+          DESERVES TO BE<br>
+          <span class="text-accent">FOUND ON GOOGLE.</span>
+        </h1>
 
-        <!-- The letters Z-A-R-E-E -->
-        <div class="hero__letters" aria-label="Zaree">
-          <span class="hero-letter" aria-hidden="true">Z</span>
-          <span class="hero-letter" aria-hidden="true">A</span>
-          <span class="hero-letter" aria-hidden="true">R</span>
-          <span class="hero-letter" aria-hidden="true">E</span>
-          <span class="hero-letter" aria-hidden="true">E</span>
-        </div>
+        <p class="hero__sub reveal" data-delay="2">
+          Most food businesses are invisible online. We build fast,<br>
+          search-optimised websites that put you in front of hungry<br>
+          customers — in under 2 weeks.
+        </p>
 
-        <!-- Scroll-triggered captions -->
-        <div class="hero-caption" aria-hidden="true">
-          <span class="hero-caption__tag">The problem</span>
-          <p class="hero-caption__text">Your café is full on weekends.<br>Google doesn't know you exist.</p>
-        </div>
-        <div class="hero-caption" aria-hidden="true">
-          <span class="hero-caption__tag">The fix</span>
-          <p class="hero-caption__text">A real website — not a link in bio.<br>Built to be found.</p>
-        </div>
-        <div class="hero-caption" aria-hidden="true">
-          <span class="hero-caption__tag">The result</span>
-          <p class="hero-caption__text">New customers who found you<br>by searching, not scrolling.</p>
-        </div>
-        <div class="hero-caption" aria-hidden="true">
-          <span class="hero-caption__tag">The timeline</span>
-          <p class="hero-caption__text">First pixel to final push —<br>in under two weeks.</p>
-        </div>
-        <div class="hero-caption" aria-hidden="true">
-          <span class="hero-caption__tag">The standard</span>
-          <p class="hero-caption__text">Hand-written code. Fast. Owned<br>outright. No lock-in.</p>
-        </div>
+        <a href="start.html" class="btn--nav-cta reveal" data-delay="3">
+          Get Found in 14 Days →
+        </a>
+      </div>
+    </section>
 
-        <!-- Bottom meta -->
-        <div class="hero__meta">
-          <p class="hero__tagline">
-            We build websites for independent cafés<br>
-            and restaurants that are invisible on Google —<br>
-            and get them found by new customers,<br>
-            <em>in under 2 weeks.</em>
-          </p>
+    <!-- ===== SEARCH SWAP — SCROLL-DRIVEN ===== -->
+    <section
+      class="scroll-section"
+      id="search-swap-section"
+      style="min-height:300vh;"
+      aria-labelledby="problem-heading"
+    >
+      <div class="scroll-section__sticky" id="search-swap-sticky">
+        <div class="container" style="width:100%;position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
 
-          <div class="hero__aside">
-            <div class="hero__scroll-indicator" aria-hidden="true">
-              <div class="hero__scroll-line"></div>
-              <span class="hero__scroll-label">scroll</span>
+          <p class="eyebrow" style="margin-bottom:1rem;">02 / The Problem</p>
+
+          <!-- Stage 0: Before -->
+          <div class="stage is-active" id="ss-stage-0">
+            <div class="search-card">
+              <div class="search-bar">
+                <span class="search-bar__icon">🔍</span>
+                <span class="search-bar__query">"cafes near me"</span>
+              </div>
+              <div class="search-result">
+                <div class="search-result__rank">#1 Result</div>
+                <div class="search-result__name">Someone Else's Cafe</div>
+                <div class="search-result__rating">3.2 ★ · 8 reviews</div>
+                <div class="search-result__miss">Your café isn't here.</div>
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
-    </div>
-
-    <!-- ===== MANIFESTO ===== -->
-    <section class="section manifesto" aria-labelledby="manifesto-heading">
-      <div class="container">
-        <div class="manifesto__grid">
-          <div class="manifesto__index reveal" aria-hidden="true">01</div>
-          <div>
-            <p class="section__tag reveal">Manifesto</p>
-            <h2 class="manifesto__body reveal reveal--delay-2" id="manifesto-heading">
-              Most websites perform wellness<br>
-              <span class="manifesto__dim">instead of creating it.</span><br><br>
-              We build <span class="manifesto__accent">presence.</span><br>
-              <span class="manifesto__dim">The kind that stays<br>after the tab is closed.</span>
-            </h2>
+          <!-- Transition -->
+          <div class="stage" id="ss-stage-transition">
+            <div class="stage-transition">
+              <div class="stage-transition__headline">
+                AFTER<br><span class="text-accent">ZAREE STUDIO...</span>
+              </div>
+              <div class="spinner" style="margin:0 auto;"></div>
+            </div>
           </div>
+
+          <!-- Stage 1: After -->
+          <div class="stage" id="ss-stage-1">
+            <div class="search-card">
+              <div class="search-bar">
+                <span class="search-bar__icon">🔍</span>
+                <span class="search-bar__query">"cafes near me"</span>
+              </div>
+              <div class="search-result search-result--ranked">
+                <div class="search-result__rank search-result__rank--verified">
+                  #1 · VERIFIED ✓
+                </div>
+                <div class="search-result__name">Your Café</div>
+                <div class="search-result__rating">4.9 ★ · 89 reviews</div>
+                <div class="search-result__url">yourcafe.com · fast · mobile-ready · ranked</div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ===== WORK PREVIEW ===== -->
-    <section class="section work-preview" aria-labelledby="work-heading">
-      <div class="container">
+    <!-- ===== DEV LOG — SCROLL-DRIVEN ===== -->
+    <section
+      class="scroll-section"
+      id="devlog-section"
+      style="min-height:500vh;"
+      aria-labelledby="devlog-heading"
+    >
+      <div class="scroll-section__sticky" id="devlog-sticky">
+        <div class="container" style="width:100%;position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
 
-        <div class="work-preview__header">
-          <div>
-            <p class="section__tag reveal">Selected work</p>
-            <h2 class="section__heading work-preview__heading reveal reveal--delay-2" id="work-heading">
-              What we've built
-            </h2>
+          <p class="eyebrow" style="margin-bottom:1rem;">03 / How We Do It</p>
+          <h2 id="devlog-heading" class="type-section" style="text-align:center;margin-bottom:2.5rem;">
+            12-DAY<br>DEV-LOG.
+          </h2>
+
+          <!-- Stage 0: Intro -->
+          <div class="stage is-active" id="dl-stage-0">
+            <div class="devlog-intro">
+              <div class="devlog-intro__headline">
+                FROM INVISIBLE<br>
+                <span class="text-accent">TO INEVITABLE.</span>
+              </div>
+              <p class="devlog-intro__sub">A high-speed technical sprint.</p>
+            </div>
           </div>
-          <p class="work-preview__note reveal reveal--delay-3">
-            Real sites.<br>Real results.
-          </p>
-        </div>
 
-        <div class="work-preview__grid reveal">
+          <!-- Stage 1: Research -->
+          <div class="stage" id="dl-stage-1">
+            <div class="devlog-card">
+              <div class="devlog-card__day">D 1–3</div>
+              <div class="devlog-card__title">RESEARCH</div>
+              <ul class="devlog-checklist">
+                <li class="devlog-checklist__item" style="transition-delay:0.05s;">Keywords</li>
+                <li class="devlog-checklist__item" style="transition-delay:0.15s;">Competitor analysis</li>
+                <li class="devlog-checklist__item" style="transition-delay:0.25s;">Local search volume</li>
+                <li class="devlog-checklist__item" style="transition-delay:0.35s;">Customer intent mapping</li>
+              </ul>
+            </div>
+          </div>
 
-          <!-- Card 1 — Café Bloom -->
-          <article class="card card--tall card--cafe" aria-labelledby="card-1-title">
-            <div class="card__bg" aria-hidden="true"></div>
-            <div class="card__geo" aria-hidden="true"></div>
-            <div class="card__fade" aria-hidden="true"></div>
-            <div class="card__body">
-              <span class="card__number" aria-hidden="true">01</span>
-              <p class="card__category">Café / Food</p>
-              <h3 class="card__title" id="card-1-title">Café Bloom</h3>
-              <p class="card__desc">
-                A local café that needed to feel warm online — and get found. 98 Lighthouse score. Table bookings in under 12 seconds. Delivered in 8 days.
+          <!-- Stage 2: Build -->
+          <div class="stage" id="dl-stage-2">
+            <div class="devlog-card">
+              <div class="devlog-card__day">D 4–7</div>
+              <div class="devlog-card__title">BUILD</div>
+              <div class="terminal">
+                <div class="terminal__bar">
+                  <span class="terminal__dot"></span>
+                  <span class="terminal__dot"></span>
+                  <span class="terminal__dot"></span>
+                </div>
+                <div class="terminal__body">
+                  <div class="terminal__scroll">
+                    <span class="accent">→</span> Scaffolding HTML structure...<br>
+                    <span class="accent">✓</span> index.html created<br>
+                    <span class="accent">→</span> Writing CSS design system...<br>
+                    <span class="accent">✓</span> style.css deployed<br>
+                    <span class="accent">→</span> Building menu page...<br>
+                    <span class="accent">✓</span> menu.html complete<br>
+                    <span class="accent">→</span> Gallery optimised...<br>
+                    <span class="accent">✓</span> All images compressed<br>
+                    <span class="accent">→</span> Scaffolding HTML structure...<br>
+                    <span class="accent">✓</span> index.html created<br>
+                    <span class="accent">→</span> Writing CSS design system...<br>
+                    <span class="accent">✓</span> style.css deployed<br>
+                  </div>
+                </div>
+                <div class="terminal__status">BUILD COMPLETE — All pages deployed</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 3: Tech Setup -->
+          <div class="stage" id="dl-stage-3">
+            <div class="devlog-card">
+              <div class="devlog-card__day">D 8–10</div>
+              <div class="devlog-card__title">TECH SETUP</div>
+              <div class="tech-boxes">
+                <div class="tech-box tech-box--accent" id="tech-box-maps">
+                  <span class="tech-box__icon">📍</span>
+                  MAPS PIN DROPPED
+                </div>
+                <div class="tech-box tech-box--light" id="tech-box-domain">
+                  <span class="tech-box__icon">✓</span>
+                  DOMAIN VERIFIED
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 4: Handover -->
+          <div class="stage" id="dl-stage-4">
+            <div class="devlog-card">
+              <div class="devlog-card__day">D 11–14</div>
+              <div class="devlog-card__title">HANDOVER</div>
+              <div class="chat-bubble" id="chat-bubble">
+                "This looks amazing! 🎉 Already seeing traffic from Google."
+              </div>
+              <p class="chat-label">Happy client</p>
+              <p class="project-complete" id="project-complete">
+                PROJECT COMPLETE ✓
               </p>
-              <a href="work.html#cafe-bloom" class="card__link" aria-label="View Café Bloom project">
-                View project →
-              </a>
-            </div>
-          </article>
-
-        </div>
-
-        <div style="margin-top: 2.5rem; display: flex; justify-content: flex-end;">
-          <a href="work.html" class="btn-secondary reveal">
-            See all work →
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ===== WHO WE WORK WITH ===== -->
-    <section class="section niches" aria-labelledby="niches-heading">
-      <div class="container">
-
-        <p class="section__tag reveal">Who we work with</p>
-        <h2 class="section__heading reveal reveal--delay-2" id="niches-heading"
-            style="font-size: clamp(1.6rem, 3vw, 2.8rem);">
-          Independent food businesses.
-        </h2>
-
-        <div class="niches__grid niches__grid--single">
-
-          <a href="food.html" class="niche-card reveal reveal--delay-2" aria-label="Learn about our food business services">
-            <div class="niche-card__icon" aria-hidden="true">☕</div>
-            <p class="niche-card__tag">Cafés & restaurants</p>
-            <h3 class="niche-card__heading">
-              For the food business that deserves<br>to be found on Google.
-            </h3>
-            <p class="niche-card__desc">
-              You've built something real. But when someone searches "best café near me" or "brunch spot in [your city]" — you don't show up. A proper website changes that. Reservations, menus, Google visibility. All yours.
-            </p>
-            <span class="btn-secondary niche-card__cta">
-              See how it works →
-            </span>
-          </a>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ===== PROCESS (accordion) ===== -->
-    <section class="section process" aria-labelledby="process-heading">
-      <div class="container">
-
-        <div class="process__head">
-          <div>
-            <p class="section__tag reveal">How we work</p>
-            <h2 class="section__heading process__heading reveal reveal--delay-2" id="process-heading">
-              Four steps.<br>No ambiguity.
-            </h2>
-          </div>
-          <p class="process__sub reveal reveal--delay-3">
-            We don't do 3-month timelines or 40-page briefs. We move fast, communicate clearly, and ship work that holds up.
-          </p>
-        </div>
-
-        <div role="list" aria-label="Our process steps">
-
-          <div class="accordion__item reveal" role="listitem">
-            <button class="accordion__trigger" aria-controls="step-1-body" aria-expanded="false">
-              <span class="accordion__trigger-left">
-                <span class="accordion__num">01 /</span>
-                <span class="accordion__title">Discover</span>
-              </span>
-              <span class="accordion__icon" aria-hidden="true"></span>
-            </button>
-            <div class="accordion__body" id="step-1-body" role="region" aria-label="Discover step details">
-              <p>One call. We learn your goals, your audience, and what's not working. No forms, no homework for you. We come prepared.</p>
-            </div>
-          </div>
-
-          <div class="accordion__item reveal reveal--delay-1" role="listitem">
-            <button class="accordion__trigger" aria-controls="step-2-body" aria-expanded="false">
-              <span class="accordion__trigger-left">
-                <span class="accordion__num">02 /</span>
-                <span class="accordion__title">Design</span>
-              </span>
-              <span class="accordion__icon" aria-hidden="true"></span>
-            </button>
-            <div class="accordion__body" id="step-2-body" role="region" aria-label="Design step details">
-              <p>We propose a direction. You approve. We don't iterate endlessly — we research your market, study your competitors, and get it right the first time.</p>
-            </div>
-          </div>
-
-          <div class="accordion__item reveal reveal--delay-2" role="listitem">
-            <button class="accordion__trigger" aria-controls="step-3-body" aria-expanded="false">
-              <span class="accordion__trigger-left">
-                <span class="accordion__num">03 /</span>
-                <span class="accordion__title">Build</span>
-              </span>
-              <span class="accordion__icon" aria-hidden="true"></span>
-            </button>
-            <div class="accordion__body" id="step-3-body" role="region" aria-label="Build step details">
-              <p>Clean code. Fast load. Mobile-first. SEO-ready. No page builders, no bloat. You get a site that works as hard as you do.</p>
-            </div>
-          </div>
-
-          <div class="accordion__item reveal reveal--delay-3" role="listitem">
-            <button class="accordion__trigger" aria-controls="step-4-body" aria-expanded="false">
-              <span class="accordion__trigger-left">
-                <span class="accordion__num">04 /</span>
-                <span class="accordion__title">Launch</span>
-              </span>
-              <span class="accordion__icon" aria-hidden="true"></span>
-            </button>
-            <div class="accordion__body" id="step-4-body" role="region" aria-label="Launch step details">
-              <p>We deploy, test across devices, and hand off with documentation. You own everything — the code, the domain, the hosting. No lock-in.</p>
             </div>
           </div>
 
         </div>
-
       </div>
     </section>
 
     <!-- ===== CTA STRIP ===== -->
-    <section class="section cta-strip" aria-labelledby="cta-heading">
-      <div class="container cta-strip__inner">
-        <p class="cta-strip__eyebrow reveal">Ready when you are</p>
-        <h2 class="cta-strip__heading reveal reveal--delay-2" id="cta-heading">Let's build</h2>
-        <p class="cta-strip__sub reveal reveal--delay-2">something real.</p>
-        <a href="start.html" class="btn-primary reveal reveal--delay-3" style="margin-bottom: 2rem;">
-          Start a project →
+    <div class="cta-strip">
+      <div class="cta-strip__inner container reveal">
+        <div class="cta-strip__headline">
+          READY TO STOP<br>
+          BEING <span class="text-accent">INVISIBLE?</span>
+        </div>
+        <a href="start.html" class="cta-strip__btn">
+          Start a Project →
         </a>
-        <br>
-        <a href="mailto:hello@zareestudios.com" class="cta-strip__email reveal reveal--delay-4">hello@zareestudios.com</a>
       </div>
-    </section>
+    </div>
 
   </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="site-footer__inner">
-        <p class="site-footer__copy">© 2026 Zaree Studio.</p>
-        <nav class="site-footer__links" aria-label="Footer navigation">
-          <a href="https://instagram.com/zareestudios" target="_blank" rel="noopener noreferrer" class="site-footer__link">Instagram</a>
-          <a href="https://www.facebook.com/profile.php?id=61572127582054" target="_blank" rel="noopener noreferrer" class="site-footer__link">Facebook</a>
-          <a href="https://wa.me/03337128493" target="_blank" rel="noopener noreferrer" class="site-footer__link">WhatsApp</a>
-          <a href="food.html"    class="site-footer__link">Food Businesses</a>
-          <a href="privacy.html" class="site-footer__link">Privacy</a>
-          <a href="terms.html"   class="site-footer__link">Terms</a>
-        </nav>
-      </div>
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">© 2026 Zaree Studio · Quetta, Pakistan</p>
+      <nav aria-label="Footer navigation">
+        <ul class="footer__links">
+          <li><a href="https://instagram.com" class="footer__link" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://wa.me/" class="footer__link" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="privacy.html" class="footer__link">Privacy</a></li>
+          <li><a href="terms.html" class="footer__link">Terms</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
 
   <script src="assets/js/main.js" defer></script>
+
 </body>
 </html>

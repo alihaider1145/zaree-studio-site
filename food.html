@@ -1,901 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Zaree Studio builds websites for independent cafés and restaurants that are invisible on Google — and turns them into the first result customers find." />
-  <meta name="theme-color" content="#060608" />
-
-  <title>For Food Businesses — Zaree Studio</title>
-
-  <meta property="og:title"       content="For Food Businesses — Zaree Studio" />
-  <meta property="og:description" content="You built something worth finding. Let's make sure Google agrees." />
-  <meta property="og:type"        content="website" />
-
-  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
-  <link rel="icon" type="image/x-icon"  href="assets/images/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
-
-  <link rel="stylesheet" href="assets/css/style.css" />
-
-  <style>
-    /* ===== PAGE-SPECIFIC OVERRIDES ===== */
-    /* Drop-in additions — everything uses your existing :root tokens */
-
-    /* ── PROBLEM HERO ── */
-    .food-hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-end;
-      padding-bottom: 8vh;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .food-hero__orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-    }
-    .food-hero__orb--1 {
-      width: 60vw; height: 60vw;
-      background: rgba(200,184,154,.04);
-      top: -20vw; right: -10vw;
-    }
-    .food-hero__orb--2 {
-      width: 40vw; height: 40vw;
-      background: rgba(200,80,80,.03);
-      bottom: 0; left: -10vw;
-    }
-
-    .food-hero__inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .food-hero__tag {
-      font-size: .62rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-    }
-    .food-hero__tag::before {
-      content: '';
-      display: block;
-      width: 24px; height: 1px;
-      background: var(--text-secondary);
-    }
-
-    .food-hero__heading {
-      font-size: clamp(3rem, 9vw, 9rem);
-      font-weight: 800;
-      line-height: .95;
-      letter-spacing: -.03em;
-      margin-bottom: 2.5rem;
-    }
-    .food-hero__heading .dim    { color: var(--text-secondary); }
-    .food-hero__heading .accent { color: var(--accent); }
-
-    .food-hero__sub {
-      font-size: clamp(.85rem, 1.5vw, 1.05rem);
-      color: var(--text-secondary);
-      line-height: 1.75;
-      max-width: 520px;
-      margin-bottom: 3rem;
-    }
-
-    .food-hero__stat-row {
-      display: flex;
-      gap: 3rem;
-      border-top: 1px solid var(--border);
-      padding-top: 2rem;
-    }
-
-    .food-hero__stat-num {
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -.03em;
-      color: var(--text-primary);
-      line-height: 1;
-    }
-    .food-hero__stat-label {
-      font-size: .65rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin-top: .3rem;
-    }
-
-    /* ── PROBLEM SECTION ── */
-    .food-problem {
-      border-top: 1px solid var(--border);
-    }
-
-    .food-problem__split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .food-problem__heading {
-      font-size: clamp(2rem, 4vw, 4rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -.03em;
-    }
-    .food-problem__heading em { color: var(--accent); font-style: italic; }
-
-    .food-problem__body p {
-      font-size: .88rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      margin-bottom: 1.25rem;
-    }
-    .food-problem__body p strong { color: var(--text-primary); }
-
-    /* Search result mockup */
-    .serp-mockup {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-top: 2rem;
-    }
-    .serp-mockup__label {
-      font-size: .58rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-      padding-bottom: .75rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .serp-result {
-      padding: .85rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .serp-result:last-child { border-bottom: none; }
-    .serp-result__site {
-      font-size: .62rem;
-      color: var(--text-secondary);
-      margin-bottom: .2rem;
-      font-family: 'Courier New', monospace;
-    }
-    .serp-result__title {
-      font-size: .82rem;
-      color: #8ab4f8;
-      margin-bottom: .25rem;
-      line-height: 1.3;
-    }
-    .serp-result__desc {
-      font-size: .68rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-    .serp-result--yours {
-      background: rgba(200,184,154,.05);
-      border-radius: 4px;
-      padding: .85rem .75rem;
-      border: 1px solid rgba(200,184,154,.15) !important;
-      position: relative;
-    }
-    .serp-result--yours .serp-result__title { color: var(--accent); }
-    .serp-result--missing {
-      opacity: .3;
-      position: relative;
-    }
-    .serp-result--missing::after {
-      content: '← not you';
-      position: absolute;
-      right: 0; top: 50%;
-      transform: translateY(-50%);
-      font-size: .6rem;
-      letter-spacing: .08em;
-      color: #f87171;
-    }
-    .serp-rank {
-      font-size: .58rem;
-      color: var(--text-secondary);
-      margin-right: .5rem;
-      font-family: monospace;
-    }
-
-    /* ── AGITATION SECTION ── */
-
-    .food-agitation__heading {
-      font-size: clamp(2.2rem, 5vw, 5.5rem);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -.04em;
-      margin-bottom: 3rem;
-    }
-    .food-agitation__heading .strike {
-      text-decoration: line-through;
-      color: var(--text-secondary);
-      text-decoration-color: #f87171;
-    }
-    .food-agitation__heading em { color: var(--accent); }
-
-    .food-agitation__grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 3rem;
-    }
-
-    .food-pain-card {
-      background: var(--surface);
-      padding: 2rem 1.75rem;
-    }
-
-    .food-pain-card__num {
-      font-size: .6rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-      font-family: 'Courier New', monospace;
-    }
-
-    .food-pain-card__title {
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: .75rem;
-    }
-    .food-pain-card__desc {
-      font-size: .78rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    .food-agitation__cost {
-      background: rgba(248,113,113,.05);
-      border: 1px solid rgba(248,113,113,.15);
-      border-radius: 8px;
-      padding: 2rem 2.5rem;
-      text-align: center;
-    }
-    .food-agitation__cost p {
-      font-size: clamp(1rem, 2vw, 1.4rem);
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-    .food-agitation__cost strong {
-      color: var(--text-primary);
-      font-size: clamp(1.4rem, 3vw, 2.2rem);
-      display: block;
-      margin-bottom: .5rem;
-      letter-spacing: -.02em;
-    }
-
-    /* ── SOLUTION SECTION ── */
-
-    .food-solution__heading {
-      font-size: clamp(2.5rem, 6vw, 7rem);
-      font-weight: 800;
-      line-height: .95;
-      letter-spacing: -.04em;
-      margin-bottom: 1.5rem;
-    }
-    .food-solution__heading em { color: var(--accent); }
-
-    .food-solution__intro {
-      font-size: .9rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      max-width: 580px;
-      margin-bottom: 4rem;
-    }
-
-    .food-deliverables {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 3rem;
-    }
-
-    .food-deliverable {
-      background: var(--surface);
-      padding: 2rem 1.75rem;
-      display: flex;
-      gap: 1.25rem;
-    }
-
-    .food-deliverable__icon {
-      font-size: 1.25rem;
-      flex-shrink: 0;
-      margin-top: .1rem;
-    }
-
-    .food-deliverable__title {
-      font-size: .9rem;
-      font-weight: 700;
-      margin-bottom: .4rem;
-    }
-    .food-deliverable__desc {
-      font-size: .75rem;
-      color: var(--text-secondary);
-      line-height: 1.65;
-    }
-
-    /* proof bar */
-    .food-proof {
-      display: flex;
-      gap: 0;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 3rem;
-    }
-    .food-proof__item {
-      flex: 1;
-      padding: 1.5rem 2rem;
-      border-right: 1px solid var(--border);
-      text-align: center;
-    }
-    .food-proof__item:last-child { border-right: none; }
-    .food-proof__num {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 800;
-      letter-spacing: -.03em;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: .3rem;
-    }
-    .food-proof__label {
-      font-size: .62rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      line-height: 1.4;
-    }
-
-    /* ── WHAT YOU GET SECTION ── */
-    .food-offer__heading {
-      font-size: clamp(2rem, 4.5vw, 5rem);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -.04em;
-      margin-bottom: .75rem;
-    }
-    .food-offer__sub {
-      font-size: .88rem;
-      color: var(--text-secondary);
-      margin-bottom: 3rem;
-      max-width: 480px;
-    }
-
-    .food-offer__split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .food-include-list {
-      display: flex;
-      flex-direction: column;
-      gap: .5px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .food-include-item {
-      background: var(--surface);
-      padding: 1.1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: .82rem;
-      line-height: 1.4;
-    }
-    .food-include-item__check {
-      width: 18px; height: 18px;
-      border-radius: 50%;
-      background: rgba(74,222,128,.1);
-      border: 1px solid rgba(74,222,128,.2);
-      color: #4ade80;
-      font-size: .6rem;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .food-include-item__label { flex: 1; }
-    .food-include-item__note {
-      font-size: .65rem;
-      color: var(--text-secondary);
-      font-family: 'Courier New', monospace;
-    }
-
-    /* pricing card */
-    .food-price-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 2rem;
-      position: sticky;
-      top: 6rem;
-    }
-    .food-price-card__label {
-      font-size: .6rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-    }
-    .food-price-card__price {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 800;
-      letter-spacing: -.04em;
-      line-height: 1;
-      margin-bottom: .5rem;
-    }
-    .food-price-card__price span {
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--text-secondary);
-      letter-spacing: 0;
-    }
-    .food-price-card__note {
-      font-size: .72rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .food-price-card__detail {
-      font-size: .75rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 2rem;
-    }
-    .food-price-card__detail strong { color: var(--text-primary); }
-
-    /* ── FINAL CTA ── */
-    .food-cta {
-      text-align: center;
-    }
-    .food-cta__heading {
-      font-size: clamp(3rem, 8vw, 8rem);
-      font-weight: 800;
-      line-height: .95;
-      letter-spacing: -.04em;
-      margin-bottom: 1.5rem;
-    }
-    .food-cta__heading em { color: var(--accent); }
-    .food-cta__sub {
-      font-size: .88rem;
-      color: var(--text-secondary);
-      line-height: 1.75;
-      max-width: 480px;
-      margin: 0 auto 3rem;
-    }
-    .food-cta__actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .food-cta__note {
-      margin-top: 1.5rem;
-      font-size: .65rem;
-      letter-spacing: .08em;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .food-problem__split,
-      .food-offer__split { grid-template-columns: 1fr; }
-      .food-agitation__grid { grid-template-columns: 1fr; }
-      .food-deliverables { grid-template-columns: 1fr; }
-      .food-proof { flex-direction: column; }
-      .food-proof__item { border-right: none; border-bottom: 1px solid var(--border); }
-      .food-hero__stat-row { flex-wrap: wrap; gap: 2rem; }
-      .food-price-card { position: static; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zaree Studio's First Table Package — custom website, Google Maps, local SEO for food businesses. Delivered in 14 days.">
+  <title>Food Businesses — Zaree Studio</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"></div>
-
   <!-- ===== NAV ===== -->
-  <header>
-    <nav class="site-nav" aria-label="Main navigation">
-      <div class="site-nav__inner">
-        <a href="index.html" class="site-nav__logo" aria-label="Zaree Studio — home">Zaree</a>
-        <button class="site-nav__toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-        </button>
-        <div class="site-nav__links" id="nav-links" role="list">
-          <a href="work.html"  class="site-nav__link" role="listitem">Work</a>
-          <a href="food.html"  class="site-nav__link" role="listitem" aria-current="page">Food Businesses</a>
-          <a href="about.html" class="site-nav__link" role="listitem">About</a>
-          <a href="start.html" class="site-nav__cta"  role="listitem">Start a project →</a>
-        </div>
-      </div>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Zaree Studio home">
+        ZAREE <span class="nav__logo-serif">Studio</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav__links">
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="food.html" class="nav__link" aria-current="page">Food</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+          <li><a href="start.html" class="nav__cta">Get Found in 14 Days</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav__hamburger" aria-expanded="false" aria-controls="nav-mobile" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="nav__mobile" id="nav-mobile" aria-label="Mobile navigation">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="food.html" class="nav__link" aria-current="page">Food</a>
+      <a href="about.html" class="nav__link">About</a>
+      <a href="start.html" class="nav__cta">Get Found in 14 Days</a>
     </nav>
   </header>
 
   <main>
 
-    <!-- ================================================================
-         P — PROBLEM
-         "Your café is full on weekends. Google doesn't know you exist."
-    ================================================================= -->
-    <section class="food-hero" aria-labelledby="food-hero-heading">
-      <div class="food-hero__orb food-hero__orb--1" aria-hidden="true"></div>
-      <div class="food-hero__orb food-hero__orb--2" aria-hidden="true"></div>
+    <!-- ===== THE PROBLEM ===== -->
+    <section aria-labelledby="problem-heading">
+      <div class="orb" style="width:600px;height:600px;top:-80px;left:-150px;"></div>
+      <div class="container">
+        <p class="eyebrow reveal">01 / The Problem</p>
 
-      <div class="container food-hero__inner">
-        <p class="food-hero__tag reveal">For independent cafés &amp; restaurants</p>
-
-        <h1 class="food-hero__heading reveal reveal--delay-1" id="food-hero-heading">
-          You're<br>
-          <span class="dim">full on</span><br>
-          <span class="dim">weekends.</span><br>
-          <span class="accent">Invisible</span><br>
-          on Google.
+        <h1 id="problem-heading" class="type-section reveal" data-delay="1">
+          YOU'RE INVISIBLE<br>
+          TO THOUSANDS<br>
+          OF PEOPLE.
         </h1>
 
-        <p class="food-hero__sub reveal reveal--delay-2">
-          Someone in your city just searched "best brunch near me." They found a chain. They booked a table. You made great food — and never got a chance.
-        </p>
-
-        <div class="food-hero__stat-row reveal reveal--delay-3">
-          <div class="food-hero__stat-item">
-            <p class="food-hero__stat-num">76%</p>
-            <p class="food-hero__stat-label">of local searches<br>end in a visit</p>
-          </div>
-          <div class="food-hero__stat-item">
-            <p class="food-hero__stat-num">#1</p>
-            <p class="food-hero__stat-label">Google result gets<br>27× more clicks</p>
-          </div>
-          <div class="food-hero__stat-item">
-            <p class="food-hero__stat-num">0</p>
-            <p class="food-hero__stat-label">Clicks if you're<br>not on the first page</p>
-          </div>
+        <div class="pull-quote reveal" data-delay="2">
+          <p class="type-pull">
+            "Being buried on page 3 of Google is costing you thousands
+            in lost revenue every month — while your competitors collect
+            all the foot traffic."
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ── THE REAL PROBLEM (still P) ── -->
-    <section class="section food-problem" aria-labelledby="problem-heading">
-      <div class="container">
-        <div class="food-problem__split">
+    <!-- ===== STREET SCENE — SCROLL-DRIVEN ===== -->
+    <section
+      class="scroll-section"
+      id="street-section"
+      style="min-height:300vh;"
+      aria-labelledby="cost-heading"
+    >
+      <div class="scroll-section__sticky" id="street-sticky">
+        <div class="container" style="width:100%;position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
 
-          <div>
-            <p class="section__tag reveal">The honest problem</p>
-            <h2 class="food-problem__heading reveal reveal--delay-1" id="problem-heading">
-              Instagram<br>followers don't<br>pay the rent.<br>
-              <em>Customers do.</em>
-            </h2>
-          </div>
+          <p class="eyebrow" style="margin-bottom:1rem;">02 / The Cost</p>
 
-          <div class="food-problem__body reveal reveal--delay-2">
-            <p>
-              You've got 2,000 Instagram followers. A gorgeous feed. Regulars who swear by you. <strong>And almost no way for new customers to find you on Google.</strong>
-            </p>
-            <p>
-              Google doesn't rank your Instagram. It ranks websites — properly structured, fast-loading, schema-marked websites that tell a search engine exactly who you are, where you are, and what you serve.
-            </p>
-            <p>
-              Without one, you're not competing. You're just hoping someone walks past.
-            </p>
+          <!-- Stage 0: Scene 1 -->
+          <div class="stage is-active" id="st-stage-0">
+            <div class="street-scene">
+              <p class="scene-label">[ SCENE 1 — A PERSON FOLLOWS GOOGLE MAPS PAST YOUR DOOR ]</p>
+              <div class="scene-svg-wrapper">
+                <!-- Street Scene 1: Person walking away from Your Café toward Big Chain -->
+                <svg viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration: person following Google Maps past Your Café toward a big chain">
+                  <!-- Ground -->
+                  <rect x="0" y="170" width="520" height="50" fill="#0C0C10"/>
+                  <line x1="0" y1="170" x2="520" y2="170" stroke="#2E2C2A" stroke-width="1"/>
 
-            <div class="serp-mockup" aria-label="Google search results showing your café is missing">
-              <p class="serp-mockup__label">🔍 "best café [your city]"</p>
+                  <!-- Your Café — dim, no glow -->
+                  <rect x="30" y="90" width="140" height="80" fill="#111116" stroke="#2E2C2A" stroke-width="1.5"/>
+                  <rect x="60" y="120" width="40" height="50" fill="#0C0C10" stroke="#2E2C2A" stroke-width="1"/>
+                  <rect x="115" y="115" width="35" height="25" fill="#0C0C10" stroke="#2E2C2A" stroke-width="1"/>
+                  <text x="100" y="108" font-family="monospace" font-size="9" fill="#2E2C2A" text-anchor="middle" letter-spacing="1">YOUR CAFÉ</text>
+                  <!-- Dim windows -->
+                  <rect x="65" y="125" width="15" height="12" fill="#111116" stroke="#2E2C2A" stroke-width="0.5"/>
+                  <rect x="84" y="125" width="15" height="12" fill="#111116" stroke="#2E2C2A" stroke-width="0.5"/>
 
-              <div class="serp-result">
-                <p class="serp-result__site"><span class="serp-rank">#1</span> thecoffeechaindowntheroad.com</p>
-                <p class="serp-result__title">The Coffee Chain — 12 Locations, Open Daily</p>
-                <p class="serp-result__desc">Reserve a table online. View menu. Loyalty app. Google rating: 4.1 ★</p>
+                  <!-- Big Chain — lit up -->
+                  <rect x="330" y="75" width="160" height="95" fill="#141418" stroke="#7A766E" stroke-width="1.5"/>
+                  <rect x="375" y="115" width="45" height="55" fill="#0C0C10" stroke="#7A766E" stroke-width="1"/>
+                  <rect x="340" y="100" width="28" height="22" fill="#00C9A7" opacity="0.18" stroke="#00C9A7" stroke-width="0.8"/>
+                  <rect x="378" y="100" width="28" height="22" fill="#00C9A7" opacity="0.18" stroke="#00C9A7" stroke-width="0.8"/>
+                  <text x="410" y="92" font-family="monospace" font-size="9" fill="#7A766E" text-anchor="middle" letter-spacing="1">BIG CHAIN</text>
+                  <!-- Glow effect -->
+                  <rect x="330" y="75" width="160" height="95" fill="none" stroke="#00C9A7" stroke-width="0.5" opacity="0.3"/>
+
+                  <!-- Person figure walking right -->
+                  <!-- Body -->
+                  <circle cx="248" cy="148" r="8" fill="none" stroke="#E8E4DC" stroke-width="1.5"/>
+                  <line x1="248" y1="156" x2="248" y2="175" stroke="#E8E4DC" stroke-width="1.5"/>
+                  <line x1="248" y1="162" x2="240" y2="170" stroke="#E8E4DC" stroke-width="1.5"/>
+                  <line x1="248" y1="162" x2="256" y2="167" stroke="#E8E4DC" stroke-width="1.5"/>
+                  <line x1="248" y1="175" x2="242" y2="185" stroke="#E8E4DC" stroke-width="1.5"/>
+                  <line x1="248" y1="175" x2="254" y2="185" stroke="#E8E4DC" stroke-width="1.5"/>
+
+                  <!-- Phone in hand -->
+                  <rect x="256" y="160" width="9" height="12" rx="1" fill="#00C9A7" opacity="0.7"/>
+
+                  <!-- Maps arrow pointing right (away from café, toward chain) -->
+                  <path d="M270 155 L305 155 L300 150 M305 155 L300 160" stroke="#00C9A7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+                  <!-- Maps bubble -->
+                  <rect x="268" y="130" width="80" height="20" rx="3" fill="#00C9A7" opacity="0.9"/>
+                  <text x="308" y="144" font-family="monospace" font-size="7.5" fill="#060608" text-anchor="middle" font-weight="700">"cafe near me"</text>
+                  <polygon points="308,150 303,160 313,160" fill="#00C9A7" opacity="0.9"/>
+                </svg>
               </div>
-              <div class="serp-result">
-                <p class="serp-result__site"><span class="serp-rank">#2</span> anothercorporatecafe.com</p>
-                <p class="serp-result__title">Another Corporate Café | Book Now</p>
-                <p class="serp-result__desc">Click-to-book. 24/7 online reservations. Franchise locations across 8 cities.</p>
+              <p class="scene-body">
+                You make the best food in the neighborhood. But when a local
+                searches "café near me," your place doesn't show up. Right
+                now, hundreds of hungry customers are searching for exactly
+                what you serve — and finding someone else.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stage 1: Scene 2 -->
+          <div class="stage" id="st-stage-1">
+            <div class="street-scene">
+              <p class="scene-label">[ SCENE 2 — THEY WALK INTO THE CHAIN DOWN THE STREET ]</p>
+              <div class="scene-svg-wrapper">
+                <!-- Street Scene 2: Person has entered the chain -->
+                <svg viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration: person has passed Your Café and entered the big chain">
+                  <!-- Ground -->
+                  <rect x="0" y="170" width="520" height="50" fill="#0C0C10"/>
+                  <line x1="0" y1="170" x2="520" y2="170" stroke="#2E2C2A" stroke-width="1"/>
+
+                  <!-- Your Café — even dimmer, "CLOSED TO THEM" label -->
+                  <rect x="30" y="90" width="140" height="80" fill="#0C0C10" stroke="#2E2C2A" stroke-width="1.5" opacity="0.5"/>
+                  <rect x="60" y="120" width="40" height="50" fill="#060608" stroke="#2E2C2A" stroke-width="1" opacity="0.5"/>
+                  <rect x="115" y="115" width="35" height="25" fill="#060608" stroke="#2E2C2A" stroke-width="1" opacity="0.5"/>
+                  <text x="100" y="108" font-family="monospace" font-size="9" fill="#2E2C2A" text-anchor="middle" letter-spacing="1" opacity="0.5">YOUR CAFÉ</text>
+                  <text x="100" y="82" font-family="monospace" font-size="7" fill="#2E2C2A" text-anchor="middle" letter-spacing="1">CLOSED TO THEM</text>
+
+                  <!-- Big Chain — person inside -->
+                  <rect x="330" y="75" width="160" height="95" fill="#141418" stroke="#7A766E" stroke-width="1.5"/>
+                  <rect x="375" y="115" width="45" height="55" fill="#111116" stroke="#7A766E" stroke-width="1"/>
+                  <rect x="340" y="100" width="28" height="22" fill="#00C9A7" opacity="0.22" stroke="#00C9A7" stroke-width="0.8"/>
+                  <rect x="378" y="100" width="28" height="22" fill="#00C9A7" opacity="0.22" stroke="#00C9A7" stroke-width="0.8"/>
+                  <text x="410" y="92" font-family="monospace" font-size="9" fill="#7A766E" text-anchor="middle" letter-spacing="1">BIG CHAIN</text>
+                  <rect x="330" y="75" width="160" height="95" fill="none" stroke="#00C9A7" stroke-width="0.5" opacity="0.3"/>
+
+                  <!-- Person figure INSIDE chain (at doorway) -->
+                  <circle cx="398" cy="132" r="7" fill="none" stroke="#E8E4DC" stroke-width="1.5" opacity="0.6"/>
+                  <line x1="398" y1="139" x2="398" y2="155" stroke="#E8E4DC" stroke-width="1.5" opacity="0.6"/>
+                  <line x1="398" y1="144" x2="391" y2="151" stroke="#E8E4DC" stroke-width="1.5" opacity="0.6"/>
+                  <line x1="398" y1="144" x2="405" y2="149" stroke="#E8E4DC" stroke-width="1.5" opacity="0.6"/>
+                  <line x1="398" y1="155" x2="393" y2="165" stroke="#E8E4DC" stroke-width="1.5" opacity="0.6"/>
+                  <line x1="398" y1="155" x2="403" y2="165" stroke="#E8E4DC" stroke-width="1.5" opacity="0.6"/>
+
+                  <!-- Arrow pointing at chain entrance, completed -->
+                  <path d="M260 155 L330 155" stroke="#2E2C2A" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+                </svg>
               </div>
-              <div class="serp-result serp-result--missing">
-                <p class="serp-result__site"><span class="serp-rank">#?</span> yourcafe.com</p>
-                <p class="serp-result__title">Your Café — the one people actually love</p>
-                <p class="serp-result__desc">Not here. Not yet.</p>
-              </div>
+              <p class="scene-body">
+                Every missed search isn't just one lost sale. It's a regular
+                who never found you. Compounding revenue — going to someone
+                else, every single day, because you're not on the map.
+              </p>
             </div>
-
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ================================================================
-         A — AGITATION
-         "Every day without a site is a day you're sending customers
-          to your competitors."
-    ================================================================= -->
-    <section class="section food-agitation" aria-labelledby="agitation-heading">
+    <!-- ===== THE SOLUTION ===== -->
+    <section aria-labelledby="solution-heading">
       <div class="container">
-        <p class="section__tag reveal">Why it's costing you right now</p>
-        <h2 class="food-agitation__heading reveal reveal--delay-1" id="agitation-heading">
-          Every day you wait,<br>
-          someone else ranks.<br>
-          <em>Someone else books.</em>
+        <p class="eyebrow reveal">03 / The Solution</p>
+
+        <h2 id="solution-heading" class="type-section reveal" data-delay="1">
+          FROM INVISIBLE<br>
+          TO IMPOSSIBLE<br>
+          <span class="text-accent">TO IGNORE.</span>
         </h2>
 
-        <div class="food-agitation__grid reveal reveal--delay-2">
-
-          <div class="food-pain-card">
-            <p class="food-pain-card__num">01 / The visibility gap</p>
-            <h3 class="food-pain-card__title">You're not competing for search traffic. You're invisible to it.</h3>
-            <p class="food-pain-card__desc">Google can't rank what it can't index. No structured data. No local schema. No page it understands. You're not even in the race.</p>
-          </div>
-
-          <div class="food-pain-card">
-            <p class="food-pain-card__num">02 / The trust gap</p>
-            <h3 class="food-pain-card__title">A link-in-bio tells new customers you're not serious.</h3>
-            <p class="food-pain-card__desc">New customers — the ones who don't already know you — judge on first impressions. A missing website, or a basic Instagram page, is a first impression you can't take back.</p>
-          </div>
-
-          <div class="food-pain-card">
-            <p class="food-pain-card__num">03 / The conversion gap</p>
-            <h3 class="food-pain-card__title">Making them call to book is costing you bookings.</h3>
-            <p class="food-pain-card__desc">Every extra step between "I want to eat there" and "table confirmed" costs you a customer. Friction is a leaky bucket. We seal it.</p>
-          </div>
-
-        </div>
-
-        <div class="food-agitation__cost reveal">
-          <strong>Every month without a real web presence is a month of search traffic going straight to your competitors.</strong>
-          <p>The café two streets away with the average coffee and the decent website is winning customers who would have chosen you — if they'd found you first.</p>
-        </div>
+        <p class="type-body text-secondary reveal" data-delay="2" style="max-width:540px;margin-top:var(--space-md);">
+          We build high-performance websites for independent food
+          businesses. Not just good-looking — built to rank on Google
+          so new customers find you first. Delivered in 14 days.
+        </p>
       </div>
     </section>
 
-    <!-- ================================================================
-         S — SOLUTION
-         "We build websites that rank, convert, and launch in 12 days."
-    ================================================================= -->
-    <section class="section food-solution" aria-labelledby="solution-heading">
+    <!-- ===== PACKAGE CARD ===== -->
+    <section aria-labelledby="package-heading">
       <div class="container">
-        <p class="section__tag reveal">The fix</p>
-        <h2 class="food-solution__heading reveal reveal--delay-1" id="solution-heading">
-          We build<br>
-          the <em>Google-ranking</em><br>
-          machines big<br>
-          chains fear.
-        </h2>
-        <p class="food-solution__intro reveal reveal--delay-2">
-          Hand-written code. Mobile-first. Local SEO baked in from line one. A site that shows up when someone searches your city — and gets them to book a table before they change their mind.
-        </p>
+        <div class="package-card reveal">
+          <h2 id="package-heading" class="package-card__name">The First Table Package</h2>
+          <p class="package-card__tagline">One Service · One Focus · Everything You Need</p>
 
-        <div class="food-proof reveal">
-          <div class="food-proof__item">
-            <p class="food-proof__num">12</p>
-            <p class="food-proof__label">Days from first call<br>to live site</p>
-          </div>
-          <div class="food-proof__item">
-            <p class="food-proof__num">98</p>
-            <p class="food-proof__label">Lighthouse performance<br>score. Café Bloom.</p>
-          </div>
-          <div class="food-proof__item">
-            <p class="food-proof__num">&lt;12s</p>
-            <p class="food-proof__label">Time to complete<br>a table booking</p>
-          </div>
-          <div class="food-proof__item">
-            <p class="food-proof__num">0</p>
-            <p class="food-proof__label">Recurring platform fees.<br>You own everything.</p>
-          </div>
-        </div>
+          <hr class="package-card__divider">
 
-        <div class="food-deliverables reveal">
+          <ul class="package-card__checklist">
+            <li class="package-card__check-item">Custom 5-page website — Home, Menu, Gallery, Contact, About</li>
+            <li class="package-card__check-item">Google Business Profile setup & Maps verification</li>
+            <li class="package-card__check-item">Mobile-first design — loads under 2 seconds</li>
+            <li class="package-card__check-item">Local SEO — keywords, meta tags, schema markup</li>
+            <li class="package-card__check-item">14-day delivery guarantee</li>
+            <li class="package-card__check-item">You own everything — code, domain, hosting. No lock-in.</li>
+          </ul>
 
-          <div class="food-deliverable">
-            <span class="food-deliverable__icon">🔍</span>
-            <div class="food-deliverable__content">
-              <h3 class="food-deliverable__title">Local SEO — baked in, not bolted on</h3>
-              <p class="food-deliverable__desc">Structured data, Google Business Profile integration, schema markup, meta tags, and site speed optimised from day one. Not an afterthought.</p>
+          <hr class="package-card__divider">
+
+          <div class="package-card__price-row">
+            <div class="package-card__price">$399</div>
+            <div class="package-card__price-note">
+              one-time payment<br>
+              no retainer · no lock-in<br>
+              fully yours
             </div>
           </div>
-
-          <div class="food-deliverable">
-            <span class="food-deliverable__icon">📱</span>
-            <div class="food-deliverable__content">
-              <h3 class="food-deliverable__title">Mobile-first design that converts</h3>
-              <p class="food-deliverable__desc">Most of your customers are searching on their phone at 7pm deciding where to eat. The site is built for that exact moment.</p>
-            </div>
-          </div>
-
-          <div class="food-deliverable">
-            <span class="food-deliverable__icon">📅</span>
-            <div class="food-deliverable__content">
-              <h3 class="food-deliverable__title">A reservation flow that doesn't leak</h3>
-              <p class="food-deliverable__desc">From landing to confirmed booking in under 12 seconds. Every step is deliberate. Every click has one job: get them to the table.</p>
-            </div>
-          </div>
-
-          <div class="food-deliverable">
-            <span class="food-deliverable__icon">⚡</span>
-            <div class="food-deliverable__content">
-              <h3 class="food-deliverable__title">Fast enough to keep them</h3>
-              <p class="food-deliverable__desc">No WordPress bloat. No 4MB page load. Hand-written HTML and CSS that loads instantly on any device, any network. Google rewards it. Customers stay for it.</p>
-            </div>
-          </div>
-
-          <div class="food-deliverable">
-            <span class="food-deliverable__icon">🧾</span>
-            <div class="food-deliverable__content">
-              <h3 class="food-deliverable__title">Menu that works as hard as the food</h3>
-              <p class="food-deliverable__desc">Structured, filterable, readable on any screen. Not a PDF link. Not a photo of a chalkboard. An actual menu that Google can read too.</p>
-            </div>
-          </div>
-
-          <div class="food-deliverable">
-            <span class="food-deliverable__icon">🔑</span>
-            <div class="food-deliverable__content">
-              <h3 class="food-deliverable__title">You own it. Forever.</h3>
-              <p class="food-deliverable__desc">No Squarespace subscription. No Wix lock-in. No maintenance contract. The code is yours, the domain is yours, the hosting is in your name. Always.</p>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ── WHAT'S INCLUDED ── -->
-    <section class="section food-offer" aria-labelledby="offer-heading">
-      <div class="container">
-
-        <p class="section__tag reveal">What's included</p>
-        <h2 class="food-offer__heading reveal reveal--delay-1" id="offer-heading">
-          One project.<br>Everything in.
-        </h2>
-        <p class="food-offer__sub reveal reveal--delay-2">
-          No surprise add-ons. No upsell calls. You know exactly what you're getting.
-        </p>
-
-        <div class="food-offer__split">
-
-          <div class="food-include-list reveal">
-            <div class="food-include-item">
-              <span class="food-include-item__check">✓</span>
-              <span class="food-include-item__label">Full custom website (4–6 pages)</span>
-              <span class="food-include-item__note">Hand-written</span>
-            </div>
-            <div class="food-include-item">
-              <span class="food-include-item__check">✓</span>
-              <span class="food-include-item__label">Local SEO setup + structured data</span>
-              <span class="food-include-item__note">Schema + GBP</span>
-            </div>
-            <div class="food-include-item">
-              <span class="food-include-item__check">✓</span>
-              <span class="food-include-item__label">Online reservation flow</span>
-              <span class="food-include-item__note">&lt;12s to book</span>
-            </div>
-            <div class="food-include-item">
-              <span class="food-include-item__check">✓</span>
-              <span class="food-include-item__label">Digital menu (filterable)</span>
-              <span class="food-include-item__note">Google-readable</span>
-            </div>
-            <div class="food-include-item">
-              <span class="food-include-item__check">✓</span>
-              <span class="food-include-item__label">Mobile-first responsive design</span>
-              <span class="food-include-item__note">All devices</span>
-            </div>
-            <div class="food-include-item">
-              <span class="food-include-item__check">✓</span>
-              <span class="food-include-item__label">Lighthouse performance 90+</span>
-              <span class="food-include-item__note">Page speed</span>
-            </div>
-            <div class="food-include-item">
-              <span class="food-include-item__check">✓</span>
-              <span class="food-include-item__label">Domain + hosting setup</span>
-              <span class="food-include-item__note">In your name</span>
-            </div>
-            <div class="food-include-item">
-              <span class="food-include-item__check">✓</span>
-              <span class="food-include-item__label">2 rounds of revisions</span>
-              <span class="food-include-item__note">Consolidated</span>
-            </div>
-            <div class="food-include-item">
-              <span class="food-include-item__check">✓</span>
-              <span class="food-include-item__label">30-day post-launch support</span>
-              <span class="food-include-item__note">Bug cover</span>
-            </div>
-            <div class="food-include-item">
-              <span class="food-include-item__check">✓</span>
-              <span class="food-include-item__label">Full handover — code + docs</span>
-              <span class="food-include-item__note">No lock-in</span>
-            </div>
-          </div>
-
-          <div class="food-price-card reveal reveal--delay-2">
-            <p class="food-price-card__label">Starting from</p>
-            <p class="food-price-card__price">
-              $350
-              <span>/ one-time</span>
-            </p>
-            <p class="food-price-card__note">
-              Exact price depends on scope. Discussed and agreed before anything begins. No surprise invoices.
-            </p>
-            <p class="food-price-card__detail">
-              Payment: <strong>50% upfront</strong> to confirm your slot.
-              <strong>50% on delivery</strong> — before launch.<br><br>
-              Typical delivery: <strong>8–12 working days.</strong>
-            </p>
-            <a href="start.html" class="btn-primary" style="display:block;text-align:center;margin-bottom:1rem;">
-              Start a project →
-            </a>
-            <a href="work.html" class="btn-secondary" style="display:block;text-align:center;">
-              See Café Bloom first →
-            </a>
-          </div>
-
+    <!-- ===== CTA STRIP ===== -->
+    <div class="cta-strip">
+      <div class="cta-strip__inner container reveal">
+        <div class="cta-strip__headline">
+          14 DAYS FROM NOW,<br>
+          <span class="text-accent">CUSTOMERS FIND YOU.</span>
         </div>
+        <a href="start.html" class="cta-strip__btn">
+          Claim Your Slot →
+        </a>
       </div>
-    </section>
-
-    <!-- ── FINAL CTA ── -->
-    <section class="section food-cta" aria-labelledby="food-cta-heading">
-      <div class="container">
-        <p class="section__tag reveal" style="justify-content:center;display:flex;align-items:center;gap:.75rem;">
-          <span style="display:block;width:24px;height:1px;background:var(--text-secondary);"></span>
-          One slot open this month
-        </p>
-        <h2 class="food-cta__heading reveal reveal--delay-1" id="food-cta-heading">
-          Built to<br>
-          <em>be found.</em>
-        </h2>
-        <p class="food-cta__sub reveal reveal--delay-2">
-          The customers who would have loved your food are searching right now. Let's make sure they find you first.
-        </p>
-        <div class="food-cta__actions reveal reveal--delay-3">
-          <a href="start.html" class="btn-primary">Start a project →</a>
-          <a href="about.html" class="btn-secondary">Who's behind this →</a>
-        </div>
-        <p class="food-cta__note reveal reveal--delay-4">Response within 24 hours · No obligation call first</p>
-      </div>
-    </section>
+    </div>
 
   </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="site-footer__inner">
-        <p class="site-footer__copy">© 2026 Zaree Studio.</p>
-        <nav class="site-footer__links" aria-label="Footer navigation">
-          <a href="https://instagram.com/zareestudios" target="_blank" rel="noopener noreferrer" class="site-footer__link">Instagram</a>
-          <a href="https://www.facebook.com/profile.php?id=61572127582054" target="_blank" rel="noopener noreferrer" class="site-footer__link">Facebook</a>
-          <a href="https://wa.me/03337128493" target="_blank" rel="noopener noreferrer" class="site-footer__link">WhatsApp</a>
-          <a href="food.html"    class="site-footer__link">Food Businesses</a>
-          <a href="privacy.html" class="site-footer__link">Privacy</a>
-          <a href="terms.html"   class="site-footer__link">Terms</a>
-        </nav>
-      </div>
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">© 2026 Zaree Studio · Quetta, Pakistan</p>
+      <nav aria-label="Footer navigation">
+        <ul class="footer__links">
+          <li><a href="https://instagram.com" class="footer__link" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://wa.me/" class="footer__link" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="privacy.html" class="footer__link">Privacy</a></li>
+          <li><a href="terms.html" class="footer__link">Terms</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
 
   <script src="assets/js/main.js" defer></script>
+
 </body>
 </html>

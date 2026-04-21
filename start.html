@@ -1,495 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Start a project with Zaree Studio. Tell us what you need — we'll get back to you within 24 hours." />
-  <meta name="theme-color" content="#060608" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Start a project with Zaree Studio. Fill in a 2-minute brief — no commitment, just a conversation.">
   <title>Start a Project — Zaree Studio</title>
-
-  <meta property="og:title"       content="Start a Project — Zaree Studio" />
-  <meta property="og:description" content="One short form. A conversation within 24 hours. No commitment." />
-  <meta property="og:type"        content="website" />
-
-  <!-- Modern browsers (SVG, sharp at any size) -->
-  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
-
-  <!-- Legacy browser fallback (16×16, 32×32, 48×48 in one file) -->
-  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
-
-  <!-- iOS/Android home screen icon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
-
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"></div>
-
   <!-- ===== NAV ===== -->
-  <header>
-    <nav class="site-nav" aria-label="Main navigation">
-      <div class="site-nav__inner">
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Zaree Studio home">
+        ZAREE <span class="nav__logo-serif">Studio</span>
+      </a>
 
-        <a href="index.html" class="site-nav__logo" aria-label="Zaree Studio — home">
-          Zaree
-        </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav__links">
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="food.html" class="nav__link">Food</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+          <li><a href="start.html" class="nav__cta nav__cta--current" aria-current="page">Get Found in 14 Days</a></li>
+        </ul>
+      </nav>
 
-        <button
-          class="site-nav__toggle"
-          aria-label="Toggle navigation menu"
-          aria-expanded="false"
-          aria-controls="nav-links"
-        >
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-        </button>
+      <button class="nav__hamburger" aria-expanded="false" aria-controls="nav-mobile" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
 
-        <div class="site-nav__links" id="nav-links" role="list">
-          <a href="work.html"  class="site-nav__link" role="listitem">Work</a>
-          <a href="food.html"  class="site-nav__link" role="listitem">Food Businesses</a>
-          <a href="about.html" class="site-nav__link" role="listitem">About</a>
-          <a href="start.html" class="site-nav__cta"  role="listitem" aria-current="page">Start a project →</a>
-        </div>
-
-      </div>
+    <nav class="nav__mobile" id="nav-mobile" aria-label="Mobile navigation">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="food.html" class="nav__link">Food</a>
+      <a href="about.html" class="nav__link">About</a>
+      <a href="start.html" class="nav__cta nav__cta--current" aria-current="page">Get Found in 14 Days</a>
     </nav>
   </header>
 
   <main>
-    <div class="start-page">
 
-      <!-- ===== LEFT: CONTEXT PANEL ===== -->
-      <aside class="start-context" aria-label="Project information">
-        <div class="start-context__orb" aria-hidden="true"></div>
+    <!-- ===== HEADER ===== -->
+    <section class="start-header">
+      <div class="orb" style="width:500px;height:500px;top:-80px;right:-100px;"></div>
+      <div class="container">
+        <p class="eyebrow reveal">Start a Project</p>
 
-        <div class="start-context__top">
-          <p class="start-context__eyebrow">
-            <span class="start-context__eyebrow-line" aria-hidden="true"></span>
-            Start a project
-          </p>
-          <h1 class="start-context__heading">
-            Let's build
-            <span class="start-context__heading-serif">something real.</span>
-          </h1>
-          <p class="start-context__sub">
-            Fill in the form — it takes 2 minutes. Submitting doesn't commit you to anything, just starts a conversation about what you need.
-          </p>
-        </div>
+        <h1 class="type-hero reveal" data-delay="1">
+          LET'S GET YOUR<br>
+          BUSINESS <span class="text-accent">FOUND.</span>
+        </h1>
 
-        <!-- What happens next -->
-        <div class="next-steps">
-          <p class="next-steps__label">What happens next</p>
-
-          <div class="next-step">
-            <div class="next-step__num" aria-hidden="true">01</div>
-            <div class="next-step__content">
-              <h2 class="next-step__title">We read your brief</h2>
-              <p class="next-step__desc">We look at what you actually need, and come back with honest thoughts. We respond within 24 hours.</p>
-            </div>
-          </div>
-
-          <div class="next-step">
-            <div class="next-step__num" aria-hidden="true">02</div>
-            <div class="next-step__content">
-              <h2 class="next-step__title">One short call</h2>
-              <p class="next-step__desc">20–30 minutes. We ask questions. You ask questions. We figure out if this is the right fit — for both of us.</p>
-            </div>
-          </div>
-
-          <div class="next-step">
-            <div class="next-step__num" aria-hidden="true">03</div>
-            <div class="next-step__content">
-              <h2 class="next-step__title">A clear proposal</h2>
-              <p class="next-step__desc">Scope, timeline, and price — in writing. No vague estimates, no surprises later.</p>
-            </div>
-          </div>
-
-          <div class="next-step">
-            <div class="next-step__num" aria-hidden="true">04</div>
-            <div class="next-step__content">
-              <h2 class="next-step__title">We get to work</h2>
-              <p class="next-step__desc">If the proposal works for you, we start. Most sites are live within 8–12 days of kickoff.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Availability badge -->
-        <div class="availability-badge" role="status" aria-live="polite">
-          <div class="availability-badge__dot" aria-hidden="true"></div>
-          <p class="availability-badge__text">
-            <strong>One slot open this month.</strong>
-            Taking on new projects now.
-          </p>
-        </div>
-
-      </aside>
-
-      <!-- ===== RIGHT: FORM PANEL ===== -->
-      <div class="start-form-panel">
-
-        <p class="start-form-panel__heading">
-          Tell us about your project — step <span id="current-step-num">1</span> of 3
+        <p class="type-body text-secondary reveal" data-delay="2" style="max-width:520px;margin-top:var(--space-md);">
+          Fill in the form — takes 2 minutes. No commitment, just a conversation.
         </p>
 
-        <!-- Step indicators -->
-        <div class="form-steps" role="list" aria-label="Form progress">
-          <div class="form-step-indicator is-active" role="listitem" id="step-ind-1">
-            <div class="form-step-indicator__dot" aria-current="step">1</div>
-            <span class="form-step-indicator__label">About you</span>
-          </div>
-          <div class="form-step-indicator" role="listitem" id="step-ind-2">
-            <div class="form-step-indicator__dot">2</div>
-            <span class="form-step-indicator__label">Your project</span>
-          </div>
-          <div class="form-step-indicator" role="listitem" id="step-ind-3">
-            <div class="form-step-indicator__dot">3</div>
-            <span class="form-step-indicator__label">Final details</span>
-          </div>
+        <div class="availability reveal" data-delay="3">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          One slot open this month. Taking on new projects now.
         </div>
+      </div>
+    </section>
 
-        <!-- Progress bar -->
-        <div class="form-progress" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" aria-label="Form completion">
-          <div class="form-progress__fill" id="form-progress-fill" style="width: 33%;"></div>
-        </div>
+    <!-- ===== WHAT HAPPENS NEXT ===== -->
+    <section aria-labelledby="steps-heading">
+      <div class="container">
+        <p class="eyebrow reveal">What Happens Next</p>
 
-        <!-- FORM -->
-        <form
-          class="project-form"
-          id="project-form"
-          novalidate
-          aria-label="Start a project form"
-        >
+        <ol class="steps" aria-labelledby="steps-heading">
+          <li class="step reveal">
+            <span class="step__number">01</span>
+            <div>
+              <h2 class="step__title">We Read Your Brief</h2>
+              <p class="step__body">
+                We look at what you actually need and come back with honest
+                thoughts. Within 24 hours.
+              </p>
+            </div>
+          </li>
 
-          <!-- ── SCREEN 1: About you ── -->
-          <fieldset class="form-screen is-active" id="screen-1" aria-labelledby="screen-1-heading">
-            <legend class="form-screen__heading" id="screen-1-heading">
-              First — who are you?
-            </legend>
-            <p class="form-screen__sub">We want to know who we're talking to before anything else.</p>
+          <li class="step reveal" data-delay="1">
+            <span class="step__number">02</span>
+            <div>
+              <h2 class="step__title">One Short Call</h2>
+              <p class="step__body">
+                20–30 minutes. We ask questions. You ask questions. We figure
+                out if this is the right fit — for both of us.
+              </p>
+            </div>
+          </li>
 
-            <div class="form-row">
-              <div class="form-field">
-                <label class="form-field__label" for="first-name">First name <span aria-hidden="true">*</span></label>
-                <input
-                  class="form-field__input"
-                  type="text"
-                  id="first-name"
-                  name="first_name"
-                  placeholder="John"
-                  required
-                  autocomplete="given-name"
-                  aria-required="true"
-                />
-                <span class="form-field__error" role="alert" aria-live="polite"></span>
+          <li class="step reveal" data-delay="2">
+            <span class="step__number">03</span>
+            <div>
+              <h2 class="step__title">A Clear Proposal</h2>
+              <p class="step__body">
+                Scope, timeline, and price — in writing. No vague estimates,
+                no surprises later.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== MULTI-STEP FORM ===== -->
+    <section aria-labelledby="form-heading">
+      <div class="container">
+        <h2 id="form-heading" class="sr-only">Project Brief Form</h2>
+
+        <div class="form-container reveal">
+
+          <!-- Step indicator -->
+          <div class="form-step__indicator" id="form-dots" aria-hidden="true">
+            <span class="form-step__dot is-current" data-step="1"></span>
+            <span class="form-step__dot" data-step="2"></span>
+            <span class="form-step__dot" data-step="3"></span>
+          </div>
+
+          <!-- ===== STEP 1 — ABOUT YOU ===== -->
+          <div class="form-step is-active" id="step-1" role="group" aria-labelledby="step1-title">
+            <p class="form-step__label">Step 1 of 3</p>
+            <h3 id="step1-title" class="form-step__title">ABOUT YOU</h3>
+            <p class="form-step__sub">Who we're talking to before anything else.</p>
+
+            <div class="form-grid-2">
+              <div class="form-field" id="field-firstname">
+                <label for="firstname" class="form-label">First name *</label>
+                <input type="text" id="firstname" name="firstname" class="form-input" placeholder="Ayesha" autocomplete="given-name" required>
+                <span class="form-error-msg" id="err-firstname" hidden>Please enter your first name.</span>
               </div>
               <div class="form-field">
-                <label class="form-field__label" for="last-name">Last name</label>
-                <input
-                  class="form-field__input"
-                  type="text"
-                  id="last-name"
-                  name="last_name"
-                  placeholder="Doe"
-                  autocomplete="family-name"
-                />
+                <label for="lastname" class="form-label">Last name</label>
+                <input type="text" id="lastname" name="lastname" class="form-input" placeholder="Khan" autocomplete="family-name">
               </div>
             </div>
 
-            <div class="form-field">
-              <label class="form-field__label" for="email">Email address <span aria-hidden="true">*</span></label>
-              <input
-                class="form-field__input"
-                type="email"
-                id="email"
-                name="email"
-                placeholder="you@example.com"
-                required
-                autocomplete="email"
-                aria-required="true"
-              />
-              <span class="form-field__error" role="alert" aria-live="polite"></span>
+            <div class="form-field" id="field-email">
+              <label for="email" class="form-label">Email address *</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" autocomplete="email" required>
+              <span class="form-error-msg" id="err-email" hidden>Please enter a valid email address.</span>
             </div>
 
-            <div class="form-field">
-              <label class="form-field__label" for="instagram">Instagram handle <span style="color:var(--text-ghost);font-size:0.6rem;letter-spacing:0.1em;">(optional)</span></label>
-              <input
-                class="form-field__input"
-                type="text"
-                id="instagram"
-                name="instagram"
-                placeholder="@yourhandle"
-              />
-            </div>
-
-            <div class="form-field">
-              <label class="form-field__label" for="business-name">Business name <span aria-hidden="true">*</span></label>
-              <input
-                class="form-field__input"
-                type="text"
-                id="business-name"
-                name="business_name"
-                placeholder="What's your business called?"
-                required
-                aria-required="true"
-              />
-              <span class="form-field__error" role="alert" aria-live="polite"></span>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label for="instagram" class="form-label">Instagram handle</label>
+                <input type="text" id="instagram" name="instagram" class="form-input" placeholder="@yourcafe">
+              </div>
+              <div class="form-field" id="field-business">
+                <label for="business" class="form-label">Business name *</label>
+                <input type="text" id="business" name="business" class="form-input" placeholder="Your Café" required>
+                <span class="form-error-msg" id="err-business" hidden>Please enter your business name.</span>
+              </div>
             </div>
 
             <div class="form-nav">
-              <button type="button" class="form-nav__back" hidden aria-hidden="true">← Back</button>
-              <button type="button" class="form-nav__next" id="next-1" aria-label="Continue to project details">
+              <button type="button" class="btn--nav-cta" id="step1-next">
                 Continue →
               </button>
             </div>
-          </fieldset>
+          </div>
 
-          <!-- ── SCREEN 2: Your project ── -->
-          <fieldset class="form-screen" id="screen-2" aria-labelledby="screen-2-heading">
-            <legend class="form-screen__heading" id="screen-2-heading">
-              Now — what do you need?
-            </legend>
-            <p class="form-screen__sub">Pick the option that fits closest. We'll figure out the details together.</p>
+          <!-- ===== STEP 2 — YOUR PROJECT ===== -->
+          <div class="form-step" id="step-2" role="group" aria-labelledby="step2-title">
+            <p class="form-step__label">Step 2 of 3</p>
+            <h3 id="step2-title" class="form-step__title">YOUR PROJECT</h3>
+            <p class="form-step__sub">Pick the option that fits closest.</p>
 
-            <!-- Niche selector -->
-            <div class="form-field" role="group" aria-labelledby="niche-label">
-              <p class="form-field__label" id="niche-label">What kind of business is this? <span aria-hidden="true">*</span></p>
-              <div class="choice-grid">
-
-                <div class="choice-card">
-                  <input
-                    class="choice-card__input"
-                    type="radio"
-                    name="niche"
-                    id="niche-cafe"
-                    value="cafe"
-                    required
-                    aria-required="true"
-                  />
-                  <label class="choice-card__label" for="niche-cafe">
-                    <span class="choice-card__icon" aria-hidden="true">☕</span>
-                    <span class="choice-card__title">Café or food business</span>
-                    <span class="choice-card__desc">Reservations, menu, local presence</span>
-                  </label>
-                </div>
-
-                <div class="choice-card">
-                  <input
-                    class="choice-card__input"
-                    type="radio"
-                    name="niche"
-                    id="niche-other"
-                    value="other"
-                  />
-                  <label class="choice-card__label" for="niche-other">
-                    <span class="choice-card__icon" aria-hidden="true">💼</span>
-                    <span class="choice-card__title">Other business</span>
-                    <span class="choice-card__desc">Tell us more below</span>
-                  </label>
-                </div>
-
-                <div class="choice-card">
-                  <input
-                    class="choice-card__input"
-                    type="radio"
-                    name="niche"
-                    id="niche-notsure"
-                    value="not_sure"
-                  />
-                  <label class="choice-card__label" for="niche-notsure">
-                    <span class="choice-card__icon" aria-hidden="true">🤔</span>
-                    <span class="choice-card__title">Not sure yet</span>
-                    <span class="choice-card__desc">Let's figure it out together</span>
-                  </label>
-                </div>
-
-              </div>
-              <span class="form-field__error" role="alert" aria-live="polite" id="niche-error"></span>
-            </div>
-
-            <div class="form-field">
-              <label class="form-field__label" for="project-desc">Describe your project in a few sentences <span aria-hidden="true">*</span></label>
-              <textarea
-                class="form-field__input form-field__textarea"
-                id="project-desc"
-                name="project_description"
-                placeholder="We're an independent café with a loyal following but no website. We need somewhere customers can see our menu, book a table, and find us when they search Google…"
-                required
-                aria-required="true"
-              ></textarea>
-              <span class="form-field__error" role="alert" aria-live="polite"></span>
-            </div>
-
-            <div class="form-field">
-              <label class="form-field__label" for="existing-site">Do you have an existing website? <span style="color:var(--text-ghost);font-size:0.6rem;">(url or 'no')</span></label>
-              <input
-                class="form-field__input"
-                type="text"
-                id="existing-site"
-                name="existing_site"
-                placeholder="https://yourwebsite.com or no"
-              />
-            </div>
-
-            <div class="form-nav">
-              <button type="button" class="form-nav__back" id="back-2">← Back</button>
-              <button type="button" class="form-nav__next" id="next-2" aria-label="Continue to final details">
-                Continue →
-              </button>
-            </div>
-          </fieldset>
-
-          <!-- ── SCREEN 3: Final details ── -->
-          <fieldset class="form-screen" id="screen-3" aria-labelledby="screen-3-heading">
-            <legend class="form-screen__heading" id="screen-3-heading">
-              Almost there — last few things.
-            </legend>
-            <p class="form-screen__sub">No wrong answers here. This just helps us come to the call prepared.</p>
-
-            <!-- Currency selector -->
-            <div class="form-field">
-              <label class="form-field__label" for="budget-currency">Your currency</label>
-              <select
-                class="form-field__select"
-                id="budget-currency"
-                name="currency"
-                aria-label="Select your currency"
+            <div class="niche-grid" role="group" aria-label="Business niche">
+              <button
+                type="button"
+                class="niche-card is-selected"
+                data-niche="cafe"
+                aria-pressed="true"
               >
-                <option value="USD">USD — US Dollar</option>
-                <option value="GBP">GBP — British Pound</option>
-                <option value="EUR">EUR — Euro</option>
-                <option value="AED">AED — UAE Dirham</option>
-                <option value="PKR">PKR — Pakistani Rupee</option>
-              </select>
+                <div class="niche-card__icon">☕</div>
+                <div class="niche-card__name">Café or Food</div>
+                <div class="niche-card__desc">Reservations, menu, local presence</div>
+              </button>
+              <button
+                type="button"
+                class="niche-card"
+                data-niche="other"
+                aria-pressed="false"
+              >
+                <div class="niche-card__icon">💼</div>
+                <div class="niche-card__name">Other</div>
+                <div class="niche-card__desc">Tell us more below</div>
+              </button>
             </div>
 
-            <!-- Budget selector -->
-            <div class="form-field" role="group" aria-labelledby="budget-label">
-              <p class="form-field__label" id="budget-label">Rough budget range <span aria-hidden="true">*</span></p>
-              <div class="budget-options">
+            <input type="hidden" id="niche-value" name="niche" value="cafe">
 
-                <div class="budget-option">
-                  <input
-                    class="budget-option__input"
-                    type="radio"
-                    name="budget"
-                    id="budget-1"
-                    value="under_500_usd"
-                    required
-                    aria-required="true"
-                  />
-                  <label class="budget-option__label" for="budget-1">
-                    <span class="budget-option__range">Under $500</span>
-                    <span class="budget-option__desc">Entry-level</span>
-                    <span class="budget-option__check" aria-hidden="true"></span>
-                  </label>
-                </div>
-
-                <div class="budget-option">
-                  <input
-                    class="budget-option__input"
-                    type="radio"
-                    name="budget"
-                    id="budget-2"
-                    value="500_1000_usd"
-                  />
-                  <label class="budget-option__label" for="budget-2">
-                    <span class="budget-option__range">$500 – $1,000</span>
-                    <span class="budget-option__desc">Standard site</span>
-                    <span class="budget-option__check" aria-hidden="true"></span>
-                  </label>
-                </div>
-
-                <div class="budget-option">
-                  <input
-                    class="budget-option__input"
-                    type="radio"
-                    name="budget"
-                    id="budget-3"
-                    value="1000_2000_usd"
-                  />
-                  <label class="budget-option__label" for="budget-3">
-                    <span class="budget-option__range">$1,000 – $2,000</span>
-                    <span class="budget-option__desc">Full custom build</span>
-                    <span class="budget-option__check" aria-hidden="true"></span>
-                  </label>
-                </div>
-
-                <div class="budget-option">
-                  <input
-                    class="budget-option__input"
-                    type="radio"
-                    name="budget"
-                    id="budget-4"
-                    value="flexible"
-                  />
-                  <label class="budget-option__label" for="budget-4">
-                    <span class="budget-option__range">Flexible / Let's talk</span>
-                    <span class="budget-option__desc">Tell me what's possible</span>
-                    <span class="budget-option__check" aria-hidden="true"></span>
-                  </label>
-                </div>
-
-              </div>
-              <span class="form-field__error" role="alert" aria-live="polite" id="budget-error"></span>
+            <div class="form-field" id="field-description">
+              <label for="description" class="form-label">Describe your project *</label>
+              <textarea id="description" name="description" class="form-textarea" placeholder="Tell us about your business, what you need, and any goals you have..." required></textarea>
+              <span class="form-error-msg" id="err-description" hidden>Please describe your project.</span>
             </div>
 
             <div class="form-field">
-              <label class="form-field__label" for="anything-else">Anything else we should know? <span style="color:var(--text-ghost);font-size:0.6rem;">(optional)</span></label>
-              <textarea
-                class="form-field__input form-field__textarea"
-                id="anything-else"
-                name="anything_else"
-                style="min-height:100px;"
-                placeholder="Inspiration you like, specific features you need, questions you have — anything helps."
-              ></textarea>
+              <label for="existing-site" class="form-label">Existing website</label>
+              <input type="text" id="existing-site" name="existing_site" class="form-input" placeholder="url or 'no'">
             </div>
 
             <div class="form-nav">
-              <button type="button" class="form-nav__back" id="back-3">← Back</button>
-              <button type="submit" class="form-nav__submit" id="submit-btn" aria-label="Submit your project brief">
-                Send brief →
+              <button type="button" class="btn--secondary" id="step2-back">← Back</button>
+              <button type="button" class="btn--nav-cta" id="step2-next">Continue →</button>
+            </div>
+          </div>
+
+          <!-- ===== STEP 3 — FINAL DETAILS ===== -->
+          <div class="form-step" id="step-3" role="group" aria-labelledby="step3-title">
+            <p class="form-step__label">Step 3 of 3</p>
+            <h3 id="step3-title" class="form-step__title">FINAL DETAILS</h3>
+            <p class="form-step__sub">No wrong answers. Helps us come to the call prepared.</p>
+
+            <p class="type-label text-ghost" style="margin-bottom:0.75rem;">Currency</p>
+            <div class="currency-pills" role="group" aria-label="Preferred currency">
+              <button type="button" class="currency-pill is-selected" data-currency="PKR" aria-pressed="true">PKR</button>
+              <button type="button" class="currency-pill" data-currency="USD" aria-pressed="false">USD</button>
+              <button type="button" class="currency-pill" data-currency="GBP" aria-pressed="false">GBP</button>
+              <button type="button" class="currency-pill" data-currency="AED" aria-pressed="false">AED</button>
+              <button type="button" class="currency-pill" data-currency="EUR" aria-pressed="false">EUR</button>
+            </div>
+
+            <input type="hidden" id="currency-value" name="currency" value="PKR">
+
+            <p class="type-label text-ghost" style="margin-bottom:0.75rem;">Budget range</p>
+            <div class="budget-grid" role="group" aria-label="Budget range" id="budget-grid">
+              <button type="button" class="budget-card" data-budget="under-50k" aria-pressed="false">
+                <div class="budget-card__amount">Under PKR 50,000</div>
+                <div class="budget-card__label">Entry-level</div>
+              </button>
+              <button type="button" class="budget-card" data-budget="50k-100k" aria-pressed="false">
+                <div class="budget-card__amount">PKR 50,000–100,000</div>
+                <div class="budget-card__label">Standard site</div>
+              </button>
+              <button type="button" class="budget-card" data-budget="100k-200k" aria-pressed="false">
+                <div class="budget-card__amount">PKR 100,000–200,000</div>
+                <div class="budget-card__label">Full custom build</div>
+              </button>
+              <button type="button" class="budget-card" data-budget="flexible" aria-pressed="false">
+                <div class="budget-card__amount">Flexible / Let's talk</div>
+                <div class="budget-card__label">Tell me what's possible</div>
               </button>
             </div>
-          </fieldset>
 
-        </form>
+            <input type="hidden" id="budget-value" name="budget" value="">
+
+            <div class="form-field">
+              <label for="anything-else" class="form-label">Anything else? <span style="color:var(--text-ghost)">(optional)</span></label>
+              <textarea id="anything-else" name="anything_else" class="form-textarea" placeholder="Deadlines, references, questions..."></textarea>
+            </div>
+
+            <div class="form-nav">
+              <button type="button" class="btn--secondary" id="step3-back">← Back</button>
+              <button type="button" class="btn--nav-cta" id="form-submit" aria-busy="false">
+                Send Brief →
+              </button>
+            </div>
+          </div>
+
+        </div>
 
         <!-- ===== SUCCESS STATE ===== -->
-        <div class="form-success" id="form-success" aria-live="polite" aria-label="Form submitted successfully">
-          <div class="form-success__icon" aria-hidden="true">✓</div>
-          <h2 class="form-success__heading">Brief received.</h2>
+        <div class="form-success" id="form-success" aria-live="polite">
+          <div class="form-success__check" aria-hidden="true">✓</div>
+          <h2 class="form-success__title">BRIEF RECEIVED.</h2>
           <p class="form-success__sub">We'll be in touch within 24 hours.</p>
-          <p class="form-success__body">
-            We've got your details and we'll read through everything properly before we reply.
-          </p>
           <div class="form-success__links">
-            <a href="work.html" class="btn-primary">See our work →</a>
-            <a href="index.html" class="btn-secondary">Back to home →</a>
+            <a href="food.html" class="btn--primary">See our work →</a>
+            <a href="index.html" class="btn--secondary">Back to home →</a>
           </div>
         </div>
 
       </div>
-    </div>
+    </section>
+
   </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="site-footer__inner">
-        <p class="site-footer__copy">© 2026 Zaree Studio.</p>
-        <nav class="site-footer__links" aria-label="Footer navigation">
-          <a href="https://instagram.com/zareestudios" target="_blank" rel="noopener noreferrer" class="site-footer__link">Instagram</a>
-          <a href="https://www.facebook.com/profile.php?id=61572127582054" target="_blank" rel="noopener noreferrer" class="site-footer__link">Facebook</a>
-          <a href="https://wa.me/03337128493" target="_blank" rel="noopener noreferrer" class="site-footer__link">WhatsApp</a>
-          <a href="food.html"    class="site-footer__link">Food Businesses</a>
-          <a href="privacy.html" class="site-footer__link">Privacy</a>
-          <a href="terms.html"   class="site-footer__link">Terms</a>
-        </nav>
-      </div>
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">© 2026 Zaree Studio · Quetta, Pakistan</p>
+      <nav aria-label="Footer navigation">
+        <ul class="footer__links">
+          <li><a href="https://instagram.com" class="footer__link" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://wa.me/" class="footer__link" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="privacy.html" class="footer__link">Privacy</a></li>
+          <li><a href="terms.html" class="footer__link">Terms</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
 

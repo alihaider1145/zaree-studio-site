@@ -1,213 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Zaree Studio terms of service. How engagements work, what you own, what happens if things change." />
-  <meta name="theme-color" content="#060608" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zaree Studio Terms of Service — how engagements work, payment, ownership, and more.">
   <title>Terms of Service — Zaree Studio</title>
-
-  <!-- Modern browsers (SVG, sharp at any size) -->
-  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
-
-  <!-- Legacy browser fallback (16×16, 32×32, 48×48 in one file) -->
-  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
-
-  <!-- iOS/Android home screen icon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
-
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"></div>
-
   <!-- ===== NAV ===== -->
-  <header>
-    <nav class="site-nav" aria-label="Main navigation">
-      <div class="site-nav__inner">
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Zaree Studio home">
+        ZAREE <span class="nav__logo-serif">Studio</span>
+      </a>
 
-        <a href="index.html" class="site-nav__logo" aria-label="Zaree Studio — home">
-          Zaree
-        </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav__links">
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="food.html" class="nav__link">Food</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+          <li><a href="start.html" class="nav__cta">Get Found in 14 Days</a></li>
+        </ul>
+      </nav>
 
-        <button
-          class="site-nav__toggle"
-          aria-label="Toggle navigation menu"
-          aria-expanded="false"
-          aria-controls="nav-links"
-        >
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-        </button>
+      <button class="nav__hamburger" aria-expanded="false" aria-controls="nav-mobile" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
 
-        <div class="site-nav__links" id="nav-links" role="list">
-          <a href="work.html"  class="site-nav__link" role="listitem">Work</a>
-          <a href="food.html"  class="site-nav__link" role="listitem">Food Businesses</a>
-          <a href="about.html" class="site-nav__link" role="listitem">About</a>
-          <a href="start.html" class="site-nav__cta"  role="listitem">Start a project →</a>
-        </div>
-
-      </div>
+    <nav class="nav__mobile" id="nav-mobile" aria-label="Mobile navigation">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="food.html" class="nav__link">Food</a>
+      <a href="about.html" class="nav__link">About</a>
+      <a href="start.html" class="nav__cta">Get Found in 14 Days</a>
     </nav>
   </header>
 
   <main>
+    <div class="container">
 
-    <!-- ===== HERO ===== -->
-    <div class="legal-hero">
-      <div class="container">
-        <div class="legal-hero__inner">
-          <p class="section__tag">Legal</p>
-          <h1 class="legal-hero__heading">Terms of Service</h1>
-        </div>
-      </div>
+      <!-- ===== LEGAL HEADER ===== -->
+      <header class="legal-header">
+        <p class="eyebrow">Legal</p>
+        <h1 class="type-hero">
+          TERMS OF<br>
+          <span class="text-accent">SERVICE.</span>
+        </h1>
+        <p class="legal-header__updated">Last Updated — April 2026</p>
+
+        <nav class="legal-anchor-nav" aria-label="Jump to section">
+          <a href="#how-we-work"        class="legal-anchor-nav__link">How we work</a>
+          <a href="#payment"             class="legal-anchor-nav__link">Payment</a>
+          <a href="#ownership"           class="legal-anchor-nav__link">Ownership</a>
+          <a href="#portfolio"           class="legal-anchor-nav__link">Portfolio rights</a>
+          <a href="#responsibilities"    class="legal-anchor-nav__link">Your responsibilities</a>
+          <a href="#revisions"           class="legal-anchor-nav__link">Revisions</a>
+          <a href="#post-launch"         class="legal-anchor-nav__link">Post-launch</a>
+          <a href="#cancellation"        class="legal-anchor-nav__link">Cancellation</a>
+          <a href="#liability"           class="legal-anchor-nav__link">Liability</a>
+          <a href="#disputes"            class="legal-anchor-nav__link">Disputes</a>
+        </nav>
+      </header>
+
+      <!-- ===== SECTIONS ===== -->
+      <article>
+
+        <section class="legal-section reveal" id="how-we-work">
+          <p class="legal-section__number">01</p>
+          <h2 class="legal-section__title">How Engagements Work</h2>
+          <p class="legal-section__body">
+            Every project starts with a conversation — a brief, a call, and a written proposal that
+            outlines scope, timeline, and price. Nothing starts until we agree in writing. Once we
+            both sign off on the proposal, that document governs the engagement. Typical timeline:
+            8–12 working days from deposit receipt to delivery, depending on scope and how quickly
+            content and feedback are provided.
+          </p>
+        </section>
+
+        <section class="legal-section reveal" id="payment">
+          <p class="legal-section__number">02</p>
+          <h2 class="legal-section__title">Payment</h2>
+          <p class="legal-section__body">
+            50% upfront before work begins. 50% on delivery, before final files are handed over. The
+            deposit is non-refundable if the project is cancelled after work has started. Full payment
+            is required to receive final deliverables. For Pakistan-based clients, payment is accepted
+            via JazzCash or EasyPaisa.
+          </p>
+        </section>
+
+        <section class="legal-section reveal" id="ownership">
+          <p class="legal-section__number">03</p>
+          <h2 class="legal-section__title">What You Own</h2>
+          <p class="legal-section__body">
+            You own everything — all code, all design assets, all copy — upon receipt of final
+            payment. Domain and hosting are always registered in your name from day one. There is no
+            lock-in, no ongoing dependency on Zaree Studio, and no licensing fees. Once you've paid in
+            full, the work is entirely yours.
+          </p>
+        </section>
+
+        <section class="legal-section reveal" id="portfolio">
+          <p class="legal-section__number">04</p>
+          <h2 class="legal-section__title">Portfolio Rights</h2>
+          <p class="legal-section__body">
+            We retain the right to display the completed project in our portfolio and to reference it
+            in marketing materials. This includes screenshots, links, and case study descriptions. If
+            you'd prefer the work not be shown publicly, let us know before signing off — we'll note
+            that in the agreement.
+          </p>
+        </section>
+
+        <section class="legal-section reveal" id="responsibilities">
+          <p class="legal-section__number">05</p>
+          <h2 class="legal-section__title">Your Responsibilities</h2>
+          <p class="legal-section__body">
+            You are responsible for providing content — copy, images, branding assets — within the
+            agreed timeline. Delays in content delivery may push back the overall project timeline.
+            Feedback on drafts should be provided within 3 working days of delivery. Extended delays
+            may require rescheduling or additional charges.
+          </p>
+        </section>
+
+        <section class="legal-section reveal" id="revisions">
+          <p class="legal-section__number">06</p>
+          <h2 class="legal-section__title">Revisions</h2>
+          <p class="legal-section__body">
+            Every project includes 2 rounds of revisions after initial delivery. Revisions cover
+            adjustments to the agreed scope — changes in layout, copy edits, colour tweaks — not
+            additions of new features or pages. Additional rounds are available and billed at an
+            agreed hourly or per-task rate.
+          </p>
+        </section>
+
+        <section class="legal-section reveal" id="post-launch">
+          <p class="legal-section__number">07</p>
+          <h2 class="legal-section__title">Post-Launch Support</h2>
+          <p class="legal-section__body">
+            For 30 days after launch, we'll fix any bugs caused by our work at no charge. This covers
+            technical errors in the code or configuration we delivered. It does not cover issues
+            caused by third-party services, hosting providers, or content changes made by the client.
+            After 30 days, ongoing support is available and priced per request.
+          </p>
+        </section>
+
+        <section class="legal-section reveal" id="cancellation">
+          <p class="legal-section__number">08</p>
+          <h2 class="legal-section__title">Cancellation</h2>
+          <p class="legal-section__body">
+            Cancel before work starts — full refund. Cancel after work starts — deposit is
+            non-refundable, as it covers time already spent. If we cancel the engagement for any
+            reason on our end, you receive a full refund of everything paid. Both parties may cancel
+            at any time with written notice.
+          </p>
+        </section>
+
+        <section class="legal-section reveal" id="liability">
+          <p class="legal-section__number">09</p>
+          <h2 class="legal-section__title">Limitation of Liability</h2>
+          <p class="legal-section__body">
+            Zaree Studio is not liable for indirect, incidental, special, or consequential damages
+            arising from the use of deliverables. Total liability is limited to the total fees paid
+            for the specific project in question. We do our best work on every engagement — but
+            results in search rankings or business outcomes cannot be guaranteed.
+          </p>
+        </section>
+
+        <section class="legal-section reveal" id="disputes">
+          <p class="legal-section__number">10</p>
+          <h2 class="legal-section__title">Disputes</h2>
+          <p class="legal-section__body">
+            Direct conversation first — most issues are resolved quickly when both parties talk
+            openly. If that doesn't resolve the matter, mediation before any other legal action.
+            This agreement is governed by the laws of Pakistan.
+          </p>
+        </section>
+
+      </article>
+
     </div>
-
-    <!-- ===== BODY ===== -->
-    <section class="legal-body" aria-label="Terms of service content">
-      <div class="container">
-        <div class="legal-body__grid">
-
-          <!-- Sidebar nav -->
-          <nav class="legal-body__nav" aria-label="Terms sections">
-            <a href="#how-we-work"             class="legal-nav__link">How we work</a>
-            <a href="#payment"                 class="legal-nav__link">Payment</a>
-            <a href="#ownership"               class="legal-nav__link">Ownership</a>
-            <a href="#portfolio"               class="legal-nav__link">Portfolio rights</a>
-            <a href="#client-duties"           class="legal-nav__link">Your responsibilities</a>
-            <a href="#revisions"               class="legal-nav__link">Revisions</a>
-            <a href="#post-launch"             class="legal-nav__link">Post-launch support</a>
-            <a href="#cancellation"            class="legal-nav__link">Cancellation</a>
-            <a href="#limitation-of-liability" class="legal-nav__link">Limitation of liability</a>
-            <a href="#disputes"                class="legal-nav__link">Disputes</a>
-          </nav>
-
-          <!-- Content -->
-          <div class="legal-content">
-
-            <div class="legal-section" id="how-we-work">
-              <p class="section__tag legal-section__tag">01</p>
-              <h2 class="legal-section__heading">How engagements work</h2>
-              <div class="legal-section__body">
-                <p>Every project starts with a conversation — either a call or an exchange of messages — where we agree on what's being built, what it will cost, and when it will be done. <strong>Nothing starts until we agree in writing.</strong></p>
-                <p>That agreement (a simple project brief or proposal document) sets the scope. Changes to scope are discussed and repriced before work continues. There are no surprise invoices.</p>
-                <p>Typical timeline: 8–12 working days from project kick-off to delivery, depending on complexity and content availability from your side.</p>
-              </div>
-            </div>
-
-            <div class="legal-section" id="payment">
-              <p class="section__tag legal-section__tag">02</p>
-              <h2 class="legal-section__heading">Payment</h2>
-              <div class="legal-section__body">
-                <p>Payment is split 50/50. <strong>50% upfront before work begins. 50% on delivery</strong> — before the files are transferred or the site goes live.</p>
-                <p>The upfront deposit confirms your project slot and covers initial research and design work. It is non-refundable if you cancel after work has started (see Cancellation below).</p>
-                <p>Payment methods and currency are agreed per project.</p>
-              </div>
-            </div>
-
-            <div class="legal-section" id="ownership">
-              <p class="section__tag legal-section__tag">03</p>
-              <h2 class="legal-section__heading">What you own</h2>
-              <div class="legal-section__body">
-                <p><strong>You own everything</strong> — all code, all design assets, all copy — upon receipt of final payment. Full transfer, no ongoing licensing fee, no strings attached.</p>
-                <p>This includes the HTML, CSS, JavaScript, any SVG assets or custom illustrations created for the project, and the right to modify or hand the codebase to another developer at any time.</p>
-                <p>The domain and hosting are always registered in your name, with your payment method. We set them up for you but they belong to you from day one.</p>
-              </div>
-            </div>
-
-            <div class="legal-section" id="portfolio">
-              <p class="section__tag legal-section__tag">04</p>
-              <h2 class="legal-section__heading">Portfolio rights</h2>
-              <div class="legal-section__body">
-                <p>We retain the right to display the completed project in our portfolio and case studies — including screenshots, descriptions of the work, and a link to the live site.</p>
-                <p>If you'd prefer the work not be shown publicly, let us know before signing off and we can agree to exclude it. This is rare but completely reasonable.</p>
-              </div>
-            </div>
-
-            <div class="legal-section" id="client-duties">
-              <p class="section__tag legal-section__tag">05</p>
-              <h2 class="legal-section__heading">Your responsibilities</h2>
-              <div class="legal-section__body">
-                <p>You are responsible for providing the content needed for the project — text, images, logos, brand guidelines — within the agreed timeline. Delays on your side may push back delivery.</p>
-                <p>You are also responsible for ensuring you have the right to use any content you provide (photos, text, trademarks). We build with what you give us in good faith.</p>
-                <p>Feedback on drafts and approvals should come back within 3 working days. If feedback is delayed significantly, we may need to reschedule the project.</p>
-              </div>
-            </div>
-
-            <div class="legal-section" id="revisions">
-              <p class="section__tag legal-section__tag">06</p>
-              <h2 class="legal-section__heading">Revisions</h2>
-              <div class="legal-section__body">
-                <p>Every project includes <strong>2 rounds of revisions</strong> after the initial delivery. A revision round means a consolidated list of changes — not a series of drip-fed requests.</p>
-                <p>Revisions cover adjustments to the agreed scope: copy edits, colour tweaks, layout adjustments, content swaps. They do not cover new features, new pages, or structural redesigns — those are repriced as additions.</p>
-                <p>Additional revision rounds beyond the included 2 are billed at an agreed hourly or flat rate.</p>
-              </div>
-            </div>
-
-            <div class="legal-section" id="post-launch">
-              <p class="section__tag legal-section__tag">07</p>
-              <h2 class="legal-section__heading">Post-launch support</h2>
-              <div class="legal-section__body">
-                <p>For <strong>30 days after launch</strong>, we'll fix any bugs or issues caused by our work at no charge. This covers things that break due to code errors, browser compatibility issues, or oversights on our end.</p>
-                <p>It does not cover changes to content, new functionality, or issues caused by modifications made by third parties after handoff.</p>
-                <p>After 30 days, ongoing support is available and priced per request.</p>
-              </div>
-            </div>
-
-            <div class="legal-section" id="cancellation">
-              <p class="section__tag legal-section__tag">08</p>
-              <h2 class="legal-section__heading">Cancellation</h2>
-              <div class="legal-section__body">
-                <p>If you cancel before work has started, you receive a full refund of any deposit paid.</p>
-                <p><strong>If you cancel after work has started, the deposit is non-refundable.</strong> It covers the time and research already invested. Any work completed to that point can be delivered to you if you want it.</p>
-                <p>If we cancel (which would only happen in exceptional circumstances), you receive a full refund of everything paid.</p>
-              </div>
-            </div>
-
-            <div class="legal-section" id="limitation-of-liability">
-              <p class="section__tag legal-section__tag">09</p>
-              <h2 class="legal-section__heading">Limitation of liability</h2>
-              <div class="legal-section__body">
-                Zaree Studio is not liable for indirect, incidental, or consequential damages arising from the use of deliverables. Our total liability for any claim is limited to the total fees paid for the project in question.
-              </div>
-            </div>
-
-            <div class="legal-section" id="disputes">
-              <p class="section__tag legal-section__tag">10</p>
-              <h2 class="legal-section__heading">Disputes</h2>
-              <div class="legal-section__body">
-                <p>If something goes wrong, the first step is a direct conversation. Most disagreements come from miscommunication and can be resolved quickly when both sides talk plainly.</p>
-                <p>If a dispute can't be resolved directly, both parties agree to attempt mediation before any other action. These terms are governed by the laws of Pakistan.</p>
-                <p>If mediation fails, the parties agree that the courts of Quetta, Balochistan, shall have exclusive jurisdiction to settle any dispute or claim arising out of or in connection with these terms.</p>
-                <p>Last updated: April 2026.</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
   </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="site-footer__inner">
-        <p class="site-footer__copy">© 2026 Zaree Studio.</p>
-        <nav class="site-footer__links" aria-label="Footer navigation">
-          <a href="https://instagram.com/zareestudios" target="_blank" rel="noopener noreferrer" class="site-footer__link">Instagram</a>
-          <a href="https://www.facebook.com/profile.php?id=61572127582054" target="_blank" rel="noopener noreferrer" class="site-footer__link">Facebook</a>
-          <a href="https://wa.me/03337128493" target="_blank" rel="noopener noreferrer" class="site-footer__link">WhatsApp</a>
-          <a href="food.html"    class="site-footer__link">Food Businesses</a>
-          <a href="privacy.html" class="site-footer__link">Privacy</a>
-          <a href="terms.html"   class="site-footer__link">Terms</a>
-        </nav>
-      </div>
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">© 2026 Zaree Studio · Quetta, Pakistan</p>
+      <nav aria-label="Footer navigation">
+        <ul class="footer__links">
+          <li><a href="https://instagram.com" class="footer__link" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://wa.me/" class="footer__link" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="privacy.html" class="footer__link">Privacy</a></li>
+          <li><a href="terms.html" class="footer__link">Terms</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
 

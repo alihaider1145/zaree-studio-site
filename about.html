@@ -1,275 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Who's behind Zaree Studio. A 19-year-old from Quetta, Pakistan — building websites for independent cafés and restaurants that need to be found on Google." />
-  <meta name="theme-color" content="#060608" />
-
-  <!-- Modern browsers (SVG, sharp at any size) -->
-  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
-
-  <!-- Legacy browser fallback (16×16, 32×32, 48×48 in one file) -->
-  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
-
-  <!-- iOS/Android home screen icon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ali — 19, Quetta, Pakistan. Freelance web developer behind Zaree Studio.">
   <title>About — Zaree Studio</title>
-
-  <meta property="og:title"       content="About — Zaree Studio" />
-  <meta property="og:description" content="Who's behind Zaree Studio. One person. Quetta, Pakistan. Building for the world." />
-  <meta property="og:type"        content="website" />
-
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"></div>
-
   <!-- ===== NAV ===== -->
-  <header>
-    <nav class="site-nav" aria-label="Main navigation">
-      <div class="site-nav__inner">
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Zaree Studio home">
+        ZAREE <span class="nav__logo-serif">Studio</span>
+      </a>
 
-        <a href="index.html" class="site-nav__logo" aria-label="Zaree Studio — home">Zaree</a>
+      <nav aria-label="Main navigation">
+        <ul class="nav__links">
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="food.html" class="nav__link">Food</a></li>
+          <li><a href="about.html" class="nav__link" aria-current="page">About</a></li>
+          <li><a href="start.html" class="nav__cta">Get Found in 14 Days</a></li>
+        </ul>
+      </nav>
 
-        <button
-          class="site-nav__toggle"
-          aria-label="Toggle navigation menu"
-          aria-expanded="false"
-          aria-controls="nav-links"
-        >
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-          <span class="site-nav__toggle-bar" aria-hidden="true"></span>
-        </button>
+      <button class="nav__hamburger" aria-expanded="false" aria-controls="nav-mobile" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
 
-        <div class="site-nav__links" id="nav-links" role="list">
-          <a href="work.html"  class="site-nav__link" role="listitem">Work</a>
-          <a href="food.html"  class="site-nav__link" role="listitem">Food Businesses</a>
-          <a href="about.html" class="site-nav__link" role="listitem" aria-current="page">About</a>
-          <a href="start.html" class="site-nav__cta"  role="listitem">Start a project →</a>
-        </div>
-
-      </div>
+    <nav class="nav__mobile" id="nav-mobile" aria-label="Mobile navigation">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="food.html" class="nav__link">Food</a>
+      <a href="about.html" class="nav__link" aria-current="page">About</a>
+      <a href="start.html" class="nav__cta">Get Found in 14 Days</a>
     </nav>
   </header>
 
   <main>
 
-    <!-- ===== HERO ===== -->
-    <section class="about-hero" aria-labelledby="about-hero-heading">
-      <div class="about-hero__orb about-hero__orb--1" aria-hidden="true"></div>
-      <div class="about-hero__orb about-hero__orb--2" aria-hidden="true"></div>
-
-      <div class="container about-hero__inner">
-        <p class="about-hero__eyebrow reveal">
-          <span class="about-hero__eyebrow-line" aria-hidden="true"></span>
-          Who's behind Zaree Studio
-        </p>
-
-        <h1 class="about-hero__heading reveal reveal--delay-1" id="about-hero-heading">
-          One person.
-          <span class="about-hero__heading-serif">Not an agency.</span>
-        </h1>
-
-        <div class="about-hero__split reveal reveal--delay-2">
-          <div class="about-hero__statement">
-            <p>
-              Zaree Studio is Ali — 19, from Quetta, Pakistan. On a gap year. Building websites for independent cafés and restaurants that compete with anything coming out of London, New York, or Dubai.
-            </p>
-            <p>
-              The name comes from <em>zari</em> — the golden threadwork woven into fabric across South Asian craft traditions. Every site I build is that: something made thread by thread, by hand, with intention. Not generated. Not templated. Woven.
-            </p>
-            <p>
-              I started The Odin Project in July 2025, paused it to freelance, and discovered that building real things for real businesses teaches you more than any curriculum. The studio exists because independent food businesses deserve the same quality of web presence as anyone else in the world — and deserve to be found when customers are searching.
-            </p>
-          </div>
-          <div class="about-hero__aside">
-            <div class="about-fact">
-              <span class="about-fact__label">Location</span>
-              <span class="about-fact__value">Quetta, Pakistan</span>
-            </div>
-            <div class="about-fact">
-              <span class="about-fact__label">Age</span>
-              <span class="about-fact__value">19</span>
-            </div>
-            <div class="about-fact">
-              <span class="about-fact__label">Stack</span>
-              <span class="about-fact__value">HTML · CSS · Vanilla JS</span>
-            </div>
-            <div class="about-fact">
-              <span class="about-fact__label">Currently</span>
-              <span class="about-fact__value">Taking new projects</span>
-            </div>
-            <div class="about-fact">
-              <span class="about-fact__label">Niche</span>
-              <span class="about-fact__value">Cafés · Restaurants</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== WHY THIS EXISTS ===== -->
-    <section class="section about-why" aria-labelledby="why-heading">
+    <!-- ===== THE PERSON ===== -->
+    <section aria-labelledby="person-heading">
+      <div class="orb" style="width:500px;height:500px;top:-60px;right:-120px;"></div>
       <div class="container">
-        <div class="about-why__grid">
+        <p class="eyebrow reveal">The Person</p>
+
+        <div class="about-person">
           <div>
-            <p class="section__tag reveal">The honest reason</p>
-            <h2 class="about-why__heading reveal reveal--delay-1" id="why-heading">
-              Why Zaree exists.
-            </h2>
+            <img
+              src="assets/images/ali-portrait.jpg"
+              alt="Ali, founder of Zaree Studio."
+              class="about-portrait"
+              loading="lazy"
+            >
           </div>
-          <div class="about-why__body reveal reveal--delay-2">
-            <p>
-              There are thousands of independent cafés and restaurants with real character, loyal regulars, and food worth travelling for — and nothing online to show for it. No website. No Google presence. Invisible to anyone who didn't already know they existed.
-            </p>
-            <p>
-              Meanwhile, every web agency charges for bloat: page builders, WordPress themes, maintenance contracts, recurring fees. The client ends up renting a website they don't understand and can't change.
-            </p>
-            <p>
-              Zaree does the opposite. Hand-written code. Clean, fast, owned outright. No lock-in. No surprise fees. No template that 400 other businesses are also using.
-            </p>
-            <p>
-              I started with food businesses because I understand what they need — not just a site that looks good, but one that shows up when someone types "café near me" or "best brunch in [your city]." That's the gap. That's what I fix.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== THE WAY I WORK ===== -->
-    <section class="section about-approach" aria-labelledby="approach-heading">
-      <div class="container">
-        <p class="section__tag reveal">The approach</p>
-        <h2 class="section__heading about-approach__heading reveal reveal--delay-1" id="approach-heading">
-          How I think<br>about the work.
-        </h2>
-
-        <div class="about-principles">
-
-          <div class="about-principle reveal">
-            <div class="about-principle__num" aria-hidden="true">01</div>
-            <div class="about-principle__content">
-              <h3 class="about-principle__title">Design serves the business, not the portfolio.</h3>
-              <p class="about-principle__desc">
-                A beautiful site that doesn't convert is decoration. Every design decision — layout, hierarchy, copy placement — exists to move a visitor toward an action. I care more about your reservation rate than my Behance metrics.
-              </p>
-            </div>
-          </div>
-
-          <div class="about-principle reveal reveal--delay-1">
-            <div class="about-principle__num" aria-hidden="true">02</div>
-            <div class="about-principle__content">
-              <h3 class="about-principle__title">Code should be read by humans, not just browsers.</h3>
-              <p class="about-principle__desc">
-                No page builders. No frameworks where they're not needed. Every file I hand off is something you could open, read, and understand. I don't create dependencies. I create assets.
-              </p>
-            </div>
-          </div>
-
-          <div class="about-principle reveal reveal--delay-2">
-            <div class="about-principle__num" aria-hidden="true">03</div>
-            <div class="about-principle__content">
-              <h3 class="about-principle__title">The client is the expert on their business.</h3>
-              <p class="about-principle__desc">
-                I ask questions before I make suggestions. The discovery call isn't a formality — it's where I learn enough to actually help. You've been running this café or restaurant for years. I'm here to translate that into a web presence, not replace your judgment with mine.
-              </p>
-            </div>
-          </div>
-
-          <div class="about-principle reveal reveal--delay-3">
-            <div class="about-principle__num" aria-hidden="true">04</div>
-            <div class="about-principle__content">
-              <h3 class="about-principle__title">One project at a time.</h3>
-              <p class="about-principle__desc">
-                I don't run five projects simultaneously and divide my attention. When I take your project, it's the only one I'm thinking about. That's the whole model. It's slower to scale, but it's why the work is better.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CURRENTLY ===== -->
-    <section class="section about-currently" aria-labelledby="currently-heading">
-      <div class="container">
-        <div class="about-currently__grid">
 
           <div>
-            <p class="section__tag reveal">Right now</p>
-            <h2 class="section__heading about-currently__heading reveal reveal--delay-1" id="currently-heading">
-              Where things<br>stand today.
-            </h2>
-          </div>
+            <h1 id="person-heading" class="type-section reveal" style="margin-bottom:1rem;">
+              ALI.
+            </h1>
 
-          <div class="about-currently__items reveal reveal--delay-2">
-            <div class="about-current-item">
-              <span class="about-current-item__dot" aria-hidden="true"></span>
-              <div>
-                <p class="about-current-item__label">Building</p>
-                <p class="about-current-item__value">Zaree Studio — focused on food businesses. Café Bloom live as proof of work. Targeting first paying client.</p>
-              </div>
-            </div>
-            <div class="about-current-item">
-              <span class="about-current-item__dot" aria-hidden="true"></span>
-              <div>
-                <p class="about-current-item__label">Learning</p>
-                <p class="about-current-item__value">Full-stack JavaScript via The Odin Project. Foundations done. JS section in progress.</p>
-              </div>
-            </div>
-            <div class="about-current-item">
-              <span class="about-current-item__dot" aria-hidden="true"></span>
-              <div>
-                <p class="about-current-item__label">Availability</p>
-                <p class="about-current-item__value">One project slot open this month. Response within 24 hours.</p>
-              </div>
+            <p class="type-body text-secondary reveal" data-delay="1" style="margin-bottom:1.5rem;">
+              19. Gap year. Quetta, Pakistan. Freelance web developer.
+            </p>
+
+            <div class="about-tags reveal" data-delay="2">
+              <span class="about-tag">NOW: Building Zaree Studio</span>
+              <span class="about-tag">GOAL: Financial freedom doing what I love</span>
+              <span class="about-tag">LEARNING: Full-stack JS</span>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ===== CTA ===== -->
-    <section class="section about-cta" aria-labelledby="about-cta-heading">
-      <div class="container about-cta__inner">
-        <p class="about-cta__eyebrow reveal">You've read enough</p>
-        <h2 class="about-cta__heading reveal reveal--delay-1" id="about-cta-heading">
-          Let's talk.
-        </h2>
-        <p class="about-cta__sub reveal reveal--delay-1">
-          About your project.
-        </p>
-        <div class="about-cta__actions reveal reveal--delay-2">
-          <a href="start.html" class="btn-primary">Start a project →</a>
-          <a href="work.html"  class="btn-secondary">See the work first →</a>
+    <!-- ===== ZAREE STUDIO ===== -->
+    <section aria-labelledby="studio-heading">
+      <div class="container">
+        <p class="eyebrow reveal">Zaree Studio</p>
+
+        <div class="about-studio">
+          <div class="about-studio__item reveal">
+            <h2 id="studio-heading" class="type-section">HUMBLE BEGINNINGS.</h2>
+          </div>
+
+          <div class="about-studio__item reveal" data-delay="1">
+            <h2 class="type-section">PROFESSIONAL FOUNDATIONS.</h2>
+          </div>
+
+          <div class="about-studio__item reveal" data-delay="2">
+            <h2 class="type-section" style="margin-bottom:1.25rem;">WE KNOW WHAT WE'RE DOING.</h2>
+            <p class="type-body text-secondary" style="max-width:540px;">
+              One niche. One package. One goal: get your food business found
+              on Google. Pure HTML, CSS, and JS — no page builders, no
+              templates. Fast, clean, and fully yours.
+            </p>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- ===== CTA STRIP ===== -->
+    <div class="cta-strip">
+      <div class="cta-strip__inner container reveal">
+        <div class="cta-strip__headline">
+          WANT TO WORK WITH<br>
+          SOMEONE <span class="text-accent">PROFESSIONAL?</span>
+        </div>
+        <a href="start.html" class="cta-strip__btn">
+          Start a Project →
+        </a>
+      </div>
+    </div>
+
   </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="site-footer__inner">
-        <p class="site-footer__copy">© 2026 Zaree Studio.</p>
-        <nav class="site-footer__links" aria-label="Footer navigation">
-          <a href="https://instagram.com/zareestudios" target="_blank" rel="noopener noreferrer" class="site-footer__link">Instagram</a>
-          <a href="https://www.facebook.com/profile.php?id=61572127582054" target="_blank" rel="noopener noreferrer" class="site-footer__link">Facebook</a>
-          <a href="https://wa.me/03337128493" target="_blank" rel="noopener noreferrer" class="site-footer__link">WhatsApp</a>
-          <a href="food.html"    class="site-footer__link">Food Businesses</a>
-          <a href="privacy.html" class="site-footer__link">Privacy</a>
-          <a href="terms.html"   class="site-footer__link">Terms</a>
-        </nav>
-      </div>
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">© 2026 Zaree Studio · Quetta, Pakistan</p>
+      <nav aria-label="Footer navigation">
+        <ul class="footer__links">
+          <li><a href="https://instagram.com" class="footer__link" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://wa.me/" class="footer__link" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="privacy.html" class="footer__link">Privacy</a></li>
+          <li><a href="terms.html" class="footer__link">Terms</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
 
   <script src="assets/js/main.js" defer></script>
+
 </body>
 </html>
