@@ -377,7 +377,7 @@
         };
 
         try {
-          const response = await fetch('https://formspree.io/f/mwvwabwq', {
+          const response = await fetch('https://formspree.io/f/xjgjjdyd', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
