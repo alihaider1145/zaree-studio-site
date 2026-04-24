@@ -105,37 +105,46 @@
   };
 
   /* =========================================================
-     SEARCH SWAP — index.html Section 02
+     SEARCH SWAP — index.html Section 03
+     4 stages, equal 25% scroll bands:
+       0.00–0.25 → ss-stage-0       (intro text)
+       0.25–0.50 → ss-stage-1       (before card)
+       0.50–0.75 → ss-stage-transition
+       0.75–1.00 → ss-stage-2       (after card)
   ========================================================= */
   const initSearchSwap = () => {
     const container = document.getElementById('search-swap-section');
     if (!container) return;
 
     const stage0      = document.getElementById('ss-stage-0');
-    const stageT      = document.getElementById('ss-stage-transition');
     const stage1      = document.getElementById('ss-stage-1');
+    const stageT      = document.getElementById('ss-stage-transition');
+    const stage2      = document.getElementById('ss-stage-2');
 
-    if (!stage0 || !stageT || !stage1) return;
+    if (!stage0 || !stage1 || !stageT || !stage2) return;
 
+    const allStages = [stage0, stage1, stageT, stage2];
     let currentStage = 'stage0';
 
     const setStage = (id) => {
       if (currentStage === id) return;
       currentStage = id;
 
-      [stage0, stageT, stage1].forEach(el => el.classList.remove('is-active'));
+      allStages.forEach(el => el.classList.remove('is-active'));
 
-      if (id === 'stage0')      stage0.classList.add('is-active');
-      else if (id === 'transition') stageT.classList.add('is-active');
-      else if (id === 'stage1') stage1.classList.add('is-active');
+      if      (id === 'stage0')      stage0.classList.add('is-active');
+      else if (id === 'stage1')      stage1.classList.add('is-active');
+      else if (id === 'transition')  stageT.classList.add('is-active');
+      else if (id === 'stage2')      stage2.classList.add('is-active');
     };
 
     const update = () => {
       const p = getProgress(container);
 
-      if (p < 0.33)       setStage('stage0');
-      else if (p < 0.50)  setStage('transition');
-      else                setStage('stage1');
+      if      (p < 0.25) setStage('stage0');
+      else if (p < 0.50) setStage('stage1');
+      else if (p < 0.75) setStage('transition');
+      else               setStage('stage2');
     };
 
     window.addEventListener('scroll', onScroll(update), { passive: true });
@@ -143,7 +152,7 @@
   };
 
   /* =========================================================
-     DEV LOG — index.html Section 03
+     DEV LOG — index.html Section 04
   ========================================================= */
   const initDevLog = () => {
     const container = document.getElementById('devlog-section');
@@ -204,8 +213,8 @@
       }
     };
 
-    // Map progress ranges to stage indices
-    const BREAKPOINTS = [0.15, 0.35, 0.55, 0.75];
+    // Map progress ranges to stage indices — equal 20% bands
+    const BREAKPOINTS = [0.2, 0.4, 0.6, 0.8];
 
     const update = () => {
       const p = getProgress(container);
@@ -224,7 +233,7 @@
   };
 
   /* =========================================================
-     STREET SCENE — food.html Section 02
+     STREET SCENE — index.html Section 02
   ========================================================= */
   const initStreetScene = () => {
     const container = document.getElementById('street-section');
@@ -260,12 +269,11 @@
      MULTI-STEP FORM — start.html
   ========================================================= */
   const initMultiStepForm = () => {
-    const step1El  = document.getElementById('step-1');
-    const step2El  = document.getElementById('step-2');
-    const step3El  = document.getElementById('step-3');
+    const step1El   = document.getElementById('step-1');
+    const step2El   = document.getElementById('step-2');
     const successEl = document.getElementById('form-success');
 
-    if (!step1El || !step2El || !step3El) return;
+    if (!step1El || !step2El) return;
 
     const dots = document.querySelectorAll('.form-step__dot');
 
@@ -280,7 +288,7 @@
     };
 
     const showStep = (stepEl, stepNum) => {
-      [step1El, step2El, step3El].forEach(s => s.classList.remove('is-active'));
+      [step1El, step2El].forEach(s => s.classList.remove('is-active'));
       stepEl.classList.add('is-active');
       updateDots(stepNum);
       stepEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -341,72 +349,31 @@
       });
     });
 
-    // ── Step 2 ──
+    // ── Step 2 back ──
     const step2Back = document.getElementById('step2-back');
-    const step2Next = document.getElementById('step2-next');
     if (step2Back) step2Back.addEventListener('click', () => showStep(step1El, 1));
-    if (step2Next) {
-      step2Next.addEventListener('click', () => {
-        const a = validateField('description', 'err-description', 'field-description');
-        if (a) showStep(step3El, 3);
-      });
-    }
 
-    // ── Currency pills ──
-    const currencyPills = document.querySelectorAll('.currency-pill');
-    const currencyValue = document.getElementById('currency-value');
-    currencyPills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        currencyPills.forEach(p => {
-          p.classList.remove('is-selected');
-          p.setAttribute('aria-pressed', 'false');
-        });
-        pill.classList.add('is-selected');
-        pill.setAttribute('aria-pressed', 'true');
-        if (currencyValue) currencyValue.value = pill.dataset.currency;
-      });
-    });
-
-    // ── Budget cards ──
-    const budgetCards = document.querySelectorAll('.budget-card');
-    const budgetValue = document.getElementById('budget-value');
-    budgetCards.forEach(card => {
-      card.addEventListener('click', () => {
-        budgetCards.forEach(c => {
-          c.classList.remove('is-selected');
-          c.setAttribute('aria-pressed', 'false');
-        });
-        card.classList.add('is-selected');
-        card.setAttribute('aria-pressed', 'true');
-        if (budgetValue) budgetValue.value = card.dataset.budget;
-      });
-    });
-
-    // ── Step 3 back ──
-    const step3Back = document.getElementById('step3-back');
-    if (step3Back) step3Back.addEventListener('click', () => showStep(step2El, 2));
-
-    // ── Submit to Formspree ──
+    // ── Submit from step 2 ──
     const submitBtn = document.getElementById('form-submit');
     if (submitBtn) {
       submitBtn.addEventListener('click', async () => {
+        const a = validateField('description', 'err-description', 'field-description');
+        if (!a) return;
+
         submitBtn.textContent = 'Sending...';
         submitBtn.setAttribute('aria-busy', 'true');
         submitBtn.disabled = true;
 
-        // Gather all form data
         const data = {
-          firstname:     document.getElementById('firstname')?.value || '',
-          lastname:      document.getElementById('lastname')?.value  || '',
-          email:         document.getElementById('email')?.value     || '',
-          instagram:     document.getElementById('instagram')?.value || '',
-          business:      document.getElementById('business')?.value  || '',
+          firstname:     document.getElementById('firstname')?.value     || '',
+          lastname:      document.getElementById('lastname')?.value      || '',
+          email:         document.getElementById('email')?.value         || '',
+          instagram:     document.getElementById('instagram')?.value     || '',
+          business:      document.getElementById('business')?.value      || '',
           niche:         document.getElementById('niche-value')?.value   || '',
           description:   document.getElementById('description')?.value   || '',
           existing_site: document.getElementById('existing-site')?.value || '',
-          currency:      document.getElementById('currency-value')?.value || '',
-          budget:        document.getElementById('budget-value')?.value   || '',
-          anything_else: document.getElementById('anything-else')?.value  || '',
+          anything_else: document.getElementById('anything-else')?.value || '',
         };
 
         try {
@@ -420,7 +387,6 @@
           });
 
           if (response.ok) {
-            // Hide form, show success
             const formContainer = document.querySelector('.form-container');
             if (formContainer) formContainer.style.display = 'none';
             if (successEl) successEl.classList.add('is-visible');
@@ -440,6 +406,39 @@
   };
 
   /* =========================================================
+     ABOUT STUDIO — about.html
+  ========================================================= */
+  const initAboutStudio = () => {
+    const container = document.getElementById('studio-section');
+    if (!container) return;
+
+    const stages = [
+      document.getElementById('studio-stage-1'),
+      document.getElementById('studio-stage-2'),
+      document.getElementById('studio-stage-3'),
+    ];
+    if (stages.some(s => !s)) return;
+
+    let currentIndex = 0;
+
+    const activateStage = (index) => {
+      if (currentIndex === index) return;
+      currentIndex = index;
+      stages.forEach((s, i) => s.classList.toggle('is-active', i === index));
+    };
+
+    const update = () => {
+      const p = getProgress(container);
+      if      (p < 0.33) activateStage(0);
+      else if (p < 0.66) activateStage(1);
+      else               activateStage(2);
+    };
+
+    window.addEventListener('scroll', onScroll(update), { passive: true });
+    update();
+  };
+
+  /* =========================================================
      INIT
   ========================================================= */
   document.addEventListener('DOMContentLoaded', () => {
@@ -449,6 +448,7 @@
     initDevLog();
     initStreetScene();
     initMultiStepForm();
+    initAboutStudio();
   });
 
 })();
