@@ -278,6 +278,7 @@ main {
 .package-section > .container {
   flex: 1;
   justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
