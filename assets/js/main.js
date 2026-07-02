@@ -111,12 +111,55 @@
   };
 
   /* =========================================================
+     FAQ ACCORDION
+     One open at a time. Clicking the open question closes it.
+  ========================================================= */
+  const initFaqAccordion = () => {
+    const list = document.querySelector('[data-faq]');
+    if (!list) return;
+
+    const items = Array.from(list.querySelectorAll('.faq-item'));
+
+    const closeItem = (item) => {
+      const question = item.querySelector('.faq-item__question');
+      item.classList.remove('is-open');
+      if (question) question.setAttribute('aria-expanded', 'false');
+    };
+
+    const openItem = (item) => {
+      const question = item.querySelector('.faq-item__question');
+      item.classList.add('is-open');
+      if (question) question.setAttribute('aria-expanded', 'true');
+    };
+
+    items.forEach((item) => {
+      const question = item.querySelector('.faq-item__question');
+      if (!question) return;
+
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+
+        items.forEach((other) => {
+          if (other !== item) closeItem(other);
+        });
+
+        if (isOpen) {
+          closeItem(item);
+        } else {
+          openItem(item);
+        }
+      });
+    });
+  };
+
+  /* =========================================================
      INIT
   ========================================================= */
   document.addEventListener('DOMContentLoaded', () => {
     initNav();
     initScrollReveal();
     initCalculator();
+    initFaqAccordion();
   });
 
 })();
