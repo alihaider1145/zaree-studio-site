@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary meta -->
+  <title>Commission Savings Calculator — Zaree Studios</title>
+  <meta name="description" content="Calculate what Deliveroo, Just Eat, and Uber Eats are really costing your restaurant every month — and what you'd save with a direct ordering site.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zareestudios.com/calculator">
+  <meta property="og:title" content="Commission Savings Calculator — Zaree Studios">
+  <meta property="og:description" content="Calculate what Deliveroo, Just Eat, and Uber Eats are really costing your restaurant every month.">
+  <meta property="og:site_name" content="Zaree Studios">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://zareestudios.com/calculator">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Zaree Studios home">ZAREE</a>
+      <a href="https://wa.me/44XXXXXXXXXX" class="btn--nav-cta" target="_blank" rel="noopener noreferrer">Get Started</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== PROBLEM + CALCULATOR ===== -->
+    <section class="problem" aria-labelledby="calc-heading">
+      <div class="container">
+        <div class="problem__head">
+          <h1 id="calc-heading" class="type-section problem__title reveal">
+            Calculate what Deliveroo, Just Eat, and Uber Eats are costing you.
+          </h1>
+          <p class="type-body reveal" data-delay="1">
+            Your profit is your business's money.<br>
+            Right now, every order through Deliveroo, Just Eat or Uber Eats hands 15–30% of your margin to a tech company in London.
+          </p>
+        </div>
+
+        <div class="calculator reveal" data-delay="2" data-calculator>
+          <div class="calculator__panels">
+            <div class="calculator__card">
+              <div class="calc-field">
+                <span class="type-label calc-field__label">Monthly Orders</span>
+                <div class="calc-field__value" data-calc="orders-value">360 orders/month</div>
+                <input type="range" class="calc-field__slider" min="50" max="1000" step="10" value="360" data-calc="orders-slider" aria-label="Monthly orders">
+              </div>
+              <div class="calc-field">
+                <span class="type-label calc-field__label">Average Order Value</span>
+                <div class="calc-field__value" data-calc="aov-value">£25</div>
+                <input type="range" class="calc-field__slider" min="10" max="60" step="1" value="25" data-calc="aov-slider" aria-label="Average order value">
+              </div>
+              <p class="calculator__note">Enter approximate numbers for your business to see how much you can save every month.</p>
+            </div>
+
+            <div class="calculator__card">
+              <p class="type-label calculator__result-label">Your Monthly Commission Bleed</p>
+              <p class="type-figure calculator__result-figure" data-calc="bleed-figure">£3,150</p>
+              <p class="calculator__result-sub">lost to Deliveroo, Just Eat &amp; Uber Eats every month</p>
+
+              <hr class="calculator__divider">
+
+              <p class="type-label calculator__zaree-label">With Zaree Studios</p>
+              <p class="type-figure calculator__zaree-figure">£149 / mo flat</p>
+              <p class="calculator__zaree-sub">No commissions. No surprises.</p>
+            </div>
+          </div>
+
+          <p class="calculator__savings-banner" data-calc="savings-banner">You would save £3,001 this month alone</p>
+        </div>
+
+        <div class="commission-grid reveal" data-delay="3">
+          <div class="commission-card">
+            <p class="type-card commission-card__name">Deliveroo</p>
+            <p class="type-figure commission-card__figure">25%</p>
+            <p class="commission-card__note">avg commission per order</p>
+          </div>
+          <div class="commission-card">
+            <p class="type-card commission-card__name">Just Eat</p>
+            <p class="type-figure commission-card__figure">14–25%</p>
+            <p class="commission-card__note">sliding scale per order</p>
+          </div>
+          <div class="commission-card">
+            <p class="type-card commission-card__name">Uber Eats</p>
+            <p class="type-figure commission-card__figure">30%</p>
+            <p class="commission-card__note">industry high — their cut</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="final-cta" aria-labelledby="final-cta-heading">
+      <div class="final-cta__box reveal">
+        <h2 id="final-cta-heading" class="type-section final-cta__title">Ready to take your margins back?</h2>
+        <p class="final-cta__sub">
+          Reach out to us on Whatsapp by clicking this button.<br>
+          We don't make you fill long forms. Whatsapp is direct and fast.
+        </p>
+        <a href="https://wa.me/44XXXXXXXXXX" class="btn--cta" target="_blank" rel="noopener noreferrer">Get My Direct Order Setup</a>
+
+        <p class="final-cta__note">Want to know more about how saving commissions from Deliveroo, Just Eat and Uber Eats work? <a href="index.html">Click Here.</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo" aria-label="Zaree Studios home">ZAREE</a>
+        <p class="footer__copy">© 2026 Zaree Studios · Built for independent UK restaurants &amp; cafes</p>
+      </div>
+
+      <nav class="footer__col-links" aria-label="Footer navigation">
+        <a href="index.html" class="footer__link">Home</a>
+        <a href="privacy.html" class="footer__link">Privacy</a>
+        <a href="terms.html" class="footer__link">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+
+</body>
+</html>

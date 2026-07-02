@@ -3,210 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Zaree Studio Terms of Service — how engagements work, payment, ownership, and more.">
-  <title>Terms of Service — Zaree Studio</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Terms of Service — Zaree Studios</title>
+  <meta name="description" content="The terms that apply when you work with Zaree Studios to build and manage a direct ordering website for your restaurant or cafe.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ===== NAV ===== -->
-  <header class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="index.html" class="nav__logo" aria-label="Zaree Studio home">
-        ZAREE
-      </a>
-
-      <nav aria-label="Main navigation">
-        <ul class="nav__links">
-          <li><a href="index.html" class="nav__link">Home</a></li>
-          <li><a href="about.html" class="nav__link">About</a></li>
-          <li><a href="start.html" class="nav__cta">Get Found in 14 Days</a></li>
-        </ul>
-      </nav>
-
-      <button class="nav__hamburger" aria-expanded="false" aria-controls="nav-mobile" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo">ZAREE</a>
+      <a href="#" class="btn btn--primary btn--sm js-whatsapp-cta" data-wa-text="Hi Zaree, I'd like to get started.">Get Started</a>
     </div>
-
-    <nav class="nav__mobile" id="nav-mobile" aria-label="Mobile navigation">
-      <a href="index.html" class="nav__link">Home</a>
-      <a href="about.html" class="nav__link">About</a>
-      <a href="start.html" class="nav__cta">Get Found in 14 Days</a>
-    </nav>
   </header>
 
   <main>
-    <div class="container">
-      <!-- ===== LEGAL HEADER ===== -->
-      <header class="legal-header">
-        <p class="eyebrow">Legal</p>
-        <h1 class="type-hero">
-          TERMS OF<br>
-          <span class="text-accent">SERVICE.</span>
-        </h1>
-        <p class="legal-header__updated">Last Updated — April 2026</p>
-      </header>
+    <section class="legal">
+      <div class="legal__header">
+        <h1 class="legal__title">Terms of Service</h1>
+        <p class="legal__updated">Last updated: July 2026</p>
+        <p class="legal__intro">Here's the deal in plain English. No 40-page contract, no fine print designed to confuse you &mdash; just what you can expect from us, and what we ask from you.</p>
+      </div>
 
-      <!-- ===== SECTIONS ===== -->
-      <article>
+      <nav class="legal__toc" aria-label="Sections on this page">
+        <a href="#who-this-is-for" class="legal__toc-link">Who these terms are for</a>
+        <a href="#our-service" class="legal__toc-link">What we build</a>
+        <a href="#packages" class="legal__toc-link">Packages &amp; payment</a>
+        <a href="#minimum-term" class="legal__toc-link">Contract length &amp; cancelling</a>
+        <a href="#what-we-need" class="legal__toc-link">What we need from you</a>
+        <a href="#ownership" class="legal__toc-link">Ownership &amp; your website</a>
+        <a href="#timelines" class="legal__toc-link">Timelines</a>
+        <a href="#third-parties" class="legal__toc-link">Delivery, hosting &amp; other services</a>
+        <a href="#liability" class="legal__toc-link">What we're responsible for</a>
+        <a href="#changes" class="legal__toc-link">Changes to these terms</a>
+        <a href="#governing-law" class="legal__toc-link">Governing law</a>
+        <a href="#contact" class="legal__toc-link">Get in touch</a>
+      </nav>
 
-        <div class="legal-section reveal" id="how-we-work">
-          <p class="legal-section__number">01</p>
-          <h2 class="legal-section__title">How Engagements Work</h2>
-          <p class="legal-section__body">
-            Every project starts with a conversation — a brief, a call, and a written proposal that
-            outlines scope, timeline, and price. Nothing starts until we agree in writing. Once we
-            both sign off on the proposal, that document governs the engagement. Typical timeline:
-            14 working days from deposit receipt to delivery, depending on scope and how quickly
-            content and feedback are provided.
-          </p>
-        </div>
+      <div class="legal__body">
 
-        <div class="legal-section reveal" id="payment">
-          <p class="legal-section__number">02</p>
-          <h2 class="legal-section__title">Payment</h2>
-          <p class="legal-section__body">
-            50% upfront before work begins. 50% on delivery, before final files are handed over. The
-            deposit is non-refundable if the project is cancelled after work has started. Full payment
-            is required to receive final deliverables. For Pakistan-based clients, payment is accepted
-            via JazzCash or EasyPaisa.
-          </p>
-        </div>
+        <article class="legal__section" id="who-this-is-for">
+          <h2 class="legal__section-title">Who these terms are for</h2>
+          <p class="legal__section-text">These terms apply when an independent restaurant, cafe, takeaway, or home kitchen (that's you) works with Zaree Studios (that's us) to build, host, or manage a direct ordering website.</p>
+        </article>
 
-        <div class="legal-section reveal" id="ownership">
-          <p class="legal-section__number">03</p>
-          <h2 class="legal-section__title">What You Own</h2>
-          <p class="legal-section__body">
-            You own everything — all code, all design assets, all copy — upon receipt of final
-            payment. Domain and hosting are always registered in your name from day one. There is no
-            lock-in, no ongoing dependency on Zaree Studio, and no licensing fees. Once you've paid in
-            full, the work is entirely yours.
-          </p>
-        </div>
+        <article class="legal__section" id="our-service">
+          <h2 class="legal__section-title">What we build</h2>
+          <p class="legal__section-text">We design and build a custom ordering website for your kitchen, set up direct order routing to your WhatsApp, and connect delivery through Stuart Logistics where you'd like it. Depending on the package you choose, we also handle ongoing updates, hosting, and support.</p>
+        </article>
 
-        <div class="legal-section reveal" id="portfolio">
-          <p class="legal-section__number">04</p>
-          <h2 class="legal-section__title">Portfolio Rights</h2>
-          <p class="legal-section__body">
-            We retain the right to display the completed project in our portfolio and to reference it
-            in marketing materials. This includes screenshots, links, and case study descriptions. If
-            you'd prefer the work not be shown publicly, let us know before signing off — we'll note
-            that in the agreement.
-          </p>
-        </div>
+        <article class="legal__section" id="packages">
+          <h2 class="legal__section-title">Packages &amp; payment</h2>
+          <p class="legal__section-text">Our current packages, pricing, and what's included in each are listed on our <a href="index.html#packages" class="legal__link">Pricing</a> page and may be updated from time to time. Whatever's agreed at the point you sign up is what applies to your project.</p>
+          <p class="legal__section-text">One-time packages are typically paid in two instalments &mdash; part upfront, part on completion. Monthly packages are billed flat, with no commission or percentage cuts, however much you sell.</p>
+        </article>
 
-        <div class="legal-section reveal" id="responsibilities">
-          <p class="legal-section__number">05</p>
-          <h2 class="legal-section__title">Your Responsibilities</h2>
-          <p class="legal-section__body">
-            You are responsible for providing content — copy, images, branding assets — within the
-            agreed timeline. Delays in content delivery may push back the overall project timeline.
-            Feedback on drafts should be provided within 3 working days of delivery. Extended delays
-            may require rescheduling or additional charges.
-          </p>
-        </div>
+        <article class="legal__section" id="minimum-term">
+          <h2 class="legal__section-title">Contract length &amp; cancelling</h2>
+          <p class="legal__section-text">Monthly packages run on a minimum 12-month term to cover the upfront design, hosting, and setup work &mdash; after that, it rolls month-to-month and you can leave whenever you like. This keeps your monthly cost flat instead of us needing to charge a big upfront fee.</p>
+          <p class="legal__section-text">Need to cancel before the minimum term is up? Message us directly and we'll talk it through &mdash; we'd always rather have an honest conversation than hide behind a penalty clause.</p>
+        </article>
 
-        <div class="legal-section reveal" id="revisions">
-          <p class="legal-section__number">06</p>
-          <h2 class="legal-section__title">Revisions</h2>
-          <p class="legal-section__body">
-            Every project includes 2 rounds of revisions after initial delivery. Revisions cover
-            adjustments to the agreed scope — changes in layout, copy edits, colour tweaks — not
-            additions of new features or pages. Additional rounds are available and billed at an
-            agreed hourly or per-task rate.
-          </p>
-        </div>
+        <article class="legal__section" id="what-we-need">
+          <h2 class="legal__section-title">What we need from you</h2>
+          <p class="legal__section-text">To build a great site quickly, we'll need your menu, food photos, branding (if you have any), and reasonably prompt replies while we're building. The faster you get us what we ask for, the faster your site goes live.</p>
+        </article>
 
-        <div class="legal-section reveal" id="post-launch">
-          <p class="legal-section__number">07</p>
-          <h2 class="legal-section__title">Post-Launch Support</h2>
-          <p class="legal-section__body">
-            For 30 days after launch, we'll fix any bugs caused by our work at no charge. This covers
-            technical errors in the code or configuration we delivered. It does not cover issues
-            caused by third-party services, hosting providers, or content changes made by the client.
-            After 30 days, ongoing support is available and priced per request.
-          </p>
-        </div>
+        <article class="legal__section" id="ownership">
+          <h2 class="legal__section-title">Ownership &amp; your website</h2>
+          <p class="legal__section-text">Once your website is paid in full, it's yours &mdash; your menu, your branding, your content. For founding clients who joined under a portfolio or testimonial arrangement, we may agree separately to showcase the work in our own portfolio and marketing.</p>
+        </article>
 
-        <div class="legal-section reveal" id="cancellation">
-          <p class="legal-section__number">08</p>
-          <h2 class="legal-section__title">Cancellation</h2>
-          <p class="legal-section__body">
-            Cancel before work starts — full refund. Cancel after work starts — deposit is
-            non-refundable, as it covers time already spent. If we cancel the engagement for any
-            reason on our end, you receive a full refund of everything paid. Both parties may cancel
-            at any time with written notice.
-          </p>
-        </div>
+        <article class="legal__section" id="timelines">
+          <h2 class="legal__section-title">Timelines</h2>
+          <p class="legal__section-text">Most ordering websites go live within one to two weeks of us receiving everything we need from you. Bigger or multi-location projects take longer &mdash; we'll always give you a realistic timeline upfront, not an optimistic one.</p>
+        </article>
 
-        <div class="legal-section reveal" id="liability">
-          <p class="legal-section__number">09</p>
-          <h2 class="legal-section__title">Limitation of Liability</h2>
-          <p class="legal-section__body">
-            Zaree Studio is not liable for indirect, incidental, special, or consequential damages
-            arising from the use of deliverables. Total liability is limited to the total fees paid
-            for the specific project in question. We do our best work on every engagement — but
-            results in search rankings or business outcomes cannot be guaranteed.
-          </p>
-        </div>
+        <article class="legal__section" id="third-parties">
+          <h2 class="legal__section-title">Delivery, hosting &amp; other services</h2>
+          <p class="legal__section-text">Delivery through Stuart Logistics, payment processing through WorldFirst, and hosting are all provided by third parties under their own terms. We integrate and manage these for you, but we're not able to control their uptime, pricing, or policies &mdash; if something changes on their end, we'll help you navigate it.</p>
+        </article>
 
-        <div class="legal-section reveal" id="disputes">
-          <p class="legal-section__number">10</p>
-          <h2 class="legal-section__title">Disputes</h2>
-          <p class="legal-section__body">
-            Direct conversation first — most issues are resolved quickly when both parties talk
-            openly. If that doesn't resolve the matter, mediation before any other legal action.
-            If mediation fails, the parties agree that the courts of Quetta, Balochistan, shall 
-            have exclusive jurisdiction to settle any dispute or claim arising out of or in connection with these terms.
-            This agreement is governed by the laws of Pakistan.
-          </p>
-        </div>
+        <article class="legal__section" id="liability">
+          <h2 class="legal__section-title">What we're responsible for</h2>
+          <p class="legal__section-text">We build fast, reliable websites and take support seriously &mdash; if something breaks on a busy Friday night, you can reach us directly. That said, we can't guarantee zero downtime or that third-party services (WhatsApp, Stuart Logistics, hosting providers) never have issues on their end. We're not liable for indirect losses, like lost sales during a third-party outage outside our control.</p>
+        </article>
 
-      </article>
+        <article class="legal__section" id="changes">
+          <h2 class="legal__section-title">Changes to these terms</h2>
+          <p class="legal__section-text">If we update these terms in a way that meaningfully affects existing clients, we'll let you know directly rather than quietly changing the page.</p>
+        </article>
 
-    </div>
+        <article class="legal__section" id="governing-law">
+          <h2 class="legal__section-title">Governing law</h2>
+          <p class="legal__section-text">We'll always try to sort any disagreement directly and quickly &mdash; that's kind of the whole point of working with a solo specialist instead of a big agency. If something can't be resolved between us directly, these terms are governed by the laws of the country in which Zaree Studios is legally based.</p>
+        </article>
+
+        <article class="legal__section" id="contact">
+          <h2 class="legal__section-title">Get in touch</h2>
+          <p class="legal__section-text">Questions about these terms? Email <a href="mailto:hello@zareestudio.com" class="legal__link">hello@zareestudio.com</a>, or message us on WhatsApp &mdash; whichever's easier for you.</p>
+        </article>
+
+      </div>
+    </section>
   </main>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="footer__inner">
-
-      <!-- Brand -->
-      <div class="footer__brand">
-        <a href="index.html" class="footer__logo" aria-label="Zaree Studio home">ZAREE</a>
-        <p class="footer__copy">© 2026 Zaree Studio<br>Quetta, Pakistan</p>
-      </div>
-
-      <div class="footer__right">
-        <!-- Social -->
-        <nav class="footer__col" aria-label="Social media">
-          <p class="footer__col-label">Social</p>
-          <ul class="footer__col-links">
-            <li><a href="https://www.instagram.com/zareestudios/" class="footer__link" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            <li><a href="https://www.facebook.com/profile.php?id=61572127582054" class="footer__link" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-            <li><a href="mailto:hello@zareestudios.com" class="footer__link">hello@zareestudios.com</a></li>
-          </ul>
-        </nav>
-
-        <!-- Navigate -->
-        <nav class="footer__col" aria-label="Footer navigation">
-          <p class="footer__col-label">Navigate</p>
-          <ul class="footer__col-links">
-            <li><a href="index.html" class="footer__link">Home</a></li>
-            <li><a href="about.html" class="footer__link">About</a></li>
-            <li><a href="privacy.html" class="footer__link">Privacy</a></li>
-            <li><a href="terms.html" class="footer__link">Terms</a></li>
-          </ul>
-        </nav>
-      </div>
-
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <span class="site-footer__logo">ZAREE</span>
+      <nav class="site-footer__nav">
+        <a href="calculator.html" class="site-footer__link">Savings Calculator</a>
+        <a href="privacy.html" class="site-footer__link">Privacy</a>
+        <a href="terms.html" class="site-footer__link">Terms</a>
+      </nav>
     </div>
+    <p class="site-footer__copy">&copy; 2026 Zaree Studios &middot; Built for independent UK restaurants &amp; cafes</p>
   </footer>
 
-  <script src="assets/js/main.js" defer></script>
-
+  <script src="main.js"></script>
 </body>
 </html>
