@@ -463,7 +463,7 @@ a:focus-visible {
 .hero__visual img {
   max-width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3; /* matches width/height attrs on the <img> — prevents CLS */
+  aspect-ratio: 1137 / 841; /* matches width/height attrs on the <img> — prevents CLS */
 }
 
 @media (max-width: 900px) {
@@ -696,7 +696,7 @@ a:focus-visible {
 .portfolio-card__preview img {
   width: 100%;
   height: auto;
-  aspect-ratio: 3 / 2; /* matches width/height attrs — reserves space, fixes CLS */
+  aspect-ratio: 16 / 9; /* matches width/height attrs — reserves space, fixes CLS */
   object-fit: contain;
   background-color: transparent
 }
@@ -911,7 +911,7 @@ a:focus-visible {
 .process-card__preview img {
   width: 100%;
   height: auto;
-  aspect-ratio: 3 / 2; /* matches width/height attrs — reserves space, fixes CLS */
+  aspect-ratio: 16 / 9; /* matches width/height attrs — reserves space, fixes CLS */
   object-fit: cover;
 }
 
