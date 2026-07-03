@@ -1,0 +1,15 @@
+# Netlify/Cloudflare Pages custom headers file.
+# GitHub Pages does NOT support custom response headers, so this file has
+# no effect there — it's here for if/when the site moves to Netlify or
+# Cloudflare Pages, both of which read this file automatically.
+# See the accompanying notes for a GitHub-Pages-compatible fix (Cloudflare
+# in front of the existing GitHub Pages site) that works today.
+
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/css/*
+  Cache-Control: public, max-age=604800
+
+/assets/js/*
+  Cache-Control: public, max-age=604800

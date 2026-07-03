@@ -1,0 +1,35 @@
+# Zaree Studios
+
+> Zaree Studios builds direct ordering websites for independent UK restaurants and cafés, so owners keep more of every sale instead of paying 14–30% commission to Deliveroo, Just Eat, and Uber Eats.
+
+Zaree Studios is a UK-based service run by founder Ali Haider. Each client gets a custom-built, fast ordering website that routes orders directly to the kitchen (typically via WhatsApp), integrates with Stuart Logistics for delivery, and charges a flat fee instead of a per-order commission.
+
+## Value proposition
+- "Your orders. Your margin."
+- Aggregators (Deliveroo, Just Eat, Uber Eats) charge 14–30% commission per order.
+- Zaree Studios charges a flat monthly fee with no per-order commission.
+
+## Pricing
+- **Lump Sum** — £1,999 one-time (50% upfront, 50% on completion). Custom ordering website up to 5 pages, WhatsApp order routing, Stuart Logistics delivery integration, 30 days post-launch support. No ongoing maintenance/hosting included (available as add-ons).
+- **Partnership Programme** (recommended) — £149/month, £0 upfront. Everything in Lump Sum plus unlimited updates/maintenance and hosting + domain included.
+- **The Enterprise Ecosystem** — from £3,500, custom quote. Multi-location support, loyalty/rewards, advanced analytics, priority turnaround, training videos, EPOS/tablet integration.
+
+## Proof points
+- 4.9-star average client rating.
+- Real client: Bamboo Garden Restaurant, Birmingham — 5-star review, live in 4 days.
+- Typical site: sub-1.8s average page load, 95+ Lighthouse performance score.
+
+## Process
+1. Custom Design — collect assets and menu, design the site around the specific restaurant.
+2. Order System — build a fast, accessible ordering flow with clean code.
+3. Deployment — launch with QA, speed optimization, and post-launch monitoring.
+
+## Contact
+- WhatsApp is the primary contact channel (buttons throughout the site link directly to WhatsApp — no contact forms).
+- Founder: Ali Haider.
+
+## Pages
+- Home: https://zareestudios.com/
+- Commission Savings Calculator: https://zareestudios.com/calculator
+- Privacy Policy: https://zareestudios.com/privacy
+- Terms: https://zareestudios.com/terms
