@@ -1253,6 +1253,7 @@ a:focus-visible {
 }
 
 
+
 /* ===== 9. REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
