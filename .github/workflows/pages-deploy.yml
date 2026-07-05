@@ -40,12 +40,12 @@ jobs:
             echo "No obvious site directory found. Creating minimal docs/index.html fallback."
             mkdir -p docs
             cat > docs/index.html <<'HTML'
-<!doctype html>
-<html>
-  <head><meta charset="utf-8"><title>Zaree Studio</title></head>
-  <body><h1>Zaree Studio</h1><p>Fallback index</p></body>
-</html>
-HTML
+            <!doctype html>
+            <html>
+              <head><meta charset="utf-8"><title>Zaree Studio</title></head>
+              <body><h1>Zaree Studio</h1><p>Fallback index</p></body>
+            </html>
+            HTML
             SITE_DIR=docs
           fi
 
