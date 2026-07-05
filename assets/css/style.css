@@ -782,6 +782,10 @@ a:focus-visible {
   min-height: 260px;
 }
 
+.testimonial__visual img {
+  height: 100%;
+}
+
 @media (max-width: 900px) {
   .testimonial__grid { grid-template-columns: 1fr; }
 }
