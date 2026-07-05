@@ -1,0 +1,69 @@
+name: Publish to GitHub Pages
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show repo root
+        run: |
+          echo "Working dir: $(pwd)"
+          git rev-parse --abbrev-ref HEAD || true
+          echo "Top-level files:"; ls -la
+          echo "Quick file check:"
+          [ -f index.html ] && echo "Found index.html at root" || echo "No index.html at root"
+          [ -d docs ] && echo "Found docs/ folder" || echo "No docs/ folder"
+          [ -d public ] && echo "Found public/ folder" || echo "No public/ folder"
+
+      - id: prepare_site_dir
+        name: Prepare site directory
+        run: |
+          SITE_DIR=""
+          if [ -d "docs" ] && [ -n "$(ls -A docs 2>/dev/null)" ]; then
+            SITE_DIR=docs
+          elif [ -f "index.html" ]; then
+            SITE_DIR=.
+          elif [ -d "public" ] && [ -n "$(ls -A public 2>/dev/null)" ]; then
+            SITE_DIR=public
+          else
+            echo "No obvious site directory found. Creating minimal docs/index.html fallback."
+            mkdir -p docs
+            cat > docs/index.html <<'HTML'
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>Zaree Studio</title></head>
+  <body><h1>Zaree Studio</h1><p>Fallback index</p></body>
+</html>
+HTML
+            SITE_DIR=docs
+          fi
+
+          echo "Using SITE_DIR=${SITE_DIR}"
+          echo "Contents of site dir:"
+          ls -la "${SITE_DIR}"
+          echo "Tree of site dir (files):"
+          find "${SITE_DIR}" -maxdepth 3 -type f -print | sed -n '1,500p'
+
+          echo "OUTPUT_PATH=${SITE_DIR}" >> $GITHUB_OUTPUT
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ${{ steps.prepare_site_dir.outputs.OUTPUT_PATH }}
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v5
